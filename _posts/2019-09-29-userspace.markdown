@@ -8,7 +8,7 @@ tags: development
 
 ![userspace!](/assets/userspace.png)
 
-For now, SnowflakeOS runs entirely in kernel mode, or `ring 0`. Now, the time has come for
+Before now, SnowflakeOS runs entirely in kernel mode, or `ring 0`. Now, the time has come for
 it to move on to better places, those of userland, also called `ring 3`.  
 The transition to having processes roam free in `ring 3` was mostly made in the
 series of commits from [here][commit a] to [there][commit b], and I encourage readers
@@ -31,8 +31,8 @@ typedef struct _proc_t {
 {% endhighlight %}
 I'll explain. A process consists of executable code, a stack, and an execution
 context. And another stack for execution in the kernel, I'll get back to it.  
-The executable code along with the stack is stored of course in physical memory
-somewhere, but it needs to be mapped though paging to be accessible (if only to
+The executable code along with the stack is stored in physical memory somewhere,
+of course, but it needs to be mapped through paging to be accessible (if only to
 write the code to the physical page!), so what we store is a page directory. It
 maps addresses `0x00000000+` to the pages containing our code, and addresses
 below our kernel to our stack pages. It also maps the kernel exactly as the
@@ -40,37 +40,37 @@ initial kernel page directory did; it's a copy. Notice that once the code is
 copied to physical memory, the page directory suffices to reference it; physical
 memory never moves. We only keep track of the size occupied by the code and stack,
 though I haven't made these things dynamic yet, both are 4 MiB pages.  
-The execution context consists of basically one thing: the process' registers, to
-the surprise of no one who has written assembly before. Indeed, registers do not
+The execution context consists of basically one thing: the process's registers, to
+the surprise of no one who's written assembly before. Indeed, registers do not
 only include working registers like `eax` et al, there's also `eip` storing the
 address of the next instruction to be executed, `esp` storing the stack pointer,
-`eflags`... The page directory can be considered context too, of course, as it
+`eflags`... The page directory can be considered context too, as it
 may hold dynamically allocated memory (not yet implemented).
 
 ## Let's switch to it
 
-So starting a process in usermode is simply a matter of switching to a correctly
-setup page directory, and pointing `eip` and `esp` to the right place! And
-resuming an interrupted process is the same, but restoring registers beforehand.  
+With that said, starting a process in usermode is simply a matter of switching to
+a correctly setup page directory, and pointing `eip` and `esp` to the right place!
+And resuming an interrupted process is the same, but restoring registers beforehand.  
 The way to do these things is a bit convoluted though, as we need to `iret` (aka
 interrupt return) to our code, we can't just jump to it, the reason being that we
-need to change priviledge level (from 0 to 3).
+need to change privilege level (from 0 to 3).
 
 ## Getting control back
 
-But how do we get back to kernel mode execution once we've made the jump? The
-answer is twofolds: through syscalls and scheduling - interrupts in both cases.
+How do we get back to kernel mode execution once we've made the jump? The
+answer is twofold: through syscalls and scheduling - interrupts in both cases.
 Because right now scheduling is handled though syscalls in SnowflakeOS, I'll
-only describe them. In SnowflakeOS, calling `int $48` with `eax` set to `n` will
-trigger the `n`th interrupt: process execution stops, priviledge changes to 0 and
-the execution resumes in the syscall handler. Because the kernel is mapped into
-our process' address space, no page directory switch is needed here. However, one
-thing needs to be changed, and it's the stack: we can't just pollute the process'
+describe only those. In our kernel, calling `int $48` with `eax` set to `n`
+triggers the `n`th interrupt: process execution stops, privilege changes to 0 and
+execution then resumes in the syscall handler. Because the kernel is mapped into
+our process's address space, no page directory switch is needed here. However, one
+thing needs to be changed, and it's the stack: we can't just pollute the process's
 stack, and `x86` gives us (forces us to use) a mechanism to switch stack as part
 of the jump to ring 0. So what's usually done, and what I did is allocating
 memory for a kernel stack per process, and before switching to the execution of
-that process, setting the "stack-to-be-switched-to" variable (in the `GDT`) to
-that stack.  
+that process, setting the "stack-to-be-switched-to" variable (in the `TSS`, a `GDT`
+entry) to that stack.  
 Right now syscall `0` is `yield`, and it switches execution to the process pointed
 to by the `next` pointer in the `process_t` structure. It's cooperative
 multitasking, preemptive will come later.
@@ -86,7 +86,7 @@ memory, but it has a great advantage: the previous `kmalloc` needed to modify
 kernel page tables dynamically, and those changes aren't automatically reflected
 across all copies of the initial page directory! It's important because when
 context switches, for instance while in kernel mode, the previous kernel stack
-must remain mapped, as there are no stack switches when priviledge level doesn't
+must remain mapped, as there are no stack switches when privilege level doesn't
 change.  
 I'll reintroduce a cool allocator with the userspace `libc`, the kernel
 will stay simple and only grant pages at at time to processes. I'm not sure how
@@ -101,11 +101,11 @@ I started with `yield` to get started with multitasking, and quickly implemented
 `exit`, though testing that last one took a while: I've spent hours debugging 
 assembly in in Bochs to get `yield` to work.  
 Only then, I started implementing a `putchar` syscall. First, I needed to make my
-TTY work in processes, which involved mapping it somewhere, I decided to put it
+TTY work in processes, which involved mapping it somewhere; I decided to put it
 [in my kernel heap][tty remap]. Tada, I can print again! I should have started
 by doing that, it would have made a lot of debugging easier; but then again I've
 learned __a lot__ of assembly without it. Implementing the syscall was trivial
-after that, and I was able to get my first "Hellow world" from userspace.  
+after that, and I was able to get my first "Hello world" from userspace.  
 I tried my hand at a `wait` syscall to pause a process for some time, but I
 approached it the wrong way, or at least in a way that Bochs liked, but QEMU did
 not: waiting for time to pass in the syscall handler. In QEMU, timer interrupts
