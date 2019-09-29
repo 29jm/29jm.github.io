@@ -12,7 +12,7 @@ tags: meta
 
 I run Archlinux, so if you want to follow along you'll have to grab the corresponding 
 packages for your distro.  
-After cloning the repository, I installed the dependencies listed in the `README`
+After cloning the repository, I installed the dependencies listed in the `README`:
 
 - `libisoburn`
 - `mtools`
