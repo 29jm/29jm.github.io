@@ -102,7 +102,7 @@ I started with `yield` to get started with multitasking, and quickly implemented
 assembly in in Bochs to get `yield` to work.  
 Only then, I started implementing a `putchar` syscall. First, I needed to make my
 TTY work in processes, which involved mapping it somewhere, I decided to put it
-[in my kernel heap][ttyp remap]. Tada, I can print again! I should have started
+[in my kernel heap][tty remap]. Tada, I can print again! I should have started
 by doing that, it would have made a lot of debugging easier; but then again I've
 learned __a lot__ of assembly without it. Implementing the syscall was trivial
 after that, and I was able to get my first "Hellow world" from userspace.  
@@ -114,3 +114,4 @@ perspective.
 
 [commit a]: https://github.com/29jm/SnowflakeOS/commit/a0af7081f44b3c746e661f1e5488ccb06073fa5a
 [commit b]: https://github.com/29jm/SnowflakeOS/commit/3ed963cc8847f6ed92ac83c5220190600131f2c3
+[tty remap]: https://github.com/29jm/SnowflakeOS/blob/36fc37d92dac7e248fb2863ba09a80813ff0e5d5/kernel/src/mem/paging.c#L41-L48
