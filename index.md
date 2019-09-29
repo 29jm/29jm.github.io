@@ -3,9 +3,6 @@
 
 # SnowflakeOS - Challenge Edition
 
-SnowflakeOS is a hobby OS I started four years ago already with the goal of learning about the inner workings of operating systems, and for programming low-level stuff for the fun of it.  
-I stopped developping it regularly shortly after starting the project as I no longer had the time because of school. This year, my school asks students to choose a task to work on, a challenge of their choice, and frees up some time to work on it. I've chosen to resume work on SnowflakeOS, and the work has begun!
-
 ## Objectives
 
 The stated goals of development this year are the following:
@@ -26,10 +23,13 @@ That makes only two technical goals, but they aren't the easy kind. Here is a no
 
 Note that I don't intend to have the best scheduler, the best GUI, or great performance: they will likely be terrible; but I want to have working versions of them, and to be able to show something working by June 2020.
 
-## Journal
+## Journal - the interesting part
+
+I keep track of my progress through regular posts, listed here from oldest to newest:
 
 <ul>
-  {% for post in site.posts %}
+  {% assign sorted = (site.posts | sort: 'date') %}
+  {% for post in sorted %}
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
