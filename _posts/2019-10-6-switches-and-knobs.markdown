@@ -10,7 +10,7 @@ tags: development
 
 ## Context switching
 
-In the last post, I discussed how I implemented preemptive execution in SnowflakeOS through the `iret` instruction. Well, at that time the implementation wasn't finished, even though I thought it was: I wasn't restoring general purpose registers. This led to some pretty nice bugs, as illustrated by the picture above.  
+In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the `iret` instruction. Well, at that time the implementation wasn't finished, even though I thought it was: I wasn't restoring general purpose registers. This led to some pretty nice bugs, as illustrated by the picture above.  
 I noticed that issue and at first decided to tackle it my own way, `mov`ing the contents of my `registers_t` structure to the corresponding registers, but it proved a bit difficult. It would have been doable with more thought, but instead I searched the internet for the "usual" way to restore context.
 
 It turns out there's a very elegant way to do it: instead of using `iret` everytime, simply switch stack and let the execution get back to the interrupt handler by just letting execution reach the end of the function.  
@@ -59,6 +59,8 @@ proc_switch_process: # void proc_switch_process();
 That leaves the problem of how to switch to tasks which haven't been started yet, and thus haven't had the chance to be interrupted: we can't switch to their kernel stack to restore the process's context, there's nothing there. I haven't thought this through, but I don't think we can `iret` manually a second time, we'd mess up the kernel stack of the currently executing process.  
 I opted for the solution of setting up that stack manually in `proc_run_code`. It's ugly ([see for yourselves][proc stack]), but hey, it works. I'll make something nicer at some point, I haven't researched how it's usually done.
 
+Implementing preemptive multitasking, i.e. interrupting and resuming tasks without asking them was then simply a matter of calling `proc_switch_context` from my timer interrupt handler.
+
 If you look at the commit implementing all this, [here][commit a], you'll notice that I'm not calling `iret` when first entering usermode. And yet the code seemed to work, and it in fact sort of did! By a miracle of chance, the `ret` instruction for the function `proc_enter_usermode` popped the pushed `eip = 0` from my inline assembly, thereby calling my process code. Of course with a simple `ret` the execution was still in ring 0, but on subsequent switches, everything was as right as ever.
 
 ## Ongoing code documentation
@@ -90,7 +92,7 @@ After that, I managed to get module compilation in working order.
 
 ![A C program printing "Hello, C world" on the screen](/assets/executing-c.png)
 
-Notice the "Hello, C world" line on here? That's a usermode process calling my libc's `printf` implementation, which itself uses my `putchar` system call to print characters:
+Notice the "Hello, C world" line on here? That's [a usermode process][test module] calling my libc's `printf` implementation, which itself uses my `putchar` system call to print characters:
 
 {% highlight c %}
 int putchar(int c) {
@@ -121,4 +123,5 @@ It's enough to call `exit`, and I guess if I really want my `argc` and `argv` I'
 [gdt header]: https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/kernel/include/kernel/gdt.h
 [isr]:https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/kernel/src/cpu/asm/isr.S
 [makefile]: https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/Makefile
+[test module]: https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/modules/src/test.c
 [losb]: https://littleosbook.github.io/#using-c-for-user-mode-programs

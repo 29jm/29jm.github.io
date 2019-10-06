@@ -14,19 +14,17 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: SnowflakeOS
-# email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-    SnowflakeOS is a hobby OS I started four years ago already with the goal
-    of learning about the inner workings of operating systems, and for
-    programming low-level stuff for the fun of it.  
-    I stopped developping it regularly shortly after starting the project as
-    I no longer had the time because of school. This year, my school asks
-    students to choose a task to work on, a challenge of their choice, and
-    frees up some time to work on it. I've chosen to resume work on
-    SnowflakeOS, and the work has begun!
+description: >-
+    SnowflakeOS is a hobby OS I started in 2015 with the goal of learning about
+    the inner workings of operating systems, and to program low-level stuff for
+    the fun of it.
+    I stopped working on it regularly shortly after starting the project as
+    I no longer had the time. This year, my school asked students to choose a
+    task to work on, a challenge, and freed up some time for us to work on it.
+    I've chosen to resume work on SnowflakeOS, and the work has begun!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  29jm
+github_username: 29jm
 
 # Build settings
 markdown: kramdown

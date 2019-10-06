@@ -90,7 +90,7 @@ allocations. The code in this library is horrific, though, and I intend to get r
 Source files: [syscall.c][syscall c]
 
 Which brings us to syscalls, or system calls. Those are a way to call a kernel function
-from a userspace process, thereby gaining access to higher priviledge but in a way that
+from a userspace process, thereby gaining access to higher privilege but in a way that
 is entirely controlled by the kernel.  
 Concretely, syscalls are implemented by registering an unused interrupt handler, and by
 checking the arguments passed to that interrupt (I'll use registers for parameter passing)

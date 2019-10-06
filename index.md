@@ -3,6 +3,21 @@
 
 # SnowflakeOS - Challenge Edition
 
+## Journal - the interesting part
+
+I keep track of my progress through regular posts, listed here from oldest to newest.
+
+<ul>
+  {% assign sorted = site.posts | sort: 'date' %}
+  {% for post in sorted %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+Here's a link to SnowflakeOS's [GitHub repository](https://github.com/29jm/SnowflakeOS).
+
 ## Objectives
 
 The stated goals of development this year are the following:
@@ -22,16 +37,3 @@ That makes only two technical goals, but they aren't the easy kind. Here is a no
 - GUI toolkit
 
 Note that I don't intend to have the best scheduler, the best GUI, or great performance: they will likely be terrible; but I want to have working versions of them, and to be able to show something working by June 2020.
-
-## Journal - the interesting part
-
-I keep track of my progress through regular posts, listed here from oldest to newest:
-
-<ul>
-  {% assign sorted = (site.posts | sort: 'date') %}
-  {% for post in sorted %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
