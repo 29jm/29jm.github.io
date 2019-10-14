@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Setting up the environnement"
-author: 29jm
+title: "Setting up the environnement"
+author: Johan Manuel
 author_profile: false
 tags: meta
 ---

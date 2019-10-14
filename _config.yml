@@ -21,7 +21,7 @@ description: >-
     I stopped working on it regularly shortly after starting the project as
     I no longer had the time. This year, my school asked students to choose a
     task to work on, a challenge, and freed up some time for us to work on it.
-    I've chosen to resume work on SnowflakeOS, and the work has begun!
+    I've chosen to resume work on SnowflakeOS, and work has begun!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: 29jm

@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Getting to userspace - and back !"
-author: 29jm
+title: "Getting to userspace - and back !"
+author: Johan Manuel
 author_profile: false
 tags: development
 ---
