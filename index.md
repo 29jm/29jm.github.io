@@ -18,7 +18,7 @@ I keep track of my progress through regular posts, listed here from oldest to ne
 
 Here's a link to SnowflakeOS's [GitHub repository](https://github.com/29jm/SnowflakeOS).
 
-## Objectives
+## Goals
 
 The stated goals of development this year are the following:
 

@@ -8,7 +8,7 @@ tags: development
 
 ![userspace!](/assets/userspace.png)
 
-Before now, SnowflakeOS runs entirely in kernel mode, or `ring 0`. Now, the time has come for
+Before now, SnowflakeOS ran entirely in kernel mode, or `ring 0`. Now, the time has come for
 it to move on to better places, those of userland, also called `ring 3`.  
 The transition to having processes roam free in `ring 3` was mostly made in the
 series of commits from [here][commit a] to [there][commit b], and I encourage readers

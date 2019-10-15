@@ -91,57 +91,54 @@ Then there are the other keys, which send multibyte scan codes. They can be iden
 Now keep in mind that we receive bytes one at a time in our interrupt handler, so we need to keep track of previously received bytes until we've identified a whole key event, and the difficulty is in the variable length of such packets. Obviously, what we need is some kind of state machine and a buffer to hold our bytes. Here's the function in [kbd.c][kbd c process] in charge of updating the state of the driver's state machine:
 
 {% highlight c %}
-uint32_t kbd_process_byte(uint8_t sc, kbd_event_t* event) {
-	static uint8_t bytes[8] = { 0 };
-	static uint32_t current = 0;
-	bytes[current++] = sc;
-	uint32_t sc_pos = current - 1;
+bool kbd_process_byte(kbd_context_t* ctx, uint8_t sc, kbd_event_t* event) {
+	ctx->scancode[ctx->current++] = sc;
+	uint32_t sc_pos = ctx->current - 1;
 
-	switch (context.state) {
-		case KBD_NORMAL: // Not in the middle of a scan code
+	switch (ctx->state) {
+		case KBD_NORMAL: // Not in the middle of a scancode
 			event->pressed = true;
 
 			if (sc == 0xF0) {
-				return KBD_RELEASE_SHORT;
+				ctx->state = KBD_RELEASE_SHORT;
 			} else if (sc == 0xE0 || sc == 0xE1) {
-				return KBD_CONTINUE;
+				ctx->state = KBD_CONTINUE;
 			} else {
-				current = 0;
+				ctx->current = 0;
 				event->key_code = simple_sc_to_kc[sc];
-				return KBD_NORMAL;
 			}
 
 			break;
 		case KBD_RELEASE_SHORT: // We received `0xF0` previously
-			current = 0;
+			ctx->state = KBD_NORMAL;
+			ctx->current = 0;
 			event->key_code = simple_sc_to_kc[sc];
 			event->pressed = false;
-			return KBD_NORMAL;
 
 			break;
 		case KBD_CONTINUE: // We received `0xE0` at some point before
 			if (sc == 0xF0 && sc_pos == 1) {
 				event->pressed = false;
-				return KBD_CONTINUE;
+				break;
 			}
 
-			if (kbd_is_valid_scancode(&bytes[1], sc_pos, &event->key_code)) {
-				current = 0;
-				return KBD_NORMAL;
-			} else {
-				return KBD_CONTINUE;
+			if (kbd_is_valid_scancode(&ctx->scancode[1], sc_pos, &event->key_code)) {
+				ctx->state = KBD_NORMAL;
+				ctx->current = 0;
 			}
 
 			break;
 	}
 
-	// Unreachable
-	return KBD_CONTINUE;
+	return ctx->state == KBD_NORMAL;
 }
 {% endhighlight %}
 
-It's quite a big function, and still most of the heavy lifting is done in `kbd_is_valid_scancode(bytes, len, &key_code)`, in charge of identifying valid multibyte scancodes and translating those into key codes. Our `kbd_process_byte` function indicates that a valid scan code has been received by setting the current state to `KBD_NORMAL`, and makes the key event available through its `event` parameter.  
-All in all somewhat ugly; for instance it's not often you see static local variables. You may also notice the use of a global `context.state` which would be better off passed as a parameter for a more functional look. And if you're really paying attention, you may notice a possible buffer overrun with `bytes[current++]`, but thankfully `kbd_is_valid_scancode` is guaranteed to return `true` before that... Hmm, this last one is a bit too clunky, perhaps I'll put a proper check back in just in case I ever modify `kbd_is_valid_scancode`'s interface in the future.
+It's quite a big function, and still most of the heavy lifting is done in `kbd_is_valid_scancode(bytes, len, &key_code)`, in charge of identifying valid multibyte scancodes and translating those into key codes. Our `kbd_process_byte` function indicates that a valid scan code has been received by returning `true`, and makes the key event available through its `event` parameter.  
+If you're really paying attention, you may notice a possible buffer overflow with `ctx->scancode[ctx->current++]`, but thankfully `kbd_is_valid_scancode` is guaranteed to return `true` before that... Hmm, this is a bit too clunky, perhaps I'll put a proper check back in just in case I ever modify `kbd_is_valid_scancode`'s interface in the future.
+
+Anyway, SnowflakeOS can now handle a full QWERTY layout. This is a bit dumb as I myself have a French, AZERTY layout; let's just say I'm being international :)  
+Ideally I'd move most of the keycode translation stuff to userspace where a keymap could be loaded, and there'd be no more problems.
 
 [osdev kbd]: https://wiki.osdev.org/Keyboard
 [osdev ps2]: https://wiki.osdev.org/%228042%22_PS/2_Controller
@@ -150,6 +147,6 @@ All in all somewhat ugly; for instance it's not often you see static local varia
 [ps2 h]: https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/include/kernel/ps2.h
 [mouse c]: https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/src/devices/mouse.c
 [mouse h]: https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/include/kernel/mouse.h
-[kbd c]: https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/src/devices/kbd.c
-[kbd c process]: https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/src/devices/kbd.c#L136-L189
-[kbd h]: https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/include/kernel/kbd.h
+[kbd c]: https://github.com/29jm/SnowflakeOS/blob/617e66a7107bd5821ef381a64598fa33c8891c08/kernel/src/devices/kbd.c
+[kbd c process]: https://github.com/29jm/SnowflakeOS/blob/617e66a7107bd5821ef381a64598fa33c8891c08/kernel/src/devices/kbd.c#L133-L179
+[kbd h]: https://github.com/29jm/SnowflakeOS/blob/617e66a7107bd5821ef381a64598fa33c8891c08/kernel/include/kernel/kbd.h
