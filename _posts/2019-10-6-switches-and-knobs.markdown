@@ -6,11 +6,11 @@ author_profile: false
 tags: development
 ---
 
+![Executing garbage](/assets/garbage.png)
+In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the `iret` instruction. Well, at that time the implementation wasn't finished, even though I thought it was: I wasn't restoring general purpose registers. This led to some pretty nice bugs, as pictured above.
+
 ## Context switching
 
-![Executing garbage](/assets/garbage.png)
-
-In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the `iret` instruction. Well, at that time the implementation wasn't finished, even though I thought it was: I wasn't restoring general purpose registers. This led to some pretty nice bugs, as illustrated by the picture above.  
 I noticed that issue and at first decided to tackle it my own way, `mov`ing the contents of my `registers_t` structure to the corresponding registers, but it proved a bit difficult. It would have been doable with more thought, but instead I searched the internet for the "usual" way to restore context.
 
 It turns out there's a very elegant way to do it: instead of using `iret` everytime, simply switch stack and let the execution get back to the interrupt handler by just letting execution reach the end of the function.  

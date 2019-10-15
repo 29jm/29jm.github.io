@@ -9,6 +9,7 @@ tags: meta
 In my first run in summer 2015, I programmed the components listed in the following
 categories, pretty much in that order. I've barely touched them since, so explaining
 each of them here should help me get some knowledge back.  
+
 Some of those categories may have to be moved to their own pages in the future.
 
 ## VGA Terminal

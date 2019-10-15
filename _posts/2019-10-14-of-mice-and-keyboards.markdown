@@ -6,11 +6,11 @@ author_profile: false
 tags: development
 ---
 
-![Keyboard and mouse both working](/assets/kbd_demo.gif)
-Here you can see keyboard input being written to the screen, and mouse coordinates on the bottom right corner - wait for it.
-
 At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.  
 So I went over to OSDev's article about [PS/2 keyboards][osdev kbd], which sent me to the article about the [PS/2 controller][osdev ps2], and I knew I wanted to do things properly, and at the same time, gain mouse support.
+
+![Keyboard and mouse both working](/assets/kbd_demo.gif)
+Here you can see keyboard input being written to the screen, and mouse coordinates on the bottom right corner - wait for it.
 
 ## The PS/2 controller
 
