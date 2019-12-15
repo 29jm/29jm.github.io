@@ -6,6 +6,8 @@ permalink: /about/
 
 ## SnowflakeOS
 
+> "It's very special"
+
 SnowflakeOS is a hobby OS I started in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. I stopped working on it regularly shortly after starting the project as I no longer had the time.
 
 ### SnowflakeOS - Challenge Edition
