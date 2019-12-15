@@ -151,7 +151,7 @@ img {
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .masthead {
@@ -244,6 +244,14 @@ nav {
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
+}
+
+.posts > .post h1 {
+  margin: 0;
+}
+
+.posts > .post h1 a {
+  color: $blue;
 }
 
 .posts > .post:last-child {

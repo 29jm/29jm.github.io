@@ -6,11 +6,11 @@ permalink: /about/
 
 ## SnowflakeOS
 
-> "It's very special"
+\> *"It is very special"*
 
-SnowflakeOS is a hobby OS I started in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. I stopped working on it regularly shortly after starting the project as I no longer had the time.
+SnowflakeOS is a hobby OS written in C for the x86 architecture I started in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. I stopped working on it regularly shortly after starting the project as I no longer had the time.
 
-### SnowflakeOS - Challenge Edition
+### A rebirth
 
 This year, my school asked each student to choose a task to work on, a personal challenge, and freed up some time for them to work on it. I've chosen to resume work on SnowflakeOS, and work has begun!
 
@@ -36,9 +36,9 @@ Note that I don't intend to have the best scheduler, the best GUI, or great perf
 
 ### About this blog
 
-I'm writing this blog to record my progress, but also hoping to share some of the cool things I come across in the world of OS development. If you learn anything reading one of my posts, that'd be awesome.  
+I'm writing this blog to document my progress and share some of the cool things I come across in the world of OS development. If you learn anything reading one of my posts, that'd be awesome.  
 However, I'm not an expert and I will surely make mistakes, which I'll try to correct as I go - at the very least I'll highlight them. If you spot any, please tell me!
 
 ### Contact me
 
-I would love to get feedback, on anything! You'll find my email through my GitHub profile linked below.
+I'd love to get feedback, on anything! You'll find my email through my GitHub profile linked below. I'm also on Keybase if you're into that.
