@@ -60,17 +60,17 @@ need to change privilege level (from 0 to 3):
 
 {% highlight c %}
 asm volatile (
-	"push $0x23\n"    // user ds selector
-	"mov %0, %%eax\n"
-	"push %%eax\n"    // %esp
-	"push $512\n"     // %eflags with 9th bit set to allow calling interrupts
-	"push $0x1B\n"    // user cs selector
-	"mov %1, %%eax\n"
-	"push %%eax\n"    // %eip
-	"iret\n"
-	:                 /* read registers: none */
-	: "r" (esp_val), "r" (eip_val) /* inputs %0 and %1 stored anywhere */
-	: "%eax"          /* registers clobbered by hand in there */
+    "push $0x23\n"    // user ds selector
+    "mov %0, %%eax\n"
+    "push %%eax\n"    // %esp
+    "push $512\n"     // %eflags with 9th bit set to allow calling interrupts
+    "push $0x1B\n"    // user cs selector
+    "mov %1, %%eax\n"
+    "push %%eax\n"    // %eip
+    "iret\n"
+    :                 /* read registers: none */
+    : "r" (esp_val), "r" (eip_val) /* inputs %0 and %1 stored anywhere */
+    : "%eax"          /* registers clobbered by hand in there */
 );
 {% endhighlight %}
 

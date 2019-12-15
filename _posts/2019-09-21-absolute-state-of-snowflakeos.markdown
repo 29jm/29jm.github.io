@@ -2,7 +2,6 @@
 layout: post
 title: "The absolute state of SnowflakeOS"
 author: Johan Manuel
-author_profile: false
 tags: meta
 ---
 

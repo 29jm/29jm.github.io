@@ -2,7 +2,6 @@
 layout: post
 title: "Mouse support and other PS/2 shenanigans"
 author: Johan Manuel
-author_profile: false
 tags: development
 ---
 
@@ -92,45 +91,45 @@ Now keep in mind that we receive bytes one at a time in our interrupt handler, s
 
 {% highlight c %}
 bool kbd_process_byte(kbd_context_t* ctx, uint8_t sc, kbd_event_t* event) {
-	ctx->scancode[ctx->current++] = sc;
-	uint32_t sc_pos = ctx->current - 1;
+    ctx->scancode[ctx->current++] = sc;
+    uint32_t sc_pos = ctx->current - 1;
 
-	switch (ctx->state) {
-		case KBD_NORMAL: // Not in the middle of a scancode
-			event->pressed = true;
+    switch (ctx->state) {
+        case KBD_NORMAL: // Not in the middle of a scancode
+            event->pressed = true;
 
-			if (sc == 0xF0) {
-				ctx->state = KBD_RELEASE_SHORT;
-			} else if (sc == 0xE0 || sc == 0xE1) {
-				ctx->state = KBD_CONTINUE;
-			} else {
-				ctx->current = 0;
-				event->key_code = simple_sc_to_kc[sc];
-			}
+            if (sc == 0xF0) {
+                ctx->state = KBD_RELEASE_SHORT;
+            } else if (sc == 0xE0 || sc == 0xE1) {
+                ctx->state = KBD_CONTINUE;
+            } else {
+                ctx->current = 0;
+                event->key_code = simple_sc_to_kc[sc];
+            }
 
-			break;
-		case KBD_RELEASE_SHORT: // We received `0xF0` previously
-			ctx->state = KBD_NORMAL;
-			ctx->current = 0;
-			event->key_code = simple_sc_to_kc[sc];
-			event->pressed = false;
+            break;
+        case KBD_RELEASE_SHORT: // We received `0xF0` previously
+            ctx->state = KBD_NORMAL;
+            ctx->current = 0;
+            event->key_code = simple_sc_to_kc[sc];
+            event->pressed = false;
 
-			break;
-		case KBD_CONTINUE: // We received `0xE0` at some point before
-			if (sc == 0xF0 && sc_pos == 1) {
-				event->pressed = false;
-				break;
-			}
+            break;
+        case KBD_CONTINUE: // We received `0xE0` at some point before
+            if (sc == 0xF0 && sc_pos == 1) {
+                event->pressed = false;
+                break;
+            }
 
-			if (kbd_is_valid_scancode(&ctx->scancode[1], sc_pos, &event->key_code)) {
-				ctx->state = KBD_NORMAL;
-				ctx->current = 0;
-			}
+            if (kbd_is_valid_scancode(&ctx->scancode[1], sc_pos, &event->key_code)) {
+                ctx->state = KBD_NORMAL;
+                ctx->current = 0;
+            }
 
-			break;
-	}
+            break;
+    }
 
-	return ctx->state == KBD_NORMAL;
+    return ctx->state == KBD_NORMAL;
 }
 {% endhighlight %}
 

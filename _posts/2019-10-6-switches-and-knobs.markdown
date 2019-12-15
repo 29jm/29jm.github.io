@@ -2,7 +2,6 @@
 layout: post
 title:  "On context switching and C programs in userland"
 author: Johan Manuel
-author_profile: false
 tags: development
 ---
 
@@ -97,18 +96,18 @@ Notice the "Hello, C world" line on here? That's [a usermode process][test modul
 {% highlight c %}
 int putchar(int c) {
 #ifdef _KERNEL_
-	term_putchar(c);
+    term_putchar(c);
 #else
-	asm (
-		"mov $3, %%eax\n"
-		"mov %[c], %%ebx\n"
-		"int $0x30\n"
-		:
-		: [c] "r" (c)
-		: "%eax"
-	);
+    asm (
+        "mov $3, %%eax\n"
+        "mov %[c], %%ebx\n"
+        "int $0x30\n"
+        :
+        : [c] "r" (c)
+        : "%eax"
+    );
 #endif
-	return c;
+    return c;
 }
 {% endhighlight %}
 
