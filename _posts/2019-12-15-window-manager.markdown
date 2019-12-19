@@ -62,7 +62,7 @@ The `address` field refers to a physical address, so we mustn't forget to map it
 
 Now that we have an address to write to, plotting a pixel is a matter of computing its offset and knowing its format. The address of the pixel at (x, y) is given by
 {% highlight c %}
-uint32_t* offset = (uint32_t*) (address + y*pitch + x*bpp/32);
+uint32_t* offset = (uint32_t*) (address + y*pitch + x*bpp/8);
 {% endhighlight %}
 
 Once you're there, all that remains is implementing some drawing primitives. Rectangles, lines, borders...  
@@ -131,6 +131,7 @@ It offers a `snow_open_window` function which allocates a buffer of the window's
 Here's an example of what can be done right now:
 {% highlight c %}
 #include <snow.h>
+#include <string.h>
 
 int main() {
     window_t* win = snow_open_window("A static window", 300, 150, WM_NORMAL);

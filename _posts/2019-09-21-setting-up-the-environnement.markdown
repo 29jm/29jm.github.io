@@ -52,16 +52,17 @@ I recommend running `make` with at least `-j2`, otherwise compiling `gcc` might 
 
 ### Compile & Run
 
+*Updated on 19/12/19 to match the new buildsystem*
+
 All that's left to do is compiling the kernel and running it. You can do both in one command
 with
 {% highlight shell %}
-./qemu.sh
+make qemu
 {% endhighlight %}
 ![SnowflakeOS](/assets/sos-challenge.png)
 
-I won't detail the build system too much; it was heavily inspired by the wiki's and that of other
-hobby OSes. The gist of it is that `qemu.sh` calls `iso.sh` which in turn calls `build.sh`, and
-that final script runs `make` for both the `kernel` and `libc` folders.
+I won't detail the build system too much; it was heavily inspired by the wiki's and that of other hobby OSes.  
+The gist of it is that submakefiles are called first to copy their headers to an LFS-looking environment (the *sysroot* directory), and then in a second pass to build their respective projects and copy binaries, while respecting the dependencies listed in the root Makefile.
 
 [osdev cross]: https://wiki.osdev.org/GCC_Cross-Compiler
 [binutils]: https://www.gnu.org/software/binutils/
