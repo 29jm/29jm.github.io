@@ -241,6 +241,11 @@ nav {
 // .main
 //
 
+sup {
+  vertical-align: top;
+  font-size: 0.6em;
+}
+
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
