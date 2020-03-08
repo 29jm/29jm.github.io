@@ -14,9 +14,9 @@ I decided to take guidance from [this post][allocator blog] by Dmitry Soshnikov,
 
 There is some terminology to get down before diving into the details:
 
-+ *memory allocator*: a function that a program can call that returns an address to which the program can free write. Typically, `malloc`. There are qualities to different allocators, such as performance, minimizing memory fragmentation...
++ *memory allocator*: a function that a program can call that returns an address to which the program can freely write. Typically, `malloc`. Different allocators have different qualities, such as performance, minimizing memory fragmentation...
 + *memory block*: a contiguous range of memory addresses, with a few attributes such as whether it's in use or has been freed, its address and size... These attributes are stored in the block's *header*.
-+ *alignment*: an address `addr` is said to be `N`-aligned if `addr % N == 0`. It's important for a kernel allocator to be able to allocate buffers with specific alignments, as we'll see.
++ *alignment*: an address `addr` is said to be `N`-aligned if `addr % N == 0`. It's important for a kernel allocator to be able to allocate buffers with specific alignments, as we'll later see.
 
 ## Our previous allocator: now too simple
 
@@ -24,7 +24,7 @@ Previously, SnowflakeOS used what's called a *buddy allocator*, i.e. an allocato
 
 I would've liked to keep that design as the implementation is concise and easy to understand, but unfortunately it's now too simple for my use. Not being able to reuse blocks is the deal breaker here, as the window manager will have to do a lot of small and short-lived allocations, and the goal is to not to run out of memory in five seconds.
 
-The new allocator will have to keep one feature from its predecessor, the ability to hand out addresses with a specific alignment. This is strictly needed, as pages boundaries are multiples of 4 KiB, and we need to be able to remap a newly acquired page from our allocator. See [this use case][term remap] for instance.
+The new allocator will have to keep one feature from its predecessor, the ability to hand out addresses with a specific alignment. This is strictly needed, as we need to be able to remap a newly acquired page from our allocator, and pages boundaries are multiples of 4 KiB. See for instance [this use case][term remap].
 
 ## The new allocator
 
@@ -48,7 +48,7 @@ void* kamalloc(uint32_t size, uint32_t align) {
     mem_block_t* block = mem_find_block(size, align);
 
     if (block) {
-        block->size |= 1;
+        block->size |= 1; // Mark it as used
         return block->data;
     } else {
         block = mem_new_block(size, align);
@@ -125,7 +125,7 @@ mem_block_t* mem_new_block(uint32_t size, uint32_t align) {
 {% endhighlight %}
 Notice that second `if`: as we want to support arbitrary alignment of the blocks we hand out, we want to prevent space from being wasted in between blocks, so unused blocks will be created to fill the gaps as they appear. For instance, imagine the heap is at 0x40, and a 0x1000-aligned block is requested. Then a gap of about `0x1000-0x40=0xFC0` bytes will be created between the first block and the new one. We'll create a block there with minimum alignment to fill the gap.
 
-Note that the pages that consitute the memory we'll be distributing are already mapped in the kernel. That way the kernel can allocate after starting to execute in multiple page directories, without having to mirror the paging changes in each process. This is where it's done in [paging.c][paging]
+Note that the pages that consitute the memory we'll be distributing are already mapped in the kernel. That way the kernel can allocate after starting to execute in multiple page directories, without having to mirror the paging changes in each process. This is where the preallocation is done in [paging.c][paging]:
 {% highlight c %}
     // Setup the kernel heap
     heap = KERNEL_HEAP_BEGIN;
@@ -137,12 +137,12 @@ Note that the pages that consitute the memory we'll be distributing are already 
 
 ### Porting the allocator to userspace
 
-Sure, the kernel and its WM are what will be stressing memory the most for a while, and we could get away with keeping a buddy allocator for our userspace `malloc`. That memory is freed on exit anyway. But where's the fun in that? Can't we adapt our code so that it works in both the kernel and in userspace?
+Sure, the kernel and its window manager are what will be stressing memory the most for a while, and we could get away with keeping a buddy allocator for our userspace `malloc`. That memory is freed on exit anyway. But where's the fun in that? Can't we adapt our code so that it works in both the kernel and in userspace?
 
 Of course we can. We already have a build-level mechanism for that with our C library, which is built twice: once for the kernel with the `_KERNEL_` preprocessor symbol defined, and a second time for userspace.
 
 There are two things that we'll have to adapt for userspace:
-1. The place where our blocks live will now be after our program, i.e. at `sbrk(0)`, and not after our kernel executable.
+1. Our allocated blocks will now live after our program in memory, i.e. at `sbrk(0)`, and not after our kernel executable.
 2. Whereas the kernel has its whole memory pool preallocated, that makes no sense for userspace, so we'll have to call `sbrk` regularly to ask the kernel for more memory.
 
 To address the first point, I added the following bit of code to the beginning of `malloc`:
@@ -187,21 +187,21 @@ And to address the second point, I added this distinction before calling `mem_ne
 
 ### Testing it
 
-To test the new `malloc`, I made a program to open and close windows continually while keeping the number of windows constant, which you can see in action at the top of this page, if the 19 MiB gif managed to load.
+To test that new `malloc`, I made a program to open and close windows continually while keeping the number of windows constant, which you can see in action at the top of this page, that is, if the 19 MiB gif managed to load.
 
-To be somewhat scientific, I counted the number of calls to `sbrk`. If everything was right, this program would call it a few times, then blocks would be reused ad infinitum.
+To be somewhat scientific, I counted the number of calls to `sbrk`. If everything was right, this program would call it a few times, then blocks would be reused *ad infinitum*.
 
-And it did! With 20 windows, I counted 10 `sbrk`s, and no signs of more coming up even five minutes later.
+And it did! With 20 windows, I counted 10 `sbrk`s, and no signs of more coming up even after five minutes of frenetic window respawning.
 
 ### A point on kernel/userspace interactions
 
 It may not be clear what the code paths are for the userspace version of `malloc`, so I'll detail them a bit.
 
-When a program calls `malloc`, execution stays in userspace, because the allocator is in the C library linked to it, along with everything else. If `malloc`'s memory pool needs expansion, the `sbrk` system call is run, and execution jumps [in the kernel][sbrk]. That system call maps pages as needed to expand the heap of the program. The process of mapping those pages may itself involve [allocating memory][paging alloc] for the kernel to create new page tables. In this case, the kernel calls `pmm_alloc_page` to get a fresh page of physical memory directly, so `kmalloc` is never involved.
+When a program calls `malloc`, execution stays in userspace, because the allocator is in the C library linked to it, along with everything else. If `malloc`'s memory pool needs expansion (i.e. no free block can accomodate the request), the `sbrk` system call is run, and execution jumps [in the kernel][sbrk]. That system call maps pages as needed to expand the heap of the program. The process of mapping those pages may itself involve [allocating memory][paging alloc] for the kernel to create new page tables, but in this case, the kernel calls `pmm_alloc_page` to get a fresh page of physical memory directly, so `kmalloc` is never involved.
 
 It would have been pretty neat to have `malloc` call `kmalloc`, wouldn't it? I like the idea of a piece of code calling another compilation of itself, anyway.
 
-This is what `putchar` does so at least such cross-source calling magic is done somewhere. A call to `putchar` in userspace translates to the `putchar` [system call][putchar syscall] which calls the `_KERNEL_` version of `putchar`, which is about two lines above the first call in the [source][putchar.c]:
+This is what `putchar` does, so at least such cross-source calling goodness is done somewhere. A call to `putchar` in userspace translates to the `putchar` [system call][putchar syscall] which calls the kernel version of `putchar`, which is about two lines above the first call in the [source][putchar.c]:
 {% highlight c %}
 int putchar(int c) {
 #ifdef _KERNEL_
@@ -229,7 +229,7 @@ When I first tested my new kernel allocator, it seemed to work fine except for o
 <div style="text-align:center"><img src="/assets/scrambled_w.png"/></div>
 And only when compiling without the nice blue background and identity mapping more pages than needed at the beginning of memory. Which I did then, otherwise I perhaps wouldn't have spotted this bug.
 
-I fixed it in [this commit][commit w], basically by paying attention to where my GRUB modules (i.e. my programs) were in memory, and protecting that memory. Indeed, those modules were loaded right after my kernel in memory, and guess what I used that area for? The bitmap of my physical memory manager. That's one thing James Molloy sure doesn't tell you.
+I fixed it in [this commit][commit w], basically by paying attention to where my GRUB modules (i.e. my programs) were in memory, and protecting that memory. Indeed, those modules were loaded right after my kernel in memory, and guess what I used that area for? The bitmap of my physical memory manager. That's one thing James Molloy doesn't tell you.
 
 Now I check exactly where my modules end and place my physical memory manager after that, and I identity map exactly the right number of pages to be able to copy the modules into kernel memory.
 
@@ -247,7 +247,7 @@ Thank you for reading till the end!
 [allocator blog]: http://dmitrysoshnikov.com/compilers/writing-a-memory-allocator/
 [term remap]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/devices/term.c#L53-L55
 [paging]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/mem/paging.c#L38-L41
-[sbrk]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/sys/syscall.c#L78-L81
+[sbrk]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/sys/proc.c#L278-L320
 [paging alloc]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/mem/paging.c#L68
 [putchar syscall]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/sys/syscall.c#L74
 [putchar.c]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/libc/src/stdio/putchar.c
