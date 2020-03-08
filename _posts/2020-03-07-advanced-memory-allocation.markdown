@@ -197,7 +197,7 @@ And it did! With 20 windows, I counted 10 `sbrk`s, and no signs of more coming u
 
 It may not be clear what the code paths are for the userspace version of `malloc`, so I'll detail them a bit.
 
-When a program calls `malloc`, execution stays in userspace, because the allocator is in the C library linked to it, along with everything else. If `malloc`'s memory pool needs expansion (i.e. no free block can accomodate the request), the `sbrk` system call is run, and execution jumps [in the kernel][sbrk]. That system call maps pages as needed to expand the heap of the program. The process of mapping those pages may itself involve [allocating memory][paging alloc] for the kernel to create new page tables, but in this case, the kernel calls `pmm_alloc_page` to get a fresh page of physical memory directly, so `kmalloc` is never involved.
+When a program calls `malloc`, execution stays in userspace, because the allocator is in the C library linked to it, along with everything else. If `malloc`'s memory pool needs expansion (i.e. there's no room to add a free block), the `sbrk` system call is run, and execution jumps [in the kernel][sbrk]. That system call maps pages as needed to expand the heap of the program. The process of mapping those pages may itself involve [allocating memory][paging alloc] for the kernel to create new page tables, but in this case, the kernel calls `pmm_alloc_page` to get a fresh page of physical memory directly, so `kmalloc` is never involved.
 
 It would have been pretty neat to have `malloc` call `kmalloc`, wouldn't it? I like the idea of a piece of code calling another compilation of itself, anyway.
 
