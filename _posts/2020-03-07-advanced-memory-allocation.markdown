@@ -229,7 +229,7 @@ When I first tested my new kernel allocator, it seemed to work fine except for o
 <div style="text-align:center"><img src="/assets/scrambled_w.png"/></div>
 And only when compiling without the nice blue background and identity mapping more pages than needed at the beginning of memory. Which I did then, otherwise I perhaps wouldn't have spotted this bug.
 
-I fixed it in [this commit][commit w], basically by paying attention to where my GRUB modules (i.e. my programs) were in memory, and protecting that memory. Indeed, those modules were loaded right after my kernel in memory, and guess what I used that area for? The bitmap of my physical memory manager. That's one thing James Molloy doesn't tell you.
+I fixed it in [this commit][commit w], basically by paying attention to where my GRUB modules (i.e. my programs) were in memory, and protecting that memory. Indeed, those modules were loaded right after my kernel in memory, and guess what I used that area for? The bitmap of my physical memory manager. That's not a story a James Molloy would tell you<sup>[<a href="" title="I owe much to his tutorials <3">1</a>]</sup>.
 
 Now I check exactly where my modules end and place my physical memory manager after that, and I identity map exactly the right number of pages to be able to copy the modules into kernel memory.
 
