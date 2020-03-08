@@ -187,7 +187,7 @@ And to address the second point, I added this distinction before calling `mem_ne
 
 ### Testing it
 
-To test that new `malloc`, I made a program to open and close windows continually while keeping the number of windows constant, which you can see in action at the top of this page, that is, if the 19 MiB gif managed to load.
+To test that new `malloc`, I made [a program][stress tester] to open and close windows continually while keeping the number of windows constant, which you can see in action at the top of this page, that is, if the 19 MiB gif managed to load.
 
 To be somewhat scientific, I counted the number of calls to `sbrk`. If everything was right, this program would call it a few times, then blocks would be reused *ad infinitum*.
 
@@ -255,3 +255,4 @@ Thank you for reading till the end!
 [commit win]: https://github.com/29jm/SnowflakeOS/commit/c16b531d3073cc15d5a9ccdcf0bbc70186c1d755
 [mem.c]: https://github.com/29jm/SnowflakeOS/blob/3433a8c4abcc9a3193813b940882558ff623875d/kernel/src/mem/mem.c
 [malloc.c]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/libc/src/stdlib/malloc.c
+[stress tester]: https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/modules/src/test.c
