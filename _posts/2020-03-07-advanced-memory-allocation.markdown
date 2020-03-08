@@ -20,7 +20,7 @@ There is some terminology to get down before diving into the details:
 
 ## Our previous allocator: now too simple
 
-Previously, SnowflakeOS used what's called a *buddy allocator*, i.e. an allocator that keeps track of the last block only, and that always allocates after that last block, with no means of freeing previous blocks individually.
+Previously, SnowflakeOS used what's called a *bump allocator*, i.e. an allocator that keeps track of the last block only, and that always allocates after that last block, with no means of freeing previous blocks individually.
 
 I would've liked to keep that design as the implementation is concise and easy to understand, but unfortunately it's now too simple for my use. Not being able to reuse blocks is the deal breaker here, as the window manager will have to do a lot of small and short-lived allocations, and the goal is to not to run out of memory in five seconds.
 
@@ -137,7 +137,7 @@ Note that the pages that consitute the memory we'll be distributing are already 
 
 ### Porting the allocator to userspace
 
-Sure, the kernel and its window manager are what will be stressing memory the most for a while, and we could get away with keeping a buddy allocator for our userspace `malloc`. That memory is freed on exit anyway. But where's the fun in that? Can't we adapt our code so that it works in both the kernel and in userspace?
+Sure, the kernel and its window manager are what will be stressing memory the most for a while, and we could get away with keeping a bump allocator for our userspace `malloc`. That memory is freed on exit anyway. But where's the fun in that? Can't we adapt our code so that it works in both the kernel and in userspace?
 
 Of course we can. We already have a build-level mechanism for that with our C library, which is built twice: once for the kernel with the `_KERNEL_` preprocessor symbol defined, and a second time for userspace.
 
