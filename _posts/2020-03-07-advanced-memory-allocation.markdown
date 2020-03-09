@@ -168,7 +168,8 @@ And to address the second point, I added this distinction before calling `mem_ne
 {% highlight c %}
         // We'll have to allocate a new block, so we check if we haven't
         // exceeded the memory we can distribute.
-        uintptr_t end = align_to((uintptr_t) top + mem_block_size(top), align) + size;
+        uintptr_t end = (uintptr_t) top + mem_block_size(top) + header_size, align;
+        end = align_to(end, align) + size;
 #ifdef _KERNEL_
         // The kernel can't allocate more
         if (end > KERNEL_HEAP_BEGIN + KERNEL_HEAP_SIZE) {
@@ -177,8 +178,9 @@ And to address the second point, I added this distinction before calling `mem_ne
         }
 #else
         // But userspace can ask the kernel for more
-        if (end > (uintptr_t) sbrk(0)) {
-            sbrk(end);
+        uintptr_t brk = (uintptr_t) sbrk(0);
+        if (end > brk) {
+            sbrk(end - brk);
         }
 #endif
 
@@ -191,7 +193,7 @@ To test that new `malloc`, I made [a program][stress tester] to open and close w
 
 To be somewhat scientific, I counted the number of calls to `sbrk`. If everything was right, this program would call it a few times, then blocks would be reused *ad infinitum*.
 
-And it did! With 20 windows, I counted 10 `sbrk`s, and no signs of more coming up even after five minutes of frenetic window respawning.
+And it did! With 20 windows, I counted 69 `sbrk`s, and no signs of more coming up even after five minutes of frenetic window respawning.
 
 ### A point on kernel/userspace interactions
 
