@@ -18,8 +18,9 @@ This year, my school asked each student to choose a task to work on, a personal 
 
 The stated goals of development this year are the following:
 
-- Displaying a basic user interface
-- Being able to run a simple graphical program, such as a clock.
+- Displaying a basic user interface: a desktop, a mouse
+- Programs: a launcher, to start other programs, and at least a system monitor showing memory use and running programs
+- Reasonable speed in QEMU: ~10 fps would be a start
 - Document my progress
 - Create learning resources and improve existing ones
 
@@ -27,10 +28,10 @@ That makes only two technical goals, but they aren't the easy kind. Here is a no
 
 - Being able to run programs in usermode
 - Task switching
-- System calls from userspace
+- System calls
 - Program loading
 - 2D graphics library
-- GUI toolkit
+- and many more
 
 Note that I don't intend to have the best scheduler, the best GUI, or great performance: they will likely be terrible; but I want to have working versions of them, and to be able to show something working by June 2020.
 
