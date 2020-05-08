@@ -218,8 +218,8 @@ Our [test][test.c] will be spawning a hundred windows from a single process, plu
 
 #### Before clipping, as of March 14th
 
-<div style="text-align:center">
-<video width="432" height="324" controls>
+<div class="video_container" style="text-align:center">
+<video controls>
   <source src="/assets/hundred_wins_before.mp4" type="video/mp4">
 </video> 
 </div>
@@ -228,8 +228,8 @@ It took 172 frames to get from the wallpaper to the last window, or 5.74 seconds
 
 #### After clipping
 
-<div style="text-align:center">
-<video width="432" height="324" controls>
+<div class="video_container" style="text-align:center">
+<video controls>
   <source src="/assets/hundred_wins_after.mp4" type="video/mp4">
 </video> 
 </div>
