@@ -10,7 +10,7 @@ At the end of the last post we had a pretty solid memory allocator. Where does t
 
 > Wait a minute... this has nothing to do with kernel dev
 
-Guess again! SnowflakeOS's window manager is in the kernel<sup>[<a href="" title="don't bully me">n</a>]</sup>. It is quite rude for a system call to take a whole second to return, and sadly this is the situation we found ourselves in.
+Guess again! SnowflakeOS's window manager is in the kernel<sup>[<a href="" title="don't bully me">1</a>]</sup>. It is quite rude for a system call to take a whole second to return, and sadly this is the situation we found ourselves in.
 
 ## How did we end up like this?
 
@@ -150,7 +150,7 @@ Good, the hard work is done. We can draw stuff efficiently now, we have the tech
 
 Consider our window's rectangle. List all of the windows covering it, and punch a hole in the rectangle for each of them. Draw the areas of the window described by the clipping rectangles obtained. Simple as that!
 
-Translated word for word<sup>[<a href="" title="slight overstatement">n</a>]</sup> in `C`:
+Translated word for word<sup>[<a href="" title="slight overstatement">2</a>]</sup> in `C`:
 
 {% highlight c %}
 void wm_draw_window(wm_window_t* win, rect_t rect) {
@@ -206,7 +206,7 @@ void wm_refresh_partial(rect_t clip) {
 }
 {% endhighlight %}
 
-What happens when a part of the screen you want to redraw isn't covered by any window? As you may read above, nothing. Thankfully this doesn't happen<sup>[<a href="" title="well, nothing _does_ happen">n</a>]</sup>, because there's a huge window that draws the wallpaper... Ahem, I'll get to it at some point ^^'
+What happens when a part of the screen you want to redraw isn't covered by any window? As you may read above, nothing. Thankfully this doesn't happen<sup>[<a href="" title="well, nothing _does_ happen">3</a>]</sup>, because there's a huge window that draws the wallpaper... Ahem, I'll get to it at some point ^^'
 
 As a quick aside, you may have noticed the `O(n²)` sprinkled here and there in the code. Those are reminders for me to replace the list implementation I used: while really easy to use, iterating such a list automatically has quadratic complexity, which is obviously ridiculous. I doubt that it matters at all until you reach an absurd amount of windows, but it irks me a good bit. I'll take [Linux's][list.h] `list.h` to replace it, it looks just perfect.
 
@@ -238,7 +238,7 @@ Now, it takes 11 frames, or 0.37 seconds. This is an improvement of about **1500
 
 ### Mission accomplished!
 
-We will for sure get smooth mouse movements and smooth window dragging in the next article now <sup>[<a href="" title="plot twist: we already do">n</a>]</sup>, until next time!
+We will for sure get smooth mouse movements and smooth window dragging in the next article now <sup>[<a href="" title="plot twist: we already do">4</a>]</sup>, until next time!
 
 [articles]: http://www.trackze.ro/tag/windowing-systems-by-example/
 [list.h]: https://github.com/torvalds/linux/blob/master/include/linux/list.h
