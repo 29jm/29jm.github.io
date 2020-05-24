@@ -224,7 +224,7 @@ All in all, we now have a working terminal.
     <figcaption>"Snowflakistan". I blame my mouse driver.</figcaption>
 </figure>
 
-Kernel development is art, or so some think. I enjoy consensus and wanted to address the concerns of naysayers, and with that goal in mind set out to make my kernel art-able. What program then could be better suited to artistic expression than the humble paint?
+Kernel development is an art, or so some think. I enjoy consensus and wanted to address the concerns of naysayers, and with that goal in mind set out to make my kernel art-able. What program then could be better suited to artistic expression than the humble paint?
 
 The code here has even fewer bells and whistles than the terminal, and I won't dare bore you with it. Get input, if click, toggle drawing, if mouse move and drawing, draw a line, loop. Note that because of window dragging mechanics you can't keep pressing the mouse to draw, you have to release it. I think it's not totally senseless UX-wise<sup>[<a href="" title="it mostly is though, yes">6</a>]</sup>, as you're free to focus only on the movement of your hand.
 
