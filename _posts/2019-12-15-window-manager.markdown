@@ -51,7 +51,7 @@ typedef struct {
     uint8_t blue_position, blue_mask_size;
 } __attribute__ ((packed)) fb_info_t;
 {% endhighlight %}
-Some fields are a bit obscure here: `pitch` is the number of bytes per rows, `bpp` is the bit depth, `type` should be `0` (otherwise GRUB gave us text buffer), and the color fields indicate the pixel layout.  
+Some fields are a bit obscure here: `pitch` is the number of bytes per rows, `bpp` is the bit depth, `type` should be 0 (otherwise GRUB gave us text buffer), and the color fields indicate the pixel layout.  
 I think the reason `pitch` is given here is that there can be padding bytes between each "line" of pixels, so it may not necessarily equal `width*bpp/8`, though it does for QEMU and Bochs.
 
 The `address` field refers to a physical address, so we mustn't forget to map it after enabling paging. For a 1024x768x32 mode, the framebuffer is 3 MiB large, so it's not exactly a trivial allocation in the kernel heap, where I chose to map it. An alternative would be to map it on request in processes' address spaces where addresses are aplenty, but I'd rather not expose it raw to usermode applications.

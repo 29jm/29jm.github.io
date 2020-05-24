@@ -43,11 +43,11 @@ Source: [mouse.c][mouse c], [mouse.h][mouse h]
 
 First, one needs to enable reporting from the mouse, it then starts sending out IRQs on line 12. Each IRQ corresponds to a byte available for reading from the PS/2 controller's data port, `0x60`. The bytes must be treated in packets of three to four depending on the type of mouse we detected, or features we enabled. The bytes are sent in this order:
 
-* flags: direction of the x and y mouvements, state of mice buttons, others...
-* x mouvement
-* y mouvement
+* flags: direction of the x and y movements, state of mice buttons, others...
+* x movement
+* y movement
 
-and if there is a fourth byte, it contains scroll wheel mouvements and the state of buttons four and five of the mouse. Here's the code receiving the bytes:
+and if there is a fourth byte, it contains scroll wheel movements and the state of buttons four and five of the mouse. Here's the code receiving the bytes:
 
 {% highlight c %}
 void mouse_handle_interrupt(registers_t* regs) {
@@ -90,7 +90,7 @@ Then there are the other keys, which send multibyte scan codes. They can be iden
 
 Now keep in mind that we receive bytes one at a time in our interrupt handler, so we need to keep track of previously received bytes until we've identified a whole key event, and the difficulty is in the variable length of such packets. Obviously, what we need is some kind of state machine and a buffer to hold our bytes. Here's the function in [kbd.c][kbd c process] in charge of updating the state of the driver's state machine:
 
-{% highlight c %}
+{% highlight cpp %}
 bool kbd_process_byte(kbd_context_t* ctx, uint8_t sc, kbd_event_t* event) {
     ctx->scancode[ctx->current++] = sc;
     uint32_t sc_pos = ctx->current - 1;

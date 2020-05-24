@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![picture](/assets/sos-paint.png){:class="thumbnail" title="The author wasn't fucking around _this_ week."}
+![picture](/assets/sos-paint.png){: class="thumbnail" title="The author wasn't fucking around _this_ week."}
 Let's face it, it's hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.
 
 But wait, you scream, last time you didn't have moving windows, a mouse pointer, or the ability to get input from userspace, how come now we're implementing a terminal?  
@@ -32,9 +32,8 @@ typedef struct {
     uint32_t mask; // describes valid fields
     wm_mouse_event_t mouse;
     wm_kbd_event_t kbd;
-}
+} wm_event_t;
 {% endhighlight %}
-
 where `mouse` and `kbd` are defined in somewhat obvious ways in [uapi_wm.h][uapi wm]<sup>[<a href="" title="thanks to Protura's dev for suggesting this way of sharing kernel headers!">2</a>]</sup>. So, clients poll the wm for this structure, and that's the client side of it. The kernel, wm side of it is pretty straightforward: the mouse and keyboard callbacks fill `mask` and other fields as needed, for instance in the keyboard handler:
 {% highlight c %}
 void wm_kbd_callback(kbd_event_t event) {
@@ -76,7 +75,7 @@ Just take your time when writing stuff, it's the zen of SnowflakeOS.
 
 Here's something I haven't done in a long time, if ever: writing C apps. There's a very real difference between kernel code and application code, I think. And I suck at writing actual C programs. C feels much less friendly to me in this space, I guess in large part because I don't know what I'm doing. For instance I've felt the need to make my own string object and related functions. C's basic string handling functions are notoriously terrible though, I'm surprised it's the first time I felt the need to replace them.
 
-Anyway, what does a terminal do? Usually, it runs a single program, the shell, and it handles printing its output nice and tidy, which includes handling escape sequences (we had those [a long time ago][ansi]), line wrapping, sometimes mouse handling I guess. I actually don't known much more than that. SnowflakeOS has an `exec` system call<sup>[<a href="https://github.com/29jm/SnowflakeOS/commit/6444c76b939975f91c96133118b1ea7dd58ecfe3" title="this is new too! not much work. this one is an actual link btw.">4</a>]</sup>, but no concept of child process, forks, etc... so we can't have that traditional terminal-shell separation just yet. For the same reason, external processes won't be able to print to the terminal, only builtin commands. Well _whatever_<sup>[<a href="" title="though this will be fixed">5</a>]</sup>, we just want a fancy way to start paint ;)
+Anyway, what does a terminal do? Usually, it runs a single program, the shell, and it handles printing its output nice and tidy, which includes handling escape sequences (we had those, [a long time ago][ansi]), line wrapping, sometimes mouse handling I guess. I actually don't known much more than that. SnowflakeOS has an `exec` system call<sup>[<a href="https://github.com/29jm/SnowflakeOS/commit/6444c76b939975f91c96133118b1ea7dd58ecfe3" title="this is new too! not much work. this one is an actual link btw.">4</a>]</sup>, but no concept of child process, forks, etc... so we can't have that traditional terminal-shell separation just yet. For the same reason, external processes won't be able to print to the terminal, only builtin commands. Well _whatever_<sup>[<a href="" title="though this will be fixed">5</a>]</sup>, we just want a fancy way to start paint ;)
 
 The terminal follows the same basic structure of every graphical app ever: handle input, redraw, loop. Let's take a look at input handling:
 {% highlight c %}
@@ -149,9 +148,9 @@ void interpret_cmd(str_t* text_buf, str_t* input_buf) {
     }
 }
 {% endhighlight %}
-Spot the funky `dmesg` here! The API to get the kernel log is dreadful, but now I can actually debug SnowflakeOS from within QEMU!
+Spot the funky `dmesg` here! The API to get the kernel log is dreadful, but now I can actually debug things from within QEMU:
 
-![isn't it glorious](/assets/dmesg.png){:title="the calc is a lie"}
+![isn't it glorious](/assets/dmesg.png){: title="the calc is a lie"}
 
 Finally, we get to redrawing the terminal. We have the tools to draw text, we have the text, let's do this.
 {% highlight c %}
@@ -234,7 +233,7 @@ But, but, but, the five cool, old-school buttons on the top left are of some int
 In our paint version, this toolkit is used in a very hackish way, but it gives a general idea of how things will look:
 {% highlight c %}
     /* Setup the UI */
-    hbox_t picker = hbox_new();
+    hbox_t* picker = hbox_new();
     // No parent/root widget, so we position it manually
     picker->widget.bounds.x = fb_x + 10;
     picker->widget.bounds.y = fb_y;
@@ -260,7 +259,7 @@ In our paint version, this toolkit is used in a very hackish way, but it gives a
     }
 {% endhighlight %}
 
-Anyway, you can paint stuff now. It's plenty fast in QEMU, but that could still be easily improved: right now we tell the wm to update the whole window rect<sup>[<a href="" title="clipping rules still apply in wm land, of course">7</a>]</sup>, when we could tell it to update only the small square containing the new line we just drew. Another big improvement, and not just to paint, would be to store the mouse's position as a pair of floats instead of ints, because right now small movements are basically ignored due to rounding errors in the wm's code. One advantage is that really easy to draw squares right now, but unless a sizeable fraction of users turns out to be rabbid fans of the [Suprematist][suprematist] movement, I think it's worth fixing.
+Anyway, you can paint stuff now. It's plenty fast in QEMU, but that could still be easily improved: right now we tell the wm to update the whole window rect<sup>[<a href="" title="clipping rules still apply in wm land, of course">7</a>]</sup>, when we could tell it to update only the small square containing the new line we just drew. Another big improvement, and not just to paint, would be to store the mouse's position as a pair of floats instead of ints, because right now small movements are basically ignored due to rounding errors in the wm's code. One advantage is that it's really easy to draw squares right now, but unless a sizeable fraction of users turns out to be rabbid fans of the [Suprematist][suprematist] movement, I think it's worth fixing.
 
 ---
 
