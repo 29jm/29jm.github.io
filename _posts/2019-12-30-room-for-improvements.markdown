@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![Current state of the GUI](/assets/sos-with-bg.png){:class="thumbnail" :title="It's always christmas with SnowflakeOS" }
+![Current state of the GUI](/assets/sos-with-bg.png){:class="thumbnail" title="It's always christmas with SnowflakeOS" }
 In the last post, I presented the first working version of SnowflakeOS's window manager. While it worked, it had<sup>[<a href="" title="still has">1</a>]</sup> a few important shortcomings.
 
 ## WM design: simple is too simple

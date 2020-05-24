@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![Current state of the GUI](/assets/spamming_windows.gif){:class="thumbnail ":title="You managed to load that beast of a gif, congrats. Notice that window staying on top of all others?" }
+![Current state of the GUI](/assets/spamming_windows.gif){:class="thumbnail" title="You managed to load that beast of a gif, congrats. Notice that window staying on top of all others?" }
 Today I'll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I've only now started to really get into it, now that I feel like it's needed. And it turned out to be fun after all!
 
 ## The basics

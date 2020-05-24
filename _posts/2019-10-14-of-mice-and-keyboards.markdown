@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![Keyboard and mouse both working](/assets/kbd_demo.gif){:class="thumbnail" :title="Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day."}
+![Keyboard and mouse both working](/assets/kbd_demo.gif){:class="thumbnail" title="Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day."}
 At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.  
 So I went over to OSDev's article about [PS/2 keyboards][osdev kbd], which sent me to the article about the [PS/2 controller][osdev ps2], and I knew I wanted to do things properly, and at the same time, gain mouse support.
 
@@ -35,7 +35,7 @@ I finally figured it out by looking at the controller's configuration byte: I wa
 
 ## A PS/2 mouse driver
 
-![Moving my mouse to the left crashed Bochs](/assets/mouse_crash.gif){:title="I have *no* idea why or how this is animated"}
+![Moving my mouse to the left crashed Bochs](/assets/mouse_crash.gif){: title="I have *no* idea why or how this is animated"}
 
 I've had weird crashes implementing this. This happened when I moved my mouse to the left in Bochs!
 

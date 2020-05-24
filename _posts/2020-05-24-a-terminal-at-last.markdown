@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![picture](/assets/sos-paint.png){:class="thumbnail" :title="The author wasn't fucking around _this_ week."}
+![picture](/assets/sos-paint.png){:class="thumbnail" title="The author wasn't fucking around _this_ week."}
 Let's face it, it's hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.
 
 But wait, you scream, last time you didn't have moving windows, a mouse pointer, or the ability to get input from userspace, how come now we're implementing a terminal?  
