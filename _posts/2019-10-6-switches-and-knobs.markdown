@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![Executing garbage](/assets/garbage.png){: title="It's abstract art, okay?" }
+![Executing garbage](/assets/garbage.png){:class="thumbnail" :title="It's abstract art, okay?"}
 In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the `iret` instruction. Well, at that time the implementation wasn't finished, even though I thought it was: I wasn't restoring general purpose registers. This led to some pretty nice bugs, as pictured above.
 
 ## Context switching

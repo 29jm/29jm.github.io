@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-![Current state of the GUI](/assets/spamming_windows.gif){: title="You managed to load that beast of a gif, congrats. Notice that window staying on top of all others?" }
+![Current state of the GUI](/assets/spamming_windows.gif){:class="thumbnail ":title="You managed to load that beast of a gif, congrats. Notice that window staying on top of all others?" }
 Today I'll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I've only now started to really get into it, now that I feel like it's needed. And it turned out to be fun after all!
 
 ## The basics
@@ -228,7 +228,9 @@ Neat.
 ### A scrambled 'w'
 
 When I first tested my new kernel allocator, it seemed to work fine except for one detail. The 'w' of "SnowflakeOS" in the top left corner of the background and in the title bar of my window looked all wrong:
-<div style="text-align:center"><img src="/assets/scrambled_w.png"/></div>
+
+![scrambled w](/assets/scrambled_w.png)
+
 And only when compiling without the nice blue background and identity mapping more pages than needed at the beginning of memory. Which I did then, otherwise I perhaps wouldn't have spotted this bug.
 
 I fixed it in [this commit][commit w], basically by paying attention to where my GRUB modules (i.e. my programs) were in memory, and protecting that memory. Indeed, those modules were loaded right after my kernel in memory, and guess what I used that area for? The bitmap of my physical memory manager. That's not a story a James Molloy would tell you<sup>[<a href="" title="I owe much to his tutorials <3">1</a>]</sup>.

@@ -110,6 +110,9 @@ strong, b {
 
 img {
   max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Fixes images in popup boxes from Google Translate
@@ -243,21 +246,32 @@ nav {
 // .main
 //
 
-.video_container {
+.thumbnail {
+  padding-bottom: 0.5em;
   width: 100%;
-  height: auto;
 }
 
-video {
-  width: 100%;
-  height: auto;
+figcaption {
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
 }
 
-sup {
+.post video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post sup {
   vertical-align: top;
   font-size: 0.6em;
 }
 
+/* Main page post list */
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
@@ -278,11 +292,14 @@ sup {
 
 .post {
   blockquote {
-    margin: 1.8em .8em;
+    p {
+      margin: 5px 0;
+    }
+
+    margin: 0.7em .8em;
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
-    font-size: 22px;
     font-style: italic;
   }
 

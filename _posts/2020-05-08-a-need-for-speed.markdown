@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development
 ---
 
-<div style="text-align:center"><img src="/assets/snowy_bg.png" title="I choose the worst wallpapers"/></div>
+![thumbnail](/assets/snowy_bg.png){:class="thumbnail" :title="I choose the worst wallpapers"}
 At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!
 
 > Wait a minute... this has nothing to do with kernel dev
@@ -30,12 +30,14 @@ The key to performance, always, is to not do things. And indeed, not doing much 
 ### Quick overview
 
 Consider this situation, in which a window needs redrawing:
-<div style="text-align:center"><img src="/assets/lshape.png"/></div>
+
+![needs redrawing](/assets/lshape.png)
 
 We can only see an L-shaped portion of it, clearly we don't want to redraw more than that. It's not easy copying an L-shape from a big array of pixels though, imagine the look of that `for` loop :)
 
 This is why we're going to cut up this L into rectangles, like this:
-<div style="text-align:center"><img src="/assets/lshape_split.png"/></div>
+
+![split window](/assets/lshape_split.png)
 
 Much better, now this is something we can work with!
 
@@ -101,7 +103,8 @@ Not an easy read, for sure. I won't detail the `list_t` and `rect_t` types and a
 #### Some more convenient tools
 
 The previous algorithm solves our previous situation perfectly, but suppose now that two windows cover the one we wish to redraw:
-<div style="text-align:center"><img src="/assets/2cover.png"/></div>
+
+![covered window](/assets/2cover.png)
 
 Say we split our window by "doom.exe 2", and we get two clipping rectangles out of it. One of those is going to intersect with the "doom.exe 3" window, and this is no good, we'd be drawing a hidden part of the window.
 
@@ -218,21 +221,17 @@ Our [test][test.c] will be spawning a hundred windows from a single process, plu
 
 #### Before clipping, as of March 14th
 
-<div class="video_container" style="text-align:center">
 <video controls>
   <source src="/assets/hundred_wins_before.mp4" type="video/mp4">
 </video> 
-</div>
 
 It took 172 frames to get from the wallpaper to the last window, or 5.74 seconds.
 
 #### After clipping
 
-<div class="video_container" style="text-align:center">
 <video controls>
   <source src="/assets/hundred_wins_after.mp4" type="video/mp4">
 </video> 
-</div>
 
 Now, it takes 11 frames, or 0.37 seconds. This is an improvement of about **1500%**...
 
