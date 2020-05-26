@@ -31,17 +31,17 @@ The new allocator will have to keep one feature from its predecessor, the abilit
 We'll write a *first-fit* memory allocator that can deliver arbitrarily-aligned addresses. You can find the whole source [here][mem.c], and an updated version for the end of this post [here][malloc.c].
 
 First, our blocks are defined by the following struct. The first two members constitute the header:
-{% highlight c %}
+```c
 typedef struct _mem_block_t {
     struct _mem_block_t* next;
     uint32_t size; // We use the last bit as a 'used' flag
     uint8_t data[];
 } mem_block_t;
-{% endhighlight %}
+```
 That last member is what's called a "flexible array member" in C99. It's an array without a given dimension, i.e. we can manage its size manually by saying "I know that the memory after this struct is mine, let me access it though this member". Here, it'll be the pointer returned by our `kmalloc` function.
 
 And secondly, we use a simple first-fit design, i.e. when allocating something, we first look through our list of blocks and see if there's a free one that fits our criteria of size and alignment. The global algorithm is as follows:
-{% highlight c %}
+```c
 void* kamalloc(uint32_t size, uint32_t align) {
     size = align_to(size, 8);
 
@@ -61,9 +61,9 @@ void* kamalloc(uint32_t size, uint32_t align) {
 
     return block->data;
 }
-{% endhighlight %}
+```
 And the "first-fit" logic is implemented in `mem_find_block` here, in no particular magic:
-{% highlight c %}
+```c
 mem_block_t* mem_find_block(uint32_t size, uint32_t align) {
     if (!bottom) {
         return NULL;
@@ -81,10 +81,10 @@ mem_block_t* mem_find_block(uint32_t size, uint32_t align) {
 
     return block;
 }
-{% endhighlight %}
+```
 
 The load-bearing portion of our allocator is in the creation of blocks, in `mem_new_block`:
-{% highlight c %}
+```c
 mem_block_t* mem_new_block(uint32_t size, uint32_t align) {
     const uint32_t header_size = offsetof(mem_block_t, data);
 
@@ -122,16 +122,16 @@ mem_block_t* mem_new_block(uint32_t size, uint32_t align) {
 
     return block;
 }
-{% endhighlight %}
+```
 Notice that second `if`: as we want to support arbitrary alignment of the blocks we hand out, we want to prevent space from being wasted in between blocks, so unused blocks will be created to fill the gaps as they appear. For instance, imagine the heap is at 0x40, and a 0x1000-aligned block is requested. Then a gap of about `0x1000-0x40=0xFC0` bytes will be created between the first block and the new one. We'll create a block there with minimum alignment to fill the gap.
 
 Note that the pages that consitute the memory we'll be distributing are already mapped in the kernel. That way the kernel can allocate after starting to execute in multiple page directories, without having to mirror the paging changes in each process. This is where the preallocation is done in [paging.c][paging]:
-{% highlight c %}
+```c
     // Setup the kernel heap
     heap = KERNEL_HEAP_BEGIN;
     uintptr_t heap_phys = pmm_alloc_pages(KERNEL_HEAP_SIZE/0x1000);
     paging_map_pages(KERNEL_HEAP_BEGIN, heap_phys, KERNEL_HEAP_SIZE/0x1000, PAGE_RW);
-{% endhighlight %}
+```
 
 ## Think of the (userspace) children!
 
@@ -146,7 +146,7 @@ There are two things that we'll have to adapt for userspace:
 2. Whereas the kernel has its whole memory pool preallocated, that makes no sense for userspace, so we'll have to call `sbrk` regularly to ask the kernel for more memory.
 
 To address the first point, I added the following bit of code to the beginning of `malloc`:
-{% highlight c %}
+```c
     // If this is the first allocation, setup the block list:
     // it starts with an empty, used block, in order to avoid edge cases.
     if (!top) {
@@ -162,10 +162,10 @@ To address the first point, I added the following bit of code to the beginning o
         top->size = 1; // That means used, of size 0
         top->next = NULL;
     }
-{% endhighlight %}
+```
 
 And to address the second point, I added this distinction before calling `mem_new_block`:
-{% highlight c %}
+```c
         // We'll have to allocate a new block, so we check if we haven't
         // exceeded the memory we can distribute.
         uintptr_t end = (uintptr_t) top + mem_block_size(top) + header_size, align;
@@ -185,7 +185,7 @@ And to address the second point, I added this distinction before calling `mem_ne
 #endif
 
         block = mem_new_block(size, align);
-{% endhighlight %}
+```
 
 ### Testing it
 
@@ -204,7 +204,7 @@ When a program calls `malloc`, execution stays in userspace, because the allocat
 It would have been pretty neat to have `malloc` call `kmalloc`, wouldn't it? I like the idea of a piece of code calling another compilation of itself, anyway.
 
 This is what `putchar` does, so at least such cross-source calling goodness is done somewhere. A call to `putchar` in userspace translates to the `putchar` [system call][putchar syscall] which calls the kernel version of `putchar`, which is about two lines above the first call in the [source][putchar.c]:
-{% highlight c %}
+```c
 int putchar(int c) {
 #ifdef _KERNEL_
     term_putchar(c);
@@ -220,7 +220,7 @@ int putchar(int c) {
 #endif
     return c;
 }
-{% endhighlight %}
+```
 Neat.
 
 ## Miscellaneous bugs crushed since last time

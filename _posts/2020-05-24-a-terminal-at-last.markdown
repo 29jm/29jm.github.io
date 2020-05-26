@@ -14,6 +14,7 @@ Right, right, let's get it over with.
 ## Communicating with the wm
 
 If you recall [this post]({% post_url 2019-10-14-of-mice-and-keyboards %}), our keyboard and mouse drivers were in pretty fine shape, useless though they were then. We'll use them right away to register callbacks, set to fire when a key is pressed, or released, and when something happens to the mouse:
+
 ```c
 void init_wm() {
     ...;
@@ -27,15 +28,18 @@ All of that takes some code, about ninety lines total. It ain't thrilling, so I 
 
 A point more worthy of being highlighted is how exactly the wm tells a window "you've been clicked here", or "the mouse moved from here to there". In most (all?) other OS, the wm is in userspace and uses IPC and some bespoke protocol to speak with its clients.  
 In SnowflakeOS, clients poll the wm using a system call, `snow_get_event`, which is really a call to `syscall2(SYS_WM, WM_CMD_EVENT, wm_event_t* event)`<sup>[<a href="https://github.com/29jm/SnowflakeOS/blob/1dd718af791f4fd869e94f6ecbc9b98d1a3f6c9c/snow/src/gui.c#L80-L91" title="all wm commands go through the SYS_WM syscall">1</a>]</sup>. The structure returned, `wm_event_t`, is a copy of the kernel-side, per-window `wm_event_t` object, and contains approximately the following fields:
-{% highlight c %}
+
+```c
 typedef struct {
     uint32_t mask; // describes valid fields
     wm_mouse_event_t mouse;
     wm_kbd_event_t kbd;
 } wm_event_t;
-{% endhighlight %}
+```
+
 where `mouse` and `kbd` are defined in somewhat obvious ways in [uapi_wm.h][uapi wm]<sup>[<a href="" title="thanks to Protura's dev for suggesting this way of sharing kernel headers!">2</a>]</sup>. So, clients poll the wm for this structure, and that's the client side of it. The kernel, wm side of it is pretty straightforward: the mouse and keyboard callbacks fill `mask` and other fields as needed, for instance in the keyboard handler:
-{% highlight c %}
+
+```c
 void wm_kbd_callback(kbd_event_t event) {
     if (windows->count) {
         wm_window_t* win = list_last(windows);
@@ -46,10 +50,11 @@ void wm_kbd_callback(kbd_event_t event) {
         win->event.kbd.repr = event.repr;
     }
 }
+```
 
-{% endhighlight %}
 and events are cleared once they've been queried:
-{% highlight c %}
+
+```c
 void wm_get_event(uint32_t win_id, wm_event_t* event) {
     wm_window_t* win = wm_get_window(win_id);
 
@@ -60,7 +65,7 @@ void wm_get_event(uint32_t win_id, wm_event_t* event) {
     *event = win->event;
     memset(&win->event, 0, sizeof(wm_event_t));
 }
-{% endhighlight %}
+```
 
 I'm sure some of you are wondering where event queues fit in there. I've heard of them, but I don't practice<sup>[<a href="" title="I'll make a queue in the keyboard driver for sure">3</a>]</sup>. What do I do if two keys are pressed, and the event structure hasn't been retrieved in between? I drop a keypress.
 
@@ -78,7 +83,8 @@ Here's something I haven't done in a long time, if ever: writing C apps. There's
 Anyway, what does a terminal do? Usually, it runs a single program, the shell, and it handles printing its output nice and tidy, which includes handling escape sequences (we had those, [a long time ago][ansi]), line wrapping, sometimes mouse handling I guess. I actually don't known much more than that. SnowflakeOS has an `exec` system call<sup>[<a href="https://github.com/29jm/SnowflakeOS/commit/6444c76b939975f91c96133118b1ea7dd58ecfe3" title="this is new too! not much work. this one is an actual link btw.">4</a>]</sup>, but no concept of child process, forks, etc... so we can't have that traditional terminal-shell separation just yet. For the same reason, external processes won't be able to print to the terminal, only builtin commands. Well _whatever_<sup>[<a href="" title="though this will be fixed">5</a>]</sup>, we just want a fancy way to start paint ;)
 
 The terminal follows the same basic structure of every graphical app ever: handle input, redraw, loop. Let's take a look at input handling:
-{% highlight c %}
+
+```c
 while (running) {
     wm_event_t event = snow_get_event(win);
     ...;
@@ -114,12 +120,14 @@ while (running) {
             break;
     }
 }
-{% endhighlight %}
+```
+
 That's pretty ugly switch, let me explain. I chose to have two text buffers to represent the text displayed on the terminal. One, `input_buf`, contains the current line of user input, and it can be edited, and the other, `text_buf`, contains all the rest. It makes sense then that pressing enter would append the input to the static buffer, interpret that input, and clear it. Currently the terminal handles editing through backspace, no arrow keys yet. Other keys aren't special (we just require they be printable), and are just appended to the input buffer.  
 My `str_t` type makes things a bit ugly there, I haven't taken the time to make enough utility functions. It's useful because  `str_t` has no length limit as `str_append` reallocates if needed, which happens when `text_buf` grows.
 
 The next step is to interpret the input we got, which is done here:
-{% highlight c %}
+
+```c
 void interpret_cmd(str_t* text_buf, str_t* input_buf) {
     char* cmd = input_buf->buf;
 
@@ -147,13 +155,15 @@ void interpret_cmd(str_t* text_buf, str_t* input_buf) {
         }
     }
 }
-{% endhighlight %}
+```
+
 Spot the funky `dmesg` here! The API to get the kernel log is dreadful, but now I can actually debug things from within QEMU:
 
 ![isn't it glorious](/assets/dmesg.png){: title="the calc is a lie"}
 
 Finally, we get to redrawing the terminal. We have the tools to draw text, we have the text, let's do this.
-{% highlight c %}
+
+```c
 void redraw(str_t* text_buf, const str_t* input_buf) {
     /* Title bar, background... */
     ...;
@@ -211,7 +221,8 @@ void redraw(str_t* text_buf, const str_t* input_buf) {
     // Update the window
     snow_render_window(win);
 }
-{% endhighlight %}
+```
+
 Let's break it down. First, we make sure to work with only one text buffer by merging the input with the static text, we don't care to distinguish those here. We even include a blinking cursor for sanity reasons. Then, we make sure to draw the "bottom" of the buffer by scrolling if needed. If what this means is unclear, try spamming commands in a newly opened terminal, it'll scroll the view when you reach the bottom. Finally, we draw the text line by line, keeping in mind that a line either ends with a line feed, or by reaching the right side of the window.  
 If you're like me and didn't know about it, `strchrnul` returns the the address of the trailing null byte in a string if nothing matches the query, instead of returning `NULL` like the classic `strchr` would.
 
@@ -231,33 +242,34 @@ The code here has even fewer bells and whistles than the terminal, and I won't d
 But, but, but, the five cool, old-school buttons on the top left are of some interest. I've started making a GUI toolkit, and what you're really seeing here are three color picker buttons and two normal buttons in a horizontal layout. This code is really a work in progress by any measure, but working on it has been pretty interesting so far. I'm taking a GTK-like approach, because it's the only C GUI toolkit I've ever touched. Thankfully I barely remember any of it, so I'm free to make the same mistakes it did, but also new and cooler ones.
 
 In our paint version, this toolkit is used in a very hackish way, but it gives a general idea of how things will look:
-{% highlight c %}
-    /* Setup the UI */
-    hbox_t* picker = hbox_new();
-    // No parent/root widget, so we position it manually
-    picker->widget.bounds.x = fb_x + 10;
-    picker->widget.bounds.y = fb_y;
 
-    // `color` is defined earlier
-    hbox_add(picker, (widget_t*) color_button_new(0x000000, &color));
-    hbox_add(picker, (widget_t*) color_button_new(0x513CBC, &color));
-    hbox_add(picker, (widget_t*) color_button_new(0xFC0A5A, &color));
+```c
+/* Setup the UI */
+hbox_t* picker = hbox_new();
+// No parent/root widget, so we position it manually
+picker->widget.bounds.x = fb_x + 10;
+picker->widget.bounds.y = fb_y;
 
-    button_t* exit_button = button_new("exit");
-    exit_button->widget.on_click = (widget_clicked_t) on_exit_clicked;
-    hbox_add(picker, (widget_t*) exit_button);
+// `color` is defined earlier
+hbox_add(picker, (widget_t*) color_button_new(0x000000, &color));
+hbox_add(picker, (widget_t*) color_button_new(0x513CBC, &color));
+hbox_add(picker, (widget_t*) color_button_new(0xFC0A5A, &color));
 
-    button_t* clear_button = button_new("clear");
-    clear_button->widget.on_click = (widget_clicked_t) on_clear_clicked;
-    hbox_add(picker, (widget_t*) clear_button);
+button_t* exit_button = button_new("exit");
+exit_button->widget.on_click = (widget_clicked_t) on_exit_clicked;
+hbox_add(picker, (widget_t*) exit_button);
 
-    ...; // Later, in the program loop
+button_t* clear_button = button_new("clear");
+clear_button->widget.on_click = (widget_clicked_t) on_clear_clicked;
+hbox_add(picker, (widget_t*) clear_button);
 
-    /* Give these lads some input */
-    if (point_in_rect(pos, picker->widget.bounds)) {
-        picker->widget.on_click((widget_t*) picker, pos);
-    }
-{% endhighlight %}
+...; // Later, in the program loop
+
+/* Give these lads some input */
+if (point_in_rect(pos, picker->widget.bounds)) {
+    picker->widget.on_click((widget_t*) picker, pos);
+}
+```
 
 Anyway, you can paint stuff now. It's plenty fast in QEMU, but that could still be easily improved: right now we tell the wm to update the whole window rect<sup>[<a href="" title="clipping rules still apply in wm land, of course">7</a>]</sup>, when we could tell it to update only the small square containing the new line we just drew. Another big improvement, and not just to paint, would be to store the mouse's position as a pair of floats instead of ints, because right now small movements are basically ignored due to rounding errors in the wm's code. One advantage is that it's really easy to draw squares right now, but unless a sizeable fraction of users turns out to be rabbid fans of the [Suprematist][suprematist] movement, I think it's worth fixing.
 

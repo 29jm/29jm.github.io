@@ -1,12 +1,10 @@
 // Handle both ``` and {% highlight %} code blocks
+.highlight > .highlight, // ```
 .entry > .highlight {
+  border-radius: 2px;
   background-color: #efefef;
   padding: 7px 7px 7px 10px;
-}
-
-.highlight > .highlight {
-  background-color: #efefef;
-  padding: 7px 7px 7px 10px;
+  overflow-x: scroll;
 }
 
 code {

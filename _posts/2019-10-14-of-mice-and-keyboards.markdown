@@ -19,12 +19,12 @@ Source: [ps2.c][ps2 c], [ps2.h][ps2 h]
 
 The steps to initialize the PS/2 controller to some base state are numerous and detailed in the relevant section of the wiki page. I've implemented them in [ps2.c][ps2 c init], a ~140 lines function full of hopefully well commented IO. Most of it looks something like this:
 
-{% highlight c %}
+```c
 // Give the controller a command
 ps2_write(PS2_CMD, PS2_WRITE_CONFIG);
 // and its associated data byte
 ps2_write(PS2_DATA, config);
-{% endhighlight %}
+```
 
 Where `ps2_write(port, byte)` is a wrapper around the x86 instruction `outb` which writes a byte to an IO port. This function also makes sure the controller is ready to receive a byte, and similarly, `ps2_read(port)` makes sure the controller has sent us a byte.
 
@@ -49,7 +49,7 @@ First, one needs to enable reporting from the mouse, it then starts sending out 
 
 and if there is a fourth byte, it contains scroll wheel movements and the state of buttons four and five of the mouse. Here's the code receiving the bytes:
 
-{% highlight c %}
+```c
 void mouse_handle_interrupt(registers_t* regs) {
     UNUSED(regs);
 
@@ -68,7 +68,7 @@ void mouse_handle_interrupt(registers_t* regs) {
         mouse_handle_packet();
     }
 }
-{% endhighlight %}
+```
 
 All we need to do then in `mouse_handle_packet` is keeping track of the mouse movements, and at a later time, making them available to userspace. Then, and only then, we'll get a mouse pointer.
 
@@ -90,7 +90,7 @@ Then there are the other keys, which send multibyte scan codes. They can be iden
 
 Now keep in mind that we receive bytes one at a time in our interrupt handler, so we need to keep track of previously received bytes until we've identified a whole key event, and the difficulty is in the variable length of such packets. Obviously, what we need is some kind of state machine and a buffer to hold our bytes. Here's the function in [kbd.c][kbd c process] in charge of updating the state of the driver's state machine:
 
-{% highlight cpp %}
+```c
 bool kbd_process_byte(kbd_context_t* ctx, uint8_t sc, kbd_event_t* event) {
     ctx->scancode[ctx->current++] = sc;
     uint32_t sc_pos = ctx->current - 1;
@@ -132,7 +132,7 @@ bool kbd_process_byte(kbd_context_t* ctx, uint8_t sc, kbd_event_t* event) {
 
     return ctx->state == KBD_NORMAL;
 }
-{% endhighlight %}
+```
 
 It's quite a big function, and still most of the heavy lifting is done in `kbd_is_valid_scancode(bytes, len, &key_code)`, in charge of identifying valid multibyte scancodes and translating those into key codes. Our `kbd_process_byte` function indicates that a valid scan code has been received by returning `true`, and makes the key event available through its `event` parameter.  
 If you're really paying attention, you may notice a possible buffer overflow with `ctx->scancode[ctx->current++]`, but thankfully `kbd_is_valid_scancode` is guaranteed to return `true` before that... Hmm, this is a bit too clunky, perhaps I'll put a proper check back in just in case I ever modify `kbd_is_valid_scancode`'s interface in the future.

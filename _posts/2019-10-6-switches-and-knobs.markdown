@@ -16,7 +16,7 @@ It turns out there's a very elegant way to do it: instead of using `iret` everyt
 This works because the stack state of every interrupted process is the same when getting to the stack-switching part of execution: what we do is simply pop registers from the next process's stack, not the one that was last interrupted.  
 For now the subroutine is implemented in assembly as I mainly copied it from [a wiki page][osdev multitasking] but I should be able to turn it into `C` no problem, contrary to what the page says. Here's the current code:
 
-{% highlight nasm %}
+```c
 proc_switch_process: # void proc_switch_process();
     # Save register state
     push %ebx
@@ -53,7 +53,7 @@ proc_switch_process: # void proc_switch_process();
     pop %ebx
 
     ret
-{% endhighlight %}
+```
 
 That leaves the problem of how to switch to tasks which haven't been started yet, and thus haven't had the chance to be interrupted: we can't switch to their kernel stack to restore the process's context, there's nothing there. I haven't thought this through, but I don't think we can `iret` manually a second time, we'd mess up the kernel stack of the currently executing process.  
 I opted for the solution of setting up that stack manually in `proc_run_code`. It's ugly ([see for yourselves][proc stack]), but hey, it works. I'll make something nicer at some point, I haven't researched how it's usually done.
@@ -71,13 +71,13 @@ It's interesting to note that the `IDT` and `GDT` have very similar structures, 
 
 ## Rebuilding the build system
 
-{% highlight shell %}
+```c
 SnowflakeOS $ time make SnowflakeOS.iso
 [...]
 real 0m1,140s
 user 0m0,733s
 sys  0m0,347s
-{% endhighlight %}
+```
 
 With such progess in my userland, I now had to have a straightforward way of building programs. At first I hacked my libc's `Makefile` to build `C` programs and link them with `libc`. I don't know exactly what was wrong, but I couldn't get GCC to compile them to flat binaries. I then looked into making an ELF loader, but it looked difficult to get right. Then I decided it was time to simplify my build system and do things correctly.
 
@@ -93,7 +93,7 @@ After that, I managed to get module compilation in working order.
 
 Notice the "Hello, C world" line on here? That's [a usermode process][test module] calling my libc's `printf` implementation, which itself uses my `putchar` system call to print characters:
 
-{% highlight c %}
+```c
 int putchar(int c) {
 #ifdef _KERNEL_
     term_putchar(c);
@@ -109,7 +109,7 @@ int putchar(int c) {
 #endif
     return c;
 }
-{% endhighlight %}
+```
 
 At the bottom right of the screenshot is the currently executing process. Also, notice how I sneakily increased the version number when writing this article :)
 

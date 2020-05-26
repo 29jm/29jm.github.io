@@ -14,7 +14,7 @@ The transition to having processes roam free in `ring 3` was mostly made in the 
 
 Well, as of right now, a process is described by the following structure:
 
-{% highlight c %}
+```c
 typedef struct _proc_t {
     struct _proc_t* next;
     uint32_t pid;
@@ -25,7 +25,7 @@ typedef struct _proc_t {
     uintptr_t kernel_stack;
     registers_t registers;
 } process_t;
-{% endhighlight %}
+```
 
 I'll explain. A process consists of executable code, a stack, and an execution
 context. And another stack for execution in the kernel, I'll get back to it.  
@@ -58,7 +58,7 @@ The way to do these things is a bit convoluted though, as we need to `iret` (aka
 interrupt return) to our code, we can't just jump to it, the reason being that we
 need to change privilege level (from 0 to 3):
 
-{% highlight c %}
+```c
 asm volatile (
     "push $0x23\n"    // user ds selector
     "mov %0, %%eax\n"
@@ -72,7 +72,7 @@ asm volatile (
     : "r" (esp_val), "r" (eip_val) /* inputs %0 and %1 stored anywhere */
     : "%eax"          /* registers clobbered by hand in there */
 );
-{% endhighlight %}
+```
 
 ## Getting control back
 

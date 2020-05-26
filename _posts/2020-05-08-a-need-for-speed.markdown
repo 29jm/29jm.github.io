@@ -61,7 +61,7 @@ The core idea of the splitting algorithm is to examine each edge of `S` and chec
 
 Here's the algorithm:
 
-{% highlight c %}
+```c
 list_t* rect_split_by(rect_t rect, rect_t split) {
     list_t* list = list_new();
     rect_t* tmp;
@@ -96,7 +96,7 @@ list_t* rect_split_by(rect_t rect, rect_t split) {
 
     return list;
 }
-{% endhighlight %}
+```
 
 Not an easy read, for sure. I won't detail the `list_t` and `rect_t` types and associated functions, but you can trust that they do what they say. The list implementation can be found [here][list impl], and operations on `rect_t` can be found [here][rect ops].
 
@@ -114,7 +114,7 @@ To put it another way: given a list of clipping rectangles, and a splitting rect
 
 The implementation is a bit easier to reason about this time:
 
-{% highlight c %}
+```c
 void rect_subtract_clip_rect(list_t* rects, rect_t clip) {
     for (uint32_t i = 0; i < rects->count; i++) {
         rect_t* current = list_get_at(rects, i); // O(n²)
@@ -139,7 +139,7 @@ void rect_subtract_clip_rect(list_t* rects, rect_t clip) {
         i = n_splits + i - 1;
     }
 }
-{% endhighlight %}
+```
 
 The subtility is that we're both removing and adding rectangles in our list of clips each iteration, so we need to keep a good track of where we are in our loop. The original author just set `i = 0` at the end of the loop, which works great of course because the new clips we create never intersect with `clip`, but it wastes like, 30 clock cycles... :)
 
@@ -155,7 +155,7 @@ Consider our window's rectangle. List all of the windows covering it, and punch 
 
 Translated word for word<sup>[<a href="" title="slight overstatement">2</a>]</sup> in `C`:
 
-{% highlight c %}
+```c
 void wm_draw_window(wm_window_t* win, rect_t rect) {
     rect_t win_rect = rect_from_window(win);
     list_t* clip_windows = wm_get_windows_above(win);
@@ -186,7 +186,7 @@ void wm_draw_window(wm_window_t* win, rect_t rect) {
     kfree(clip_rects);
     kfree(clip_windows);
 }
-{% endhighlight %}
+```
 
 Notice the `wm_partial_draw_window` function call: it's the only function that does any actual pixel work. It's both mundane and insane ("the land of off-by-ones" you may say), and you can check it out [here][partial_draw].
 
@@ -196,7 +196,7 @@ Imagine you're closing a window. Then you have to redraw whatever was below that
 
 This is what led to the second parameter of `wm_draw_window`, i.e. a `rect` that says "draw within this area". It's used in the following short function that implements the redrawing of an area:
 
-{% highlight c %}
+```c
 void wm_refresh_partial(rect_t clip) {
     for (uint32_t i = 0; i < windows->count; i++) {
         wm_window_t* win = list_get_at(windows, i); // O(n²)
@@ -207,7 +207,7 @@ void wm_refresh_partial(rect_t clip) {
         }
     }
 }
-{% endhighlight %}
+```
 
 What happens when a part of the screen you want to redraw isn't covered by any window? As you may read above, nothing. Thankfully this doesn't happen<sup>[<a href="" title="well, nothing _does_ happen">3</a>]</sup>, because there's a huge window that draws the wallpaper... Ahem, I'll get to it at some point ^^'
 

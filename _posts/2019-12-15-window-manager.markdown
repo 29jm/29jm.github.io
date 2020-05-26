@@ -19,7 +19,7 @@ The first option is the one most advertised on the osdev wiki, and at first it w
 Far too much work that feels like writing boilerplate code. I was very happy to discover an alternative.
 
 The second option is simpler by a long shot. Asking GRUB to set the video mode is as easy as modifying the [multiboot header][multiboot header] that's sitting at the very beginning of our kernel binary:
-{% highlight nasm %}
+```c
 .section .multiboot
     .long MAGIC
     .long FLAGS_PAGE_ALIGN | FLAGS_MEMORY | FLAGS_GRAPHICS
@@ -33,11 +33,11 @@ The second option is simpler by a long shot. Asking GRUB to set the video mode i
     .long 1024 # width
     .long 768  # height
     .long 32   # bpp
-{% endhighlight %}
+```
 The downside is that you can't choose a resolution or bit depth dynamically: if the precise mode you asked for isn't available, GRUB will choose one for you. That sounds like a fair tradeoff to me.
 
 GRUB gives us a framebuffer described by the following entries in the [multiboot structure][multiboot doc]:
-{% highlight c %}
+```c
 typedef struct {
     uint64_t address;
     uint32_t pitch;
@@ -50,7 +50,7 @@ typedef struct {
     uint8_t green_position, green_mask_size;
     uint8_t blue_position, blue_mask_size;
 } __attribute__ ((packed)) fb_info_t;
-{% endhighlight %}
+```
 Some fields are a bit obscure here: `pitch` is the number of bytes per rows, `bpp` is the bit depth, `type` should be 0 (otherwise GRUB gave us text buffer), and the color fields indicate the pixel layout.  
 I think the reason `pitch` is given here is that there can be padding bytes between each "line" of pixels, so it may not necessarily equal `width*bpp/8`, though it does for QEMU and Bochs.
 
@@ -61,9 +61,9 @@ The `address` field refers to a physical address, so we mustn't forget to map it
 ### Plotting pixels
 
 Now that we have an address to write to, plotting a pixel is a matter of computing its offset and knowing its format. The address of the pixel at (x, y) is given by
-{% highlight c %}
+```c
 uint32_t* offset = (uint32_t*) (address + y*pitch + x*bpp/8);
-{% endhighlight %}
+```
 
 Once you're there, all that remains is implementing some drawing primitives. Rectangles, lines, borders...  
 Line drawing algorithms are somewhat convoluted, there are several and I ended up implementing Bresenham's algorithm which is well-detailed on [wikipedia][line drawing].
@@ -76,11 +76,11 @@ Line drawing algorithms are somewhat convoluted, there are several and I ended u
 </figure>
 
 The most straightforward way to draw text has to be through bitmap fonts. In a bitmap font, a character is represented by an array of bits, with say each `n` bits representing a line of pixels in the character. For example, here's a very crude 'O':
-{% highlight c %}
+```c
 0 1 0
 1 0 1
 0 1 0
-{% endhighlight %}
+```
 It turns out there's a dead easy format still in wide use: [PSF][psf doc], for *PC Screen Font*, used by virtual consoles in Linux.
 
 There are two versions of this format:
@@ -88,23 +88,23 @@ There are two versions of this format:
 + PSF2: variable number of characters, variable character size
 
 Both formats have a short header at the beginning of the file. On my machine, all fonts in `/usr/share/kbd/consolefonts` seem to be PSF1. In this format, the header looks like this:
-{% highlight c %}
+```c
 typedef struct {
     uint8_t magic[2];
     uint8_t mode;
     uint8_t height;
 } font_header_t;
-{% endhighlight %}
+```
 Where `magic` should equal `0x36, 0x04`, `mode` contains information about the number of characters and unicode support (which I haven't dealt with), and `height` is the height of each character in pixels.  
 The actual font starts right after the header, so the offset of an ASCII character `c` in the font file, in bytes, is given by
-{% highlight c %}
+```c
 uint32_t offset = sizeof(font_header_t) + c*height;
-{% endhighlight %}
+```
 Drawing a character is then a matter of checking individual bits, line by line, and plotting pixels accordingly.  
 I extracted the font used in my console with
-{% highlight sh %}
+```c
 setfont -o font.psf; xxd -i font.psf > font.h
-{% endhighlight %}
+```
 and used that one. The characters are those shown in the image above, in 8x16 format.
 
 ## From rectangles to windows: a window manager
@@ -129,7 +129,7 @@ I introduced a library for SnowflakeOS programs, thoughtfully named [snow][snowl
 It offers a `snow_open_window` function which allocates a buffer of the window's size. Drawing functions then write to that buffer, and the program asks for that window to be drawn to screen by calling `snow_render_window`. There are no GUI functions right now - only mockups - but they'll sit between those two calls. Closing the window is then done though `snow_close_window`.
 
 Here's an example of what can be done right now:
-{% highlight c %}
+```c
 #include <snow.h>
 #include <string.h>
 
@@ -148,7 +148,7 @@ int main() {
 
     return 0;
 }
-{% endhighlight %}
+```
 
 Giving this result:
 
@@ -162,7 +162,7 @@ Giving this result:
 #### Registering a window
 
 This means appending a given buffer to a list of windows to be drawn, and assigning it a z-order and unique id, a window being defined as
-{% highlight c %}
+```c
 typedef struct _wm_window_t {
     struct _wm_window_t* next;
     struct _wm_window_t* prev;
@@ -173,7 +173,7 @@ typedef struct _wm_window_t {
     uint32_t id;
     uint32_t flags;
 } wm_window_t;
-{% endhighlight %}
+```
 This is my second use of intrusive lists in SnowflakeOS. I really ought to make a utility library to handle those, as I've had to write some very repetitive code in functions such as `wm_find_with_id`, `wm_find_with_flags` or `wm_find_with_z`. The lack of lambdas in C can really be felt in this situation.
 
 #### Handling z-order
@@ -196,7 +196,7 @@ The goal here is to draw windows in the correct z-order. Keeping in mind that wi
 With option 1, I don't know how to avoid drawing a window to the screen when its buffer may be in a "partially drawn" state, plus the method of switching address spaces is pretty barbaric, and I'm sure very slow.
 
 I went for option 2, which I believe [the code][wm c] can explain quite well:
-{% highlight c %}
+```c
 void wm_render_window(uint32_t win_id) {
     wm_window_t* win = wm_get_window(win_id);
 
@@ -221,7 +221,7 @@ void wm_render_window(uint32_t win_id) {
         current_z++;
     }
 }
-{% endhighlight %}
+```
 
 Apart from dropping draw calls, this method has the downside that a slow client will slow the whole thing down: the WM will wait for its draw call and drop all others in the mean time.  
 Good thing SnowflakeOS apps are always lightning fast ;)
