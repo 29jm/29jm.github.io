@@ -14,13 +14,13 @@ Right, right, let's get it over with.
 ## Communicating with the wm
 
 If you recall [this post]({% post_url 2019-10-14-of-mice-and-keyboards %}), our keyboard and mouse drivers were in pretty fine shape, useless though they were then. We'll use them right away to register callbacks, set to fire when a key is pressed, or released, and when something happens to the mouse:
-{% highlight c %}
+```c
 void init_wm() {
     ...;
     mouse_set_callback(wm_mouse_callback);
     kbd_set_callback(wm_kbd_callback);
 }
-{% endhighlight %}
+```
 
 Let's talk about how we handle mouse events first. We want clicks to push windows to the front, we want mouse drags to move windows, and we want some of these events to reach the affected window. I say some, because of a choice made in the wm: windows can be dragged from anywhere in their rectangle, and they can't opt out. Therefore there can't be drag events within windows, the cursor doesn't move relative to the dragged window anyway.  
 All of that takes some code, about ninety lines total. It ain't thrilling, so I won't force it upon your eyes, dear reader, but it's [right here][mouse cb] if needed.
