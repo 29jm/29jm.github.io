@@ -27,7 +27,7 @@ Let's talk about how we handle mouse events first. We want clicks to push window
 All of that takes some code, about ninety lines total. It ain't thrilling, so I won't force it upon your eyes, dear reader, but it's [right here][mouse cb] if needed.
 
 A point more worthy of being highlighted is how exactly the wm tells a window "you've been clicked here", or "the mouse moved from here to there". In most (all?) other OS, the wm is in userspace and uses IPC and some bespoke protocol to speak with its clients.  
-In SnowflakeOS, clients poll the wm using a system call, `snow_get_event`, which is really a call to `syscall2(SYS_WM, WM_CMD_EVENT, wm_event_t* event)`<sup>[<a href="https://github.com/29jm/SnowflakeOS/blob/1dd718af791f4fd869e94f6ecbc9b98d1a3f6c9c/snow/src/gui.c#L80-L91" title="all wm commands go through the SYS_WM syscall">1</a>]</sup>. The structure returned, `wm_event_t`, is a copy of the kernel-side, per-window `wm_event_t` object, and contains approximately the following fields:
+In SnowflakeOS, clients poll the wm using a system call, `snow_get_event`, which is really a call to `syscall2(SYS_WM, WM_CMD_EVENT, wm_event_t* event)`{% anecdote <a href="https://github.com/29jm/SnowflakeOS/blob/1dd718af791f4fd869e94f6ecbc9b98d1a3f6c9c/snow/src/gui.c#L80-L91">1</a>|all wm commands go through the SYS_WM syscall %}. The structure returned, `wm_event_t`, is a copy of the kernel-side, per-window `wm_event_t` object, and contains approximately the following fields:
 
 ```c
 typedef struct {
@@ -67,7 +67,7 @@ void wm_get_event(uint32_t win_id, wm_event_t* event) {
 }
 ```
 
-I'm sure some of you are wondering where event queues fit in there. I've heard of them, but I don't practice<sup>[<a href="" title="I'll make a queue in the keyboard driver for sure">3</a>]</sup>. What do I do if two keys are pressed, and the event structure hasn't been retrieved in between? I drop a keypress.
+I'm sure some of you are wondering where event queues fit in there. I've heard of them, but I don't practice{% anecdote 3|I'll make a queue in the keyboard driver for sure %}. What do I do if two keys are pressed, and the event structure hasn't been retrieved in between? I drop a keypress.
 
 Just take your time when writing stuff, it's the zen of SnowflakeOS.
 
@@ -80,7 +80,7 @@ Just take your time when writing stuff, it's the zen of SnowflakeOS.
 
 Here's something I haven't done in a long time, if ever: writing C apps. There's a very real difference between kernel code and application code, I think. And I suck at writing actual C programs. C feels much less friendly to me in this space, I guess in large part because I don't know what I'm doing. For instance I've felt the need to make my own string object and related functions. C's basic string handling functions are notoriously terrible though, I'm surprised it's the first time I felt the need to replace them.
 
-Anyway, what does a terminal do? Usually, it runs a single program, the shell, and it handles printing its output nice and tidy, which includes handling escape sequences (we had those, [a long time ago][ansi]), line wrapping, sometimes mouse handling I guess. I actually don't known much more than that. SnowflakeOS has an `exec` system call<sup>[<a href="https://github.com/29jm/SnowflakeOS/commit/6444c76b939975f91c96133118b1ea7dd58ecfe3" title="this is new too! not much work. this one is an actual link btw.">4</a>]</sup>, but no concept of child process, forks, etc... so we can't have that traditional terminal-shell separation just yet. For the same reason, external processes won't be able to print to the terminal, only builtin commands. Well _whatever_<sup>[<a href="" title="though this will be fixed">5</a>]</sup>, we just want a fancy way to start paint ;)
+Anyway, what does a terminal do? Usually, it runs a single program, the shell, and it handles printing its output nice and tidy, which includes handling escape sequences (we had those, [a long time ago][ansi]), line wrapping, sometimes mouse handling I guess. I actually don't known much more than that. SnowflakeOS has an `exec` system call{% anecdote <a href="https://github.com/29jm/SnowflakeOS/commit/6444c76b939975f91c96133118b1ea7dd58ecfe3">4</a>|this is new too! not much work. this one is an actual link btw. %}, but no concept of child process, forks, etc... so we can't have that traditional terminal-shell separation just yet. For the same reason, external processes won't be able to print to the terminal, only builtin commands. Well _whatever_{% anecdote 5|though this will be fixed %}, we just want a fancy way to start paint ;)
 
 The terminal follows the same basic structure of every graphical app ever: handle input, redraw, loop. Let's take a look at input handling:
 
@@ -237,7 +237,7 @@ All in all, we now have a working terminal.
 
 Kernel development is an art, or so some think. I enjoy consensus and wanted to address the concerns of naysayers, and with that goal in mind set out to make my kernel art-able. What program then could be better suited to artistic expression than the humble paint?
 
-The code here has even fewer bells and whistles than the terminal, and I won't dare bore you with it. Get input, if click, toggle drawing, if mouse move and drawing, draw a line, loop. Note that because of window dragging mechanics you can't keep pressing the mouse to draw, you have to release it. I think it's not totally senseless UX-wise<sup>[<a href="" title="it mostly is though, yes">6</a>]</sup>, as you're free to focus only on the movement of your hand.
+The code here has even fewer bells and whistles than the terminal, and I won't dare bore you with it. Get input, if click, toggle drawing, if mouse move and drawing, draw a line, loop. Note that because of window dragging mechanics you can't keep pressing the mouse to draw, you have to release it. I think it's not totally senseless UX-wise{% anecdote 6|it mostly is though, yes %}, as you're free to focus only on the movement of your hand.
 
 But, but, but, the five cool, old-school buttons on the top left are of some interest. I've started making a GUI toolkit, and what you're really seeing here are three color picker buttons and two normal buttons in a horizontal layout. This code is really a work in progress by any measure, but working on it has been pretty interesting so far. I'm taking a GTK-like approach, because it's the only C GUI toolkit I've ever touched. Thankfully I barely remember any of it, so I'm free to make the same mistakes it did, but also new and cooler ones.
 
@@ -271,7 +271,7 @@ if (point_in_rect(pos, picker->widget.bounds)) {
 }
 ```
 
-Anyway, you can paint stuff now. It's plenty fast in QEMU, but that could still be easily improved: right now we tell the wm to update the whole window rect<sup>[<a href="" title="clipping rules still apply in wm land, of course">7</a>]</sup>, when we could tell it to update only the small square containing the new line we just drew. Another big improvement, and not just to paint, would be to store the mouse's position as a pair of floats instead of ints, because right now small movements are basically ignored due to rounding errors in the wm's code. One advantage is that it's really easy to draw squares right now, but unless a sizeable fraction of users turns out to be rabbid fans of the [Suprematist][suprematist] movement, I think it's worth fixing.
+Anyway, you can paint stuff now. It's plenty fast in QEMU, but that could still be easily improved: right now we tell the wm to update the whole window rect{% anecdote 7|clipping rules still apply in wm land, of course %}, when we could tell it to update only the small square containing the new line we just drew. Another big improvement, and not just to paint, would be to store the mouse's position as a pair of floats instead of ints, because right now small movements are basically ignored due to rounding errors in the wm's code. One advantage is that it's really easy to draw squares right now, but unless a sizeable fraction of users turns out to be rabbid fans of the [Suprematist][suprematist] movement, I think it's worth fixing.
 
 ---
 
