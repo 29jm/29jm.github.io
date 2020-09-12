@@ -37,7 +37,7 @@ typedef struct {
 } wm_event_t;
 ```
 
-where `mouse` and `kbd` are defined in somewhat obvious ways in [uapi_wm.h][uapi wm]<sup>[<a href="" title="thanks to Protura's dev for suggesting this way of sharing kernel headers!">2</a>]</sup>. So, clients poll the wm for this structure, and that's the client side of it. The kernel, wm side of it is pretty straightforward: the mouse and keyboard callbacks fill `mask` and other fields as needed, for instance in the keyboard handler:
+where `mouse` and `kbd` are defined in somewhat obvious ways in [uapi_wm.h][uapi wm]{% anecdote 2|thanks to Protura's dev for suggesting this way of sharing kernel headers! %}. So, clients poll the wm for this structure, and that's the client side of it. The kernel, wm side of it is pretty straightforward: the mouse and keyboard callbacks fill `mask` and other fields as needed, for instance in the keyboard handler:
 
 ```c
 void wm_kbd_callback(kbd_event_t event) {

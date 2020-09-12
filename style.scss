@@ -313,6 +313,27 @@ figcaption {
   }
 }
 
+/* Anecdote */
+.tooltip {
+  cursor: pointer;
+}
+
+.tooltip span {
+  display: none;
+  background-color: lightyellow;
+  border: solid 1px black;
+  border-radius: 4px;
+  margin-top: -20px;
+  margin-left: -20px;
+  padding: 2px 3px;
+}
+
+.tooltip:hover span {
+  display: inline-block;
+  position: absolute;
+}
+
+/* Footer */
 .wrapper-footer {
   margin-top: 50px;
   border-top: 1px solid #ddd;
