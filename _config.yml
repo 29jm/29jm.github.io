@@ -5,13 +5,13 @@
 title: SnowflakeOS's blog
 
 # Name of your site (displayed in the header)
-name: Johan Manuel
+name: SnowflakeOS
 
 # Short bio or description (displayed in the header)
-description: Developer of SnowflakeOS
+description: Locally grown blog posts, by Johan Manuel
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://avatars1.githubusercontent.com/u/6154077?s=460&v=4
+avatar: /assets/logo_big.png
 
 #
 # Flags below are optional

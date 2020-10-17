@@ -8,32 +8,15 @@ permalink: /about/
 
 \> *"It is very special"*
 
-SnowflakeOS is a hobby OS written in C for the x86 architecture. I started it in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. I had to stop working on it regularly shortly after starting the project as I no longer had the time.
+SnowflakeOS is a hobby OS written in C for the x86 architecture. I started it in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. It was on pause for a while, resumed, and will probably continue that cycle for a good long while.
 
-### A rebirth
+### Goals
 
-This year, my school asked each student to choose a task to work on, a personal challenge, and freed up some time for them to work on it. I've chosen to resume work on SnowflakeOS, and work has begun!
+- Learning stuff,
+- Explaining stuff,
+- Keeping it running
 
-#### Goals
-
-The stated goals of development this year are the following:
-
-- Displaying a basic user interface: a desktop, a mouse
-- Programs: a launcher, to start other programs, and at least a system monitor showing memory use and running programs
-- Reasonable speed in QEMU: ~10 fps would be a start
-- Document my progress
-- Create learning resources and improve existing ones
-
-That makes only two technical goals, but they aren't the easy kind. Here is a non-exhaustive list of required features to complete those goals:
-
-- Being able to run programs in usermode
-- Task switching
-- System calls
-- Program loading
-- 2D graphics library
-- and many more
-
-Note that I don't intend to have the best scheduler, the best GUI, or great performance: they will likely be terrible; but I want to have working versions of them, and to be able to show something working by June 2020.
+Note that I don't intend to have the best scheduler, the best GUI, or great performance: they will likely be terrible; but I want to have working versions of them, and if possible, I want them to look cool.
 
 ### About this blog
 
