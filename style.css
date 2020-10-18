@@ -112,8 +112,6 @@ h4 {
 
 p {
   margin: 15px 0;
-  text-align: justify;
-  text-justify: inter-word;
 }
 
 a {
@@ -349,6 +347,7 @@ figcaption {
 /* Anecdote */
 .tooltip {
   cursor: pointer;
+  color: #4183C4;
 }
 
 .tooltip span {
@@ -363,6 +362,7 @@ figcaption {
 
 .tooltip:hover span {
   display: inline-block;
+  color: #333;
   position: absolute;
 }
 
