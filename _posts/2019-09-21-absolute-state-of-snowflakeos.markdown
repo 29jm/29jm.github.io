@@ -2,7 +2,7 @@
 layout: post
 title: "The absolute state of SnowflakeOS"
 author: Johan Manuel
-tags: meta
+tags: meta osdev hobby-os c
 ---
 
 In my first run in summer 2015, I programmed the components listed in the following

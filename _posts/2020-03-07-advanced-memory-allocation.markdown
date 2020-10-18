@@ -2,7 +2,7 @@
 layout: post
 title: "Taming memory allocators"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![Current state of the GUI](/assets/spamming_windows.gif){:class="thumbnail" title="You managed to load that beast of a gif, congrats. Notice that window staying on top of all others?" }

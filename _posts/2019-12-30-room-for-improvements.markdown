@@ -2,7 +2,7 @@
 layout: post
 title: "Room for graphical improvement"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![Current state of the GUI](/assets/sos-with-bg.png){:class="thumbnail" title="It's always christmas with SnowflakeOS" }

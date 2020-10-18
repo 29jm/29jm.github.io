@@ -2,7 +2,7 @@
 layout: post
 title: "Filesystems for dummies"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![Showing off the flex new background](/assets/sos-corpo2.png){: class="thumbnail" title="The dummy in question is the author, fwiw"}

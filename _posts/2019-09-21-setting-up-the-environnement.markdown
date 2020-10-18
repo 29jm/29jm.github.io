@@ -2,7 +2,7 @@
 layout: post
 title: "Setting up the environnement"
 author: Johan Manuel
-tags: meta
+tags: meta osdev hobby-os c
 ---
 
 The very first step to working on SnowflakeOS again was to setup the environment: download the sources and the tools to build them. Here's a quick rundown.

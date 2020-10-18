@@ -2,7 +2,7 @@
 layout: post
 title:  "On context switching and C programs in userland"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![Executing garbage](/assets/garbage.png){:class="thumbnail" title="It's abstract art, okay?"}

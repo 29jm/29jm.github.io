@@ -2,7 +2,7 @@
 layout: post
 title: "A need for speed"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![thumbnail](/assets/snowy_bg.png){:class="thumbnail" title="I choose the worst wallpapers"}

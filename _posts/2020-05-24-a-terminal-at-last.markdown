@@ -2,7 +2,7 @@
 layout: post
 title: "A terminal, at last"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![picture](/assets/sos-paint.png){: class="thumbnail" title="The author wasn't fucking around _this_ week."}

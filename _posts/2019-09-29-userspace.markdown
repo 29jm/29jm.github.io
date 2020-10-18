@@ -2,7 +2,7 @@
 layout: post
 title: "Getting to userspace - and back !"
 author: Johan Manuel
-tags: development
+tags: development osdev hobby-os c
 ---
 
 ![Userspace printing](/assets/userspace.png){:class="thumbnail" title="See that 'Hello, world'? Userspace!"}
