@@ -176,7 +176,7 @@ program’s code… Ah, the marvels of osdev.</p>
 
 <h3 id="clang">Clang</h3>
 
-<p>First thing I did was replacing <code class="language-plaintext highlighter-rouge">CC</code> with <code class="language-plaintext highlighter-rouge">clang</code>, and check the results. The results were mostly linker errors. Surprisingly, <code class="language-plaintext highlighter-rouge">clang</code> seems to call out to the system’s <code class="language-plaintext highlighter-rouge">gcc</code> for a lot of things<sup class="tooltip">[10]<span>which I’ve forgotten</span></sup>, and it uses the system’s <code class="language-plaintext highlighter-rouge">ld</code> too. Anyway, I basically had to do two things:</p>
+<p>First thing I did was replacing <code class="language-plaintext highlighter-rouge">CC</code> with <code class="language-plaintext highlighter-rouge">clang</code>, and check the results. The results were mostly linker errors. Surprisingly, <code class="language-plaintext highlighter-rouge">clang</code> seems to call out to the system’s <code class="language-plaintext highlighter-rouge">gcc</code> for a lot of things<sup class="tooltip">[10]<span>which I’ve forgotten</span></sup>, and it uses the system’s <code class="language-plaintext highlighter-rouge">ld</code> too. Anyway, I basically had to do four things:</p>
 <ul>
   <li>Use <code class="language-plaintext highlighter-rouge">ld</code> for compilation phases instead of <code class="language-plaintext highlighter-rouge">CC</code>: <code class="language-plaintext highlighter-rouge">clang</code> calls <code class="language-plaintext highlighter-rouge">ld</code> there, but with somewhat crap arguments, it’s far simpler to call <code class="language-plaintext highlighter-rouge">ld</code> directly and have control over them,</li>
   <li>Call <code class="language-plaintext highlighter-rouge">as</code> directly, not <code class="language-plaintext highlighter-rouge">CC</code>: while <code class="language-plaintext highlighter-rouge">clang</code> can compile GNU assembly, it wasn’t keen on doing so with the specific options I wanted to give it,</li>
@@ -190,7 +190,7 @@ program’s code… Ah, the marvels of osdev.</p>
 
 <h3 id="ubsan">UBSan</h3>
 
-<p>Enabling usbsan, on linux for instance, as simple as adding <code class="language-plaintext highlighter-rouge">-fsanitize=undefined</code> to your compiler flags. When cross-compiling however, you can’t do that, you need to implement its (thankfully compact) <a href="https://github.com/29jm/SnowflakeOS/blob/5a0b82feb7c16e08778c5248f39127c18eecadcc/libc/src/ubsan.c">runtime</a>. This runtime is just the collection of functions that’ll get called when some type of undefined behavior is detected.<br />
+<p>Enabling usbsan, on linux for instance, is as simple as adding <code class="language-plaintext highlighter-rouge">-fsanitize=undefined</code> to your compiler flags. When cross-compiling however, you can’t do that, you need to implement its (thankfully compact) <a href="https://github.com/29jm/SnowflakeOS/blob/5a0b82feb7c16e08778c5248f39127c18eecadcc/libc/src/ubsan.c">runtime</a>. This runtime is just the collection of functions that’ll get called when some type of undefined behavior is detected.<br />
 A typical handler looks something like that:</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">__ubsan_handle_out_of_bounds</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
@@ -211,7 +211,7 @@ A typical handler looks something like that:</p>
     <figcaption>Still not as glorious as the real thing, yes, but now with an icon</figcaption>
 </figure>
 
-<p>I pushed some UI code I’d wrote at the beginning of summer to github, and rewrote the paint clone with it, this is close to the entirety of <a href="https://github.com/29jm/SnowflakeOS/blob/3ec5e7113e425b6ff6b9e775f5d65ca545558f49/modules/src/paint.c">its code</a>:</p>
+<p>I pushed some UI code I’d written at the beginning of summer to github, and rewrote the paint clone with it; this is close to the entirety of <a href="https://github.com/29jm/SnowflakeOS/blob/3ec5e7113e425b6ff6b9e775f5d65ca545558f49/modules/src/paint.c">its code</a>:</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ui_app_t</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">ui_app_new</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">fd</span> <span class="o">?</span> <span class="n">icon</span> <span class="o">:</span> <span class="nb">NULL</span><span class="p">);</span>
 
