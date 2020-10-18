@@ -110,7 +110,7 @@ Having spent a good deal of time tracking down bugs, I thought it good to priori
 
 ### Clang
 
-First thing I did was replacing `CC` with `clang`, and check the results. The results were mostly linker errors. Surprisingly, `clang` seems to call out to the system's `gcc` for a lot of things{% anecdote 10|which I've forgotten %}, and it uses the system's `ld` too. Anyway, I basically had to do two things:
+First thing I did was replacing `CC` with `clang`, and check the results. The results were mostly linker errors. Surprisingly, `clang` seems to call out to the system's `gcc` for a lot of things{% anecdote 10|which I've forgotten %}, and it uses the system's `ld` too. Anyway, I basically had to do four things:
 + Use `ld` for compilation phases instead of `CC`: `clang` calls `ld` there, but with somewhat crap arguments, it's far simpler to call `ld` directly and have control over them,
 + Call `as` directly, not `CC`: while `clang` can compile GNU assembly, it wasn't keen on doing so with the specific options I wanted to give it,
 + Remove `-lgcc` from `LDFLAGS`: I don't remember why it was there in the first place,
@@ -122,7 +122,7 @@ Using `clang` is now as simple as uncommenting the relevant lines in the main Ma
 
 ### UBSan
 
-Enabling usbsan, on linux for instance, as simple as adding `-fsanitize=undefined` to your compiler flags. When cross-compiling however, you can't do that, you need to implement its (thankfully compact) [runtime][ubsan runtime]. This runtime is just the collection of functions that'll get called when some type of undefined behavior is detected.  
+Enabling usbsan, on linux for instance, is as simple as adding `-fsanitize=undefined` to your compiler flags. When cross-compiling however, you can't do that, you need to implement its (thankfully compact) [runtime][ubsan runtime]. This runtime is just the collection of functions that'll get called when some type of undefined behavior is detected.  
 A typical handler looks something like that:
 
 ```c
@@ -144,7 +144,7 @@ It instantly caught an out of bounds error in my keyboard driver, and the fact t
     <figcaption>Still not as glorious as the real thing, yes, but now with an icon</figcaption>
 </figure>
 
-I pushed some UI code I'd wrote at the beginning of summer to github, and rewrote the paint clone with it, this is close to the entirety of [its code][pisos]:
+I pushed some UI code I'd written at the beginning of summer to github, and rewrote the paint clone with it; this is close to the entirety of [its code][pisos]:
 
 ```c
 ui_app_t paint = ui_app_new(win, fd ? icon : NULL);
