@@ -16,6 +16,8 @@ The fact is, we don't have a disk driver of any kind. Those don't look fun to me
 
 This is just a matter of generating the filesystem with `mkfs.ext2` and placing it in the modules directory. The kernel then sees it as just another module, so we make an exception for it and feed it into the ext2 driver.
 
+*Edit 19/10/2020:* while the problem described in the following parapgraph was indeed present in SnowflakeOS at the time of writing, it was in fact trivial to solve, and solved in [7d94942][modules]. Thanks /u/TheMonax :)
+
 The thing with modules in SnowflakeOS though is that they can't exceed a certain size, around 3 MiB. The reason for that is that the physical memory manager stores its bitmap just after the kernel and its modules in memory, and when the PMM runs, the kernel has 4 MiB mapped for itself. If modules grow too large, the bitmap ends up unmapped and *fun* things happen. And it's too late then to map more memory: paging code has to be able to allocate physical pages, which requires a valid bitmap, etc...
 
 All in all, our disk shall take the form of a pointer to a large area of memory containing the filesystem. In order to facilitate the transition to a real disk later, I decided to constrain myself to block sized reads and writes, hopefully that's how they work, modulo their block size.
@@ -201,3 +203,4 @@ I'll see you next time, hopefully talking about ELF loading and disk drivers and
 [gcc ubsan]: https://github.com/gcc-mirror/gcc/blob/master/libsanitizer/ubsan/ubsan_handlers.h
 [ubsan runtime]: https://github.com/29jm/SnowflakeOS/blob/5a0b82feb7c16e08778c5248f39127c18eecadcc/libc/src/ubsan.c
 [pisos]: https://github.com/29jm/SnowflakeOS/blob/3ec5e7113e425b6ff6b9e775f5d65ca545558f49/modules/src/paint.c
+[modules]: https://github.com/29jm/SnowflakeOS/commit/7d9494271329675e5f13a378012c58b301199cbd
