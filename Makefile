@@ -11,4 +11,5 @@ update:
 	rm -rf /tmp/_site
 	cp -r _site /tmp
 	git checkout master
+	rm -rf *
 	mv /tmp/_site/* .
