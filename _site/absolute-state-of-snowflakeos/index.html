@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The absolute state of SnowflakeOS – SnowflakeOS's blog</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="In my first run in summer 2015, I programmed the components listed in the following
+categories, pretty much in that order. I’ve barely touched them since, so explaining
+each of them here should help me get some knowledge back.
+
+" />
+    <meta property="og:description" content="In my first run in summer 2015, I programmed the components listed in the following
+categories, pretty much in that order. I’ve barely touched them since, so explaining
+each of them here should help me get some knowledge back.
+
+" />
+    
+    <meta name="author" content="SnowflakeOS" />
+
+    
+    <meta property="og:title" content="The absolute state of SnowflakeOS" />
+    <meta property="twitter:title" content="The absolute state of SnowflakeOS" />
+    
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="SnowflakeOS - Locally grown blog posts, by Johan Manuel" href="/feed.xml" />
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169883671-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169883671-1');
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/assets/logo_big.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">SnowflakeOS</a></h1>
+            <p class="site-description">Locally grown blog posts, by Johan Manuel</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>The absolute state of SnowflakeOS</h1>
+
+  <div class="entry">
+    <p>In my first run in summer 2015, I programmed the components listed in the following
+categories, pretty much in that order. I’ve barely touched them since, so explaining
+each of them here should help me get some knowledge back.</p>
+
+<p>Some of those categories may have to be moved to their own pages in the future.</p>
+
+<h2 id="vga-terminal">VGA Terminal</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/tty.c">tty.c</a></p>
+
+<p>This module is responsible for providing text writing support to the rest of the kernel.
+This is done here using what’s known as <code class="language-plaintext highlighter-rouge">VGA mode 3</code>, a mechanism that allows writing to
+a 80x25 interface through a chunk of memory starting at <code class="language-plaintext highlighter-rouge">0xB8000</code>.<br />
+At this address starts an array <code class="language-plaintext highlighter-rouge">80 * 25 * 2</code> bytes long, each character occupying two bytes.
+Using it is simple, as writing a character on the screen is done by writing that character
+(plus metadata like foreground and background color) to this array, at offset <code class="language-plaintext highlighter-rouge">y*width+x</code>.</p>
+
+<h2 id="irqs">IRQs</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/irq.c">irq.c</a>, <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/asm/irq.S">irq.S</a>, <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/isr.c">isr.c</a></p>
+
+<p>This module handles communication with the <code class="language-plaintext highlighter-rouge">PIC</code>, or <code class="language-plaintext highlighter-rouge">Programmable Interrupt Controller</code>. It
+sets a few things up, such as renaming interrupt numbers from the 0-15 range to the 32-47
+range, so as not to interfere with CPU-generated interrupts like page faults that are mapped
+to the 0-31 range.<br />
+It sets up a generic handler that gets called on every interrupt. That handler checks if that
+interrupt has been associated with a specific handler, in which case that handler is called.<br />
+The class of interrupts in the 0-31 range are called <code class="language-plaintext highlighter-rouge">Interrupt Service Routines</code>, or <code class="language-plaintext highlighter-rouge">ISR</code>,
+and those are handled in <code class="language-plaintext highlighter-rouge">isr.c</code>.</p>
+
+<h2 id="timer">Timer</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/timer.c">timer.c</a></p>
+
+<p>This file contains the handler for interrupt 0, or rather interrupt 32 as we’ve remapped
+interrupts as noted in the previous section. This interrupt comes from the <code class="language-plaintext highlighter-rouge">PIT</code>, or
+<code class="language-plaintext highlighter-rouge">Programmable Interval Timer</code>, which in the case that interests us is nothing more than a
+clock.<br />
+We set a frequency for that clock to fire, and we register a handler to keep track of time.</p>
+
+<h2 id="keyboard">Keyboard</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/keyboard.c">keyboard.c</a></p>
+
+<p>This is more of a proof of concept, something I wanted to see working soon, rather than a
+useful or working component of SnowflakeOS. Basically, it sets up an interrupt handler for
+interrupt 1. In that handler, it reads the given signal from the corresponding IO port,
+converts it to ASCII and prints it, with modifiers if any.<br />
+There’s no API to speak of, I don’t know yet how I’ll expose it to userspace.</p>
+
+<h2 id="physical-memory-manager-pmm">Physical Memory Manager (PMM)</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/pmm.c">pmm.c</a></p>
+
+<p>Now that file is very important, as it contains functions that manage physical memory,
+regardless of paging changes. Its job is to make the allocation of physical pages of
+memory pretty much trivial, along with de-allocation.<br />
+It starts by reading the <code class="language-plaintext highlighter-rouge">multiboot</code> structure provided by <code class="language-plaintext highlighter-rouge">GRUB</code>, and marks as such the
+areas described as unavailable, as well as areas already occupied by the kernel.<br />
+It does its job of keeping track of free pages though a bitmap allocated after the kernel
+in memory. The <code class="language-plaintext highlighter-rouge">n</code>th bit in that bitmap indicates whether the page at address <code class="language-plaintext highlighter-rouge">n*4096</code> is
+free, with <code class="language-plaintext highlighter-rouge">0</code> meaning free.</p>
+
+<h2 id="paging">Paging</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/paging.c">paging.c</a>, <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/liballoc.c">liballoc.c</a></p>
+
+<p>I won’t get into the ‘why’ or the ‘how’ of paging here, but I’ll describe what it does
+currently in SnowflakeOS. First, it’s the mechanism that allows the kernel to live at
+address <code class="language-plaintext highlighter-rouge">0xC0100000</code> when physically the kernel is stored at <code class="language-plaintext highlighter-rouge">0x100000</code> - the kernel is
+said to be a “higher half” kernel. That mechanism is address translation from a virtual
+address space to the physical address space.<br />
+Having our kernel mapped to high addresses is useful as it frees lower memory: we’ll be
+able to map the code of our processes there at fixed addresses, with their stacks right
+below the kernel. We’ll have one address space per process, with the kernel mapped into
+each so that we can make syscalls.<br />
+I borrowed a library called <code class="language-plaintext highlighter-rouge">liballoc</code> to implement <code class="language-plaintext highlighter-rouge">kmalloc</code> in SnowflakeOS. It works
+by dynamically allocating pages and dividing them in smaller chunks, keeping track of
+allocations. The code in this library is horrific, though, and I intend to get rid of it.</p>
+
+<h2 id="syscalls">Syscalls</h2>
+
+<p>Source files: <a href="https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/sys/syscall.c">syscall.c</a></p>
+
+<p>Which brings us to syscalls, or system calls. Those are a way to call a kernel function
+from a userspace process, thereby gaining access to higher privilege but in a way that
+is entirely controlled by the kernel.<br />
+Concretely, syscalls are implemented by registering an unused interrupt handler, and by
+checking the arguments passed to that interrupt (I’ll use registers for parameter passing)
+to call the proper kernel function, and if needed, return a result.<br />
+That interrupt can be triggered from userspace though the <code class="language-plaintext highlighter-rouge">int</code> instruction; it’s a software
+interrupt, as opposed to hardware interrupts caused by the <code class="language-plaintext highlighter-rouge">PIT</code>, etc…<br />
+As of now, this mechanism is untested.</p>
+
+
+  </div>
+
+  <div class="date">
+    Written on September 21, 2019
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/29jm"><i class="svg-icon github"></i></a>
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>
