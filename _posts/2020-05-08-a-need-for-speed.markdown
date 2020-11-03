@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development osdev hobby-os c
 ---
 
-![thumbnail](/assets/snowy_bg.png){:class="thumbnail" title="I choose the worst wallpapers"}
+![thumbnail](/assets/snowy_bg.jpg){:class="thumbnail" title="I choose the worst wallpapers"}
 At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!
 
 > Wait a minute... this has nothing to do with kernel dev

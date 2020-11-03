@@ -8,7 +8,7 @@ permalink: /about/
 
 \> *"It is very special"*
 
-SnowflakeOS is a hobby OS written in C for the x86 architecture. I started it in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. It was on pause for a while, resumed, and will probably continue that cycle for a good long while.
+SnowflakeOS is a hobby OS written in C for the x86 architecture. I started it in 2015 with the goal of learning about the inner workings of operating systems, and to program low-level stuff for the fun of it. It was on pause for a few years, resumed, and will probably continue that cycle for a good long while.
 
 ### Goals
 
@@ -23,6 +23,8 @@ Note that I don't intend to have the best scheduler, the best GUI, or great perf
 I'm writing this blog to document my progress and share some of the cool things I come across in the world of OS development. If you learn anything reading one of my posts, that'd be awesome.  
 However, I'm not an expert and I will surely make mistakes, which I'll try to correct as I go - at the very least I'll highlight them. If you spot any, please tell me!
 
-### Contact me
-
 I'd love to get feedback, on anything! You'll find my email through my GitHub profile linked below. I'm also on Keybase if you're into that.
+
+### About the author
+
+I'm a final year engineering student from France, passionate about all things programming, math, long distance hiking and cinema.

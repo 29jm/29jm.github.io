@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development osdev hobby-os c
 ---
 
-![Current state of the GUI](/assets/spamming_windows.gif){:class="thumbnail" title="You managed to load that beast of a gif, congrats. Notice that window staying on top of all others?" }
+![Current state of the GUI](/assets/sos-spam.jpg){:class="thumbnail" title="This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?" }
 Today I'll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I've only now started to really get into it, now that I feel like it's needed. And it turned out to be fun after all!
 
 ## The basics
@@ -189,7 +189,11 @@ And to address the second point, I added this distinction before calling `mem_ne
 
 ### Testing it
 
-To test that new `malloc`, I made [a program][stress tester] to open and close windows continually while keeping the number of windows constant, which you can see in action at the top of this page, that is, if the 19 MiB gif managed to load.
+<video controls>
+  <source src="/assets/spam-win.mp4" type="video/mp4">
+</video>
+
+To test that new `malloc`, I made [a program][stress tester] to open and close windows continually while keeping the number of windows constant, which you can see in action above.
 
 To be somewhat scientific, I counted the number of calls to `sbrk`. If everything was right, this program would call it a few times, then blocks would be reused *ad infinitum*.
 

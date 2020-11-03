@@ -5,7 +5,7 @@ author: Johan Manuel
 tags: development osdev hobby-os c
 ---
 
-![Showing off the flex new background](/assets/sos-corpo2.png){: class="thumbnail" title="The dummy in question is the author, fwiw"}
+![Showing off the flex new background](/assets/sos-corpo2.jpg){: class="thumbnail" title="The dummy in question is the author, fwiw"}
 Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I'd gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: "why no files? let there be files", and now, files sort of are. Let's see how they work, and how they don't.
 
 But first, take a look at that whole new logo, designed by the magnificent [sylvain-kern](https://github.com/sylvain-kern) <3 The sign of a new era of prosperity for SnowflakeOS, to be sure.
