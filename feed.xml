@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-11-05T12:29:02+01:00</updated><id>/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts, by Johan Manuel</subtitle><entry><title type="html">Scheduling Back On Schedule</title><link href="/scheduling-back-on-schedule/" rel="alternate" type="text/html" title="Scheduling Back On Schedule" /><published>2020-11-04T00:00:00+01:00</published><updated>2020-11-04T00:00:00+01:00</updated><id>/scheduling-back-on-schedule</id><content type="html" xml:base="/scheduling-back-on-schedule/"></content><author><name></name></author></entry><entry><title type="html">Filesystems for dummies</title><link href="/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>/filesystems-for-dummies</id><content type="html" xml:base="/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-11-05T12:34:02+01:00</updated><id>/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts, by Johan Manuel</subtitle><entry><title type="html">Filesystems for dummies</title><link href="/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>/filesystems-for-dummies</id><content type="html" xml:base="/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
 Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.&lt;/p&gt;
 
 &lt;p&gt;But first, take a look at that whole new logo, designed by the magnificent &lt;a href=&quot;https://github.com/sylvain-kern&quot;&gt;sylvain-kern&lt;/a&gt; &amp;lt;3 The sign of a new era of prosperity for SnowflakeOS, to be sure.&lt;/p&gt;
@@ -1591,4 +1591,96 @@ I tried my hand at a &lt;code class=&quot;language-plaintext highlighter-rouge&q
 approached it the wrong way, or at least in a way that Bochs liked, but QEMU did
 not: waiting for time to pass in the syscall handler. In QEMU, timer interrupts
 don’t trigger then, so time never passes :( I’ll get back to it from a scheduler
-perspective.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3. The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them out.</summary></entry></feed>
+perspective.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3. The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them out.</summary></entry><entry><title type="html">The absolute state of SnowflakeOS</title><link href="/absolute-state-of-snowflakeos/" rel="alternate" type="text/html" title="The absolute state of SnowflakeOS" /><published>2019-09-21T00:00:00+02:00</published><updated>2019-09-21T00:00:00+02:00</updated><id>/absolute-state-of-snowflakeos</id><content type="html" xml:base="/absolute-state-of-snowflakeos/">&lt;p&gt;In my first run in summer 2015, I programmed the components listed in the following
+categories, pretty much in that order. I’ve barely touched them since, so explaining
+each of them here should help me get some knowledge back.&lt;/p&gt;
+
+&lt;p&gt;Some of those categories may have to be moved to their own pages in the future.&lt;/p&gt;
+
+&lt;h2 id=&quot;vga-terminal&quot;&gt;VGA Terminal&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/tty.c&quot;&gt;tty.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This module is responsible for providing text writing support to the rest of the kernel.
+This is done here using what’s known as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VGA mode 3&lt;/code&gt;, a mechanism that allows writing to
+a 80x25 interface through a chunk of memory starting at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0xB8000&lt;/code&gt;.&lt;br /&gt;
+At this address starts an array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80 * 25 * 2&lt;/code&gt; bytes long, each character occupying two bytes.
+Using it is simple, as writing a character on the screen is done by writing that character
+(plus metadata like foreground and background color) to this array, at offset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y*width+x&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;irqs&quot;&gt;IRQs&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/irq.c&quot;&gt;irq.c&lt;/a&gt;, &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/asm/irq.S&quot;&gt;irq.S&lt;/a&gt;, &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/isr.c&quot;&gt;isr.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This module handles communication with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PIC&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Programmable Interrupt Controller&lt;/code&gt;. It
+sets a few things up, such as renaming interrupt numbers from the 0-15 range to the 32-47
+range, so as not to interfere with CPU-generated interrupts like page faults that are mapped
+to the 0-31 range.&lt;br /&gt;
+It sets up a generic handler that gets called on every interrupt. That handler checks if that
+interrupt has been associated with a specific handler, in which case that handler is called.&lt;br /&gt;
+The class of interrupts in the 0-31 range are called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interrupt Service Routines&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISR&lt;/code&gt;,
+and those are handled in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isr.c&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;timer&quot;&gt;Timer&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/timer.c&quot;&gt;timer.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This file contains the handler for interrupt 0, or rather interrupt 32 as we’ve remapped
+interrupts as noted in the previous section. This interrupt comes from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PIT&lt;/code&gt;, or
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Programmable Interval Timer&lt;/code&gt;, which in the case that interests us is nothing more than a
+clock.&lt;br /&gt;
+We set a frequency for that clock to fire, and we register a handler to keep track of time.&lt;/p&gt;
+
+&lt;h2 id=&quot;keyboard&quot;&gt;Keyboard&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/keyboard.c&quot;&gt;keyboard.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is more of a proof of concept, something I wanted to see working soon, rather than a
+useful or working component of SnowflakeOS. Basically, it sets up an interrupt handler for
+interrupt 1. In that handler, it reads the given signal from the corresponding IO port,
+converts it to ASCII and prints it, with modifiers if any.&lt;br /&gt;
+There’s no API to speak of, I don’t know yet how I’ll expose it to userspace.&lt;/p&gt;
+
+&lt;h2 id=&quot;physical-memory-manager-pmm&quot;&gt;Physical Memory Manager (PMM)&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/pmm.c&quot;&gt;pmm.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that file is very important, as it contains functions that manage physical memory,
+regardless of paging changes. Its job is to make the allocation of physical pages of
+memory pretty much trivial, along with de-allocation.&lt;br /&gt;
+It starts by reading the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiboot&lt;/code&gt; structure provided by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GRUB&lt;/code&gt;, and marks as such the
+areas described as unavailable, as well as areas already occupied by the kernel.&lt;br /&gt;
+It does its job of keeping track of free pages though a bitmap allocated after the kernel
+in memory. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;th bit in that bitmap indicates whether the page at address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n*4096&lt;/code&gt; is
+free, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; meaning free.&lt;/p&gt;
+
+&lt;h2 id=&quot;paging&quot;&gt;Paging&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/paging.c&quot;&gt;paging.c&lt;/a&gt;, &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/liballoc.c&quot;&gt;liballoc.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I won’t get into the ‘why’ or the ‘how’ of paging here, but I’ll describe what it does
+currently in SnowflakeOS. First, it’s the mechanism that allows the kernel to live at
+address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0xC0100000&lt;/code&gt; when physically the kernel is stored at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0x100000&lt;/code&gt; - the kernel is
+said to be a “higher half” kernel. That mechanism is address translation from a virtual
+address space to the physical address space.&lt;br /&gt;
+Having our kernel mapped to high addresses is useful as it frees lower memory: we’ll be
+able to map the code of our processes there at fixed addresses, with their stacks right
+below the kernel. We’ll have one address space per process, with the kernel mapped into
+each so that we can make syscalls.&lt;br /&gt;
+I borrowed a library called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;liballoc&lt;/code&gt; to implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kmalloc&lt;/code&gt; in SnowflakeOS. It works
+by dynamically allocating pages and dividing them in smaller chunks, keeping track of
+allocations. The code in this library is horrific, though, and I intend to get rid of it.&lt;/p&gt;
+
+&lt;h2 id=&quot;syscalls&quot;&gt;Syscalls&lt;/h2&gt;
+
+&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/sys/syscall.c&quot;&gt;syscall.c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Which brings us to syscalls, or system calls. Those are a way to call a kernel function
+from a userspace process, thereby gaining access to higher privilege but in a way that
+is entirely controlled by the kernel.&lt;br /&gt;
+Concretely, syscalls are implemented by registering an unused interrupt handler, and by
+checking the arguments passed to that interrupt (I’ll use registers for parameter passing)
+to call the proper kernel function, and if needed, return a result.&lt;br /&gt;
+That interrupt can be triggered from userspace though the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int&lt;/code&gt; instruction; it’s a software
+interrupt, as opposed to hardware interrupts caused by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PIT&lt;/code&gt;, etc…&lt;br /&gt;
+As of now, this mechanism is untested.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="meta" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In my first run in summer 2015, I programmed the components listed in the following categories, pretty much in that order. I’ve barely touched them since, so explaining each of them here should help me get some knowledge back.</summary></entry></feed>
