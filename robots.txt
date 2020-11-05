@@ -1,1 +1,1 @@
-Sitemap: https://jmnl.xyz/sitemap.xml
+Sitemap: /sitemap.xml
