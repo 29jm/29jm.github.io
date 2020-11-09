@@ -13,3 +13,5 @@ update:
 	git checkout master
 	rm -rf *
 	mv /tmp/_site/* .
+	rm Makefile
+	echo "jmnl.xyz" > CNAME
