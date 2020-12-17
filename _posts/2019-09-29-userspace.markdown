@@ -3,6 +3,7 @@ layout: post
 title: "Getting to userspace - and back !"
 author: Johan Manuel
 tags: development osdev hobby-os c
+thumbnail: /assets/userspace.jpg
 ---
 
 ![Userspace printing](/assets/userspace.jpg){:class="thumbnail" title="See that 'Hello, world'? Userspace!"}

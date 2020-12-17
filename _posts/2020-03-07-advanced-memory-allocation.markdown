@@ -3,6 +3,7 @@ layout: post
 title: "Taming memory allocators"
 author: Johan Manuel
 tags: development osdev hobby-os c
+thumbnail: /assets/sos-spam.jpg
 ---
 
 ![Current state of the GUI](/assets/sos-spam.jpg){:class="thumbnail" title="This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?" }

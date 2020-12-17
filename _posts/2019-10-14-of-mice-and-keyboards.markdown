@@ -3,6 +3,7 @@ layout: post
 title: "Mouse support and other PS/2 shenanigans"
 author: Johan Manuel
 tags: development osdev hobby-os c
+thumbnail: /assets/sos-kbd.png
 ---
 
 ![Keyboard and mouse both working](/assets/sos-kbd.png){:class="thumbnail" title="Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day."}

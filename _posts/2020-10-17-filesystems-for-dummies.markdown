@@ -3,6 +3,7 @@ layout: post
 title: "Filesystems for dummies"
 author: Johan Manuel
 tags: development osdev hobby-os c
+thumbnail: /assets/sos-corpo2.jpg
 ---
 
 ![Showing off the flex new background](/assets/sos-corpo2.jpg){: class="thumbnail" title="The dummy in question is the author, fwiw"}
