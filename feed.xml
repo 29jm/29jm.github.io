@@ -1,4 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-11-05T12:57:21+01:00</updated><id>/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts, by Johan Manuel</subtitle><entry><title type="html">Filesystems for dummies</title><link href="/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>/filesystems-for-dummies</id><content type="html" xml:base="/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-19T12:06:40+01:00</updated><id>/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts, by Johan Manuel</subtitle><entry><title type="html">Porting Doom</title><link href="/porting-doom/" rel="alternate" type="text/html" title="Porting Doom" /><published>2020-12-15T00:00:00+01:00</published><updated>2020-12-15T00:00:00+01:00</updated><id>/porting-doom</id><content type="html" xml:base="/porting-doom/">&lt;p&gt;&lt;img src=&quot;/assets/doom.jpg&quot; alt=&quot;Doom running on SnowflakeOS&quot; class=&quot;thumbnail&quot; title=&quot;The Doomslayer has awoken&quot; /&gt;
+Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.&lt;/p&gt;
+
+&lt;h2 id=&quot;doooom&quot;&gt;Doooom&lt;/h2&gt;
+
+&lt;p&gt;“Why doom?”, no one asks? Because doom’s awesome, that’s why. Everyone, once in a while, feels like annihilating truckloads of demons with their bare hands or bare chainsaws. Don’t they? Yes, yes they do. I have a slight preference for the more recent Doom games&lt;sup class=&quot;tooltip&quot;&gt;[1]&lt;span&gt;not having experienced the firsts when they came out&lt;/span&gt;&lt;/sup&gt; myself, but first things first, eh.&lt;br /&gt;
+Doom’s code is surprisingly self-sufficient, requiring mostly just&lt;sup class=&quot;tooltip&quot;&gt;[2]&lt;span&gt;this was not trivial :/&lt;/span&gt;&lt;/sup&gt; a working libc, but being a relatively big program, it’s a perfect stress test for any platform. Running doom is proof of being able to run awesomeness.&lt;/p&gt;
+
+&lt;p&gt;Last time I tried porting doom (to be precise, &lt;a href=&quot;https://github.com/ozkl/doomgeneric&quot;&gt;doomgeneric&lt;/a&gt;), I admitted defeat, promising myself I’d get back at it with better tools. So, what did it take? Simple things:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;loading a larger file system: /u/TheMonax pointed out a simple fix for a stupidity of mine that limited the size of grub modules I could load, fixed &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/7d9494271329675e5f13a378012c58b301199cbd&quot;&gt;here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;making static variables part of userspace executables, aka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PROGBITS&lt;/code&gt;: this way, the kernel doesn’t need to guess how much memory the program needs for its globals and statics, it’s all accounted for in the program size&lt;sup class=&quot;tooltip&quot;&gt;[3]&lt;span&gt;of course, an ELF loader would be the better fix&lt;/span&gt;&lt;/sup&gt;; changed in &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/889b92c82311bb996428a2a6a5ef078d7b31953e&quot;&gt;this commit&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;support for command line arguments: doom could have run without, but I wanted those anyway, added &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/88ecc9ad0d5f865b07472ad3bd12f8f6665edab9&quot;&gt;here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;many file-related functions: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chdir&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remove&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rename&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftell&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fseek&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fflush&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stat&lt;/code&gt;… added in various commits all over the place&lt;/li&gt;
+  &lt;li&gt;string formatting functions: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sprintf&lt;/code&gt; &amp;amp; co, which I added by porting &lt;a href=&quot;https://github.com/nothings/stb/blob/master/stb_sprintf.h&quot;&gt;stb_printf&lt;/a&gt; in &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/3b55ee5bd97c606feb61457edd9bc0cdba67cc61&quot;&gt;this commit&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;fewer bugs: one caused a buffer overflow in the ext2 driver when reading a file at an offset, fixed (&lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/aa3ca5024a965d7195eba1203d04a2e1877cfb37&quot;&gt;here&lt;/a&gt;), another was in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strncpy&lt;/code&gt;&lt;sup class=&quot;tooltip&quot;&gt;[4]&lt;span&gt;egregious, I know&lt;/span&gt;&lt;/sup&gt;, fixed in &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/ad444d3dec854d737e44df26ab18fb5edd7a955a&quot;&gt;this commit&lt;/a&gt;…&lt;/li&gt;
+  &lt;li&gt;working 64-bit arithmetic: simple things like 64-bit division is compiled by gcc as a call to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__divdi3(int64_t a, int64_t b)&lt;/code&gt;, which I had at first implemented as… &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;return a / b&lt;/code&gt;, which did not quite work out. gcc provides an implementation in libgcc, but this time I decided I’d rather have the source for those&lt;sup class=&quot;tooltip&quot;&gt;[5]&lt;span&gt;probably a bad idea&lt;/span&gt;&lt;/sup&gt;, and included &lt;a href=&quot;https://github.com/glitchub/arith64&quot;&gt;arith64&lt;/a&gt; &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/92e21abe8246b15ab6d33a4d2f996032a6b5696e&quot;&gt;there&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Once everything’s there, all that’s left to do is make small adjustments to the Makefile so that doom gets linked with the same linker script and assembly prologue as the other apps, and voilà!&lt;/p&gt;
+
+&lt;p&gt;Doom compiles and runs with no hacks at all on our part. All credits to John Carmack :)&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;video controls=&quot;&quot;&gt;
+    &lt;source src=&quot;/assets/doom.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;/video&gt; 
+    &lt;figcaption&gt;It's not that just that I'm bad, there's also this old &quot;keyboard drops keypresses&quot; thing... ;)&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;that-which-is-not-doom-but-is-still-cool&quot;&gt;That which is not doom but is still cool&lt;/h2&gt;
+
+&lt;p&gt;Me remembering that porting doom was an option is pretty recent relative to this blog post. Other things were done!&lt;/p&gt;
+
+&lt;p&gt;SnowflakeOS now &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/b9510a491fbd88fa86445308884dfe52cb57a427&quot;&gt;prints stacktraces&lt;/a&gt;, with function names if it crashes in the kernel. This has been super useful for all subsequent development, and at little cost, too. All that’s required code-wise is listed in the &lt;a href=&quot;https://wiki.osdev.org/Stack_Trace&quot;&gt;wiki&lt;/a&gt;, and adding symbols to that takes just little more; here’s what’s done in SnowflakeOS:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;at link time, grab the kernel’s symbol map generated by the linker: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ld ... -Map=linker.map&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;declutter it with awk magic: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;awk '$1 ~ /0x[0-9a-f]{16}/ {print substr($1, 3), $2}' linker.map &amp;gt; symbols.map&lt;/code&gt;, yielding lines like “0xabcdef some_func”&lt;/li&gt;
+  &lt;li&gt;load it as a grub module, though I’ll change it at some point so that it’s loaded from the file system&lt;/li&gt;
+  &lt;li&gt;when traversing stack frames, look up each address in that file and print the corresponding symbol&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A contributor wanted to work on a new process scheduler, which would have been near impossible given the spaghetti-like nature of this subsystem then, so I took this opportunity to &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/da2cd0987b54b38ef61a03e210a6e79eed5cac06&quot;&gt;refactor the process code&lt;/a&gt;, which is now scheduler-independent. Schedulers implement a generic interface, basically a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sched_next&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sched_add&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sched_exit&lt;/code&gt; functions, and the process switching code deals with those. This design looks sufficient to cover our use-cases, but we’ll have to see how well it accomodates something other than a round robin scheduler.&lt;br /&gt;
+Making this change was &lt;em&gt;hard&lt;/em&gt;. At some point, nothing worked anymore and I had no idea why. I took a deep dive into the whole thing again, like I had for some of the older posts on here, and as soon as I understood it again, it started working. I fixed some bugs in the process, or rather, things that worked by accident. For instance, my clock in the bochs emulator became fast, which it turns out is the normal behavior. No idea what was happening before. There was also &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/b1b4dd4c79c21d86e037e5d34e57dff393e9f47c&quot;&gt;this cool bug&lt;/a&gt;, in which the code worked in all but &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-O2+&lt;/code&gt; builds, due to me being dumb and gcc doing god-like work.&lt;/p&gt;
+
+&lt;p&gt;We now have a virtual file system! That means we can seamlessly mix different file systems into a single folder hierarchy, by mounting them wherever we want. As it happens, the only file system we have support for is ext2, so this feature was tested with two ext2 images. I also briefly made a fake&lt;sup class=&quot;tooltip&quot;&gt;[6]&lt;span&gt;no idea of the terminology here, but think /proc stuff&lt;/span&gt;&lt;/sup&gt; file system whose files were the open windows of the wm, mounted on /wm, and processes owning windows owned the corresponding file descriptors, so that when they exited, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;close&lt;/code&gt; was called on the window files, automatically closing the windows. I like the idea, but the implementation was a bit too hacky so I didn’t keep it, though I think it’ll resurface later.&lt;/p&gt;
+
+&lt;p&gt;This one is big to me: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt; &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/f426ba00fc5905b0c91e28b8edfaef6c78f52cfd&quot;&gt;is a thing&lt;/a&gt;. Ever wonder what the hell &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt; is, how it works? For the longest time this was entirely unclear to me. I still don’t have a definitive answer on linux, but on SnowflakeOS, I’ve found a way to do it that makes sense to me. By default, a process inherits the file descriptors of its parent - as is tradition - including the one referring to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt;. But say, the first process, it doesn’t inherit anything, it has to acquire an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt;. In SnowflakeOS, a process can declare&lt;sup class=&quot;tooltip&quot;&gt;[7]&lt;span&gt;through a syscall&lt;/span&gt;&lt;/sup&gt; itself as being a “terminal”, which gives it this somewhat special file descriptor, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt;: it refers to a file that can handle read/write operations but is entirely in memory, as a circular buffer. The app that declared itself as a terminal is then expected to &lt;em&gt;read&lt;/em&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt;, and do something with it, like draw its content in its window. Child processes&lt;sup class=&quot;tooltip&quot;&gt;[8]&lt;span&gt;there’s technically no such thing in SnowflakeOS, but a process does start another&lt;/span&gt;&lt;/sup&gt; inherit this exact &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stdout&lt;/code&gt;, thus calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fprintf(stdout, &quot;stuff&quot;)&lt;/code&gt; writes to the circular buffer that the parent terminal is reading from. With one or many terminals, it all works out.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/cat.jpg&quot; /&gt;
+    &lt;figcaption&gt;There's a prompt problem, yes, because hacks&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;On the UI side, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;calc&lt;/code&gt; app finally works! It’s been sitting there, its interface done but not connected to anything, but no longer, thanks to &lt;a href=&quot;https://github.com/the-grue&quot;&gt;@the-grue&lt;/a&gt;’s work, who also contributed the new mouse cursor that you can see in the doom video!&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/calc.jpg&quot; /&gt;
+    &lt;figcaption&gt;No dimension hardcoded here&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Finally, I’ve finally taken some time to read (gnu) &lt;a href=&quot;https://www.gnu.org/software/make/manual/make.html&quot;&gt;make’s documentation&lt;/a&gt;&lt;sup class=&quot;tooltip&quot;&gt;[9]&lt;span&gt;it’s very well written, fwiw&lt;/span&gt;&lt;/sup&gt; properly, and I fixed a few remaining issues with files being rebuilt for no reason, most importantly regenerating the ISO, which is one of the longest operation of the build.&lt;/p&gt;
+
+&lt;h2 id=&quot;that-which-did-not-fit-in-the-other-categories&quot;&gt;That which did not fit in the other categories&lt;/h2&gt;
+
+&lt;p&gt;I’ve begun working on some documentation for the project, things that would help someone understand the project and contribute, which would be awesome. There’s now a &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; that goes through the usual points. It also describes how to setup &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang-format&lt;/code&gt;, another new addition that I too will abide by. I even used it to format doom’s source, making it a bit more comfortable to debug. There is also a project &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/wiki&quot;&gt;wiki&lt;/a&gt;, two pages now, but more will come with documentation on the various subsystems and how they interact. If a topic you’d like to see covered is missing, I take requests :)&lt;/p&gt;
+
+&lt;p&gt;Unrelatedly, SnowflakeOS bugs out on real hardware/virtual box (see issue &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/issues/18&quot;&gt;#18&lt;/a&gt;). I haven’t given this bug my full attention yet, but I bet it’ll be &lt;em&gt;pretty hard&lt;/em&gt; to figure that one out. If anyone reading this has any tips, I’ll take them all!&lt;/p&gt;
+
+&lt;p&gt;Doom was a long term goal, so, what next? I’m not out of ideas yet, here are a few to end this post:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ACPI support: includes a switch to multiboot2&lt;/li&gt;
+  &lt;li&gt;A hierarchy of processes, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fork&lt;/code&gt; &amp;amp; friends&lt;/li&gt;
+  &lt;li&gt;A better desktop&lt;/li&gt;
+  &lt;li&gt;Hard disk support&lt;/li&gt;
+  &lt;li&gt;Fixing some of these &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TODO&lt;/code&gt;s…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hopefully one of those will be done by next post, see you then :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.</summary></entry><entry><title type="html">Filesystems for dummies</title><link href="/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>/filesystems-for-dummies</id><content type="html" xml:base="/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
 Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.&lt;/p&gt;
 
 &lt;p&gt;But first, take a look at that whole new logo, designed by the magnificent &lt;a href=&quot;https://github.com/sylvain-kern&quot;&gt;sylvain-kern&lt;/a&gt; &amp;lt;3 The sign of a new era of prosperity for SnowflakeOS, to be sure.&lt;/p&gt;
@@ -1591,96 +1667,4 @@ I tried my hand at a &lt;code class=&quot;language-plaintext highlighter-rouge&q
 approached it the wrong way, or at least in a way that Bochs liked, but QEMU did
 not: waiting for time to pass in the syscall handler. In QEMU, timer interrupts
 don’t trigger then, so time never passes :( I’ll get back to it from a scheduler
-perspective.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3. The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them out.</summary></entry><entry><title type="html">The absolute state of SnowflakeOS</title><link href="/absolute-state-of-snowflakeos/" rel="alternate" type="text/html" title="The absolute state of SnowflakeOS" /><published>2019-09-21T00:00:00+02:00</published><updated>2019-09-21T00:00:00+02:00</updated><id>/absolute-state-of-snowflakeos</id><content type="html" xml:base="/absolute-state-of-snowflakeos/">&lt;p&gt;In my first run in summer 2015, I programmed the components listed in the following
-categories, pretty much in that order. I’ve barely touched them since, so explaining
-each of them here should help me get some knowledge back.&lt;/p&gt;
-
-&lt;p&gt;Some of those categories may have to be moved to their own pages in the future.&lt;/p&gt;
-
-&lt;h2 id=&quot;vga-terminal&quot;&gt;VGA Terminal&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/tty.c&quot;&gt;tty.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This module is responsible for providing text writing support to the rest of the kernel.
-This is done here using what’s known as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VGA mode 3&lt;/code&gt;, a mechanism that allows writing to
-a 80x25 interface through a chunk of memory starting at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0xB8000&lt;/code&gt;.&lt;br /&gt;
-At this address starts an array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80 * 25 * 2&lt;/code&gt; bytes long, each character occupying two bytes.
-Using it is simple, as writing a character on the screen is done by writing that character
-(plus metadata like foreground and background color) to this array, at offset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y*width+x&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;irqs&quot;&gt;IRQs&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/irq.c&quot;&gt;irq.c&lt;/a&gt;, &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/asm/irq.S&quot;&gt;irq.S&lt;/a&gt;, &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/cpu/isr.c&quot;&gt;isr.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This module handles communication with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PIC&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Programmable Interrupt Controller&lt;/code&gt;. It
-sets a few things up, such as renaming interrupt numbers from the 0-15 range to the 32-47
-range, so as not to interfere with CPU-generated interrupts like page faults that are mapped
-to the 0-31 range.&lt;br /&gt;
-It sets up a generic handler that gets called on every interrupt. That handler checks if that
-interrupt has been associated with a specific handler, in which case that handler is called.&lt;br /&gt;
-The class of interrupts in the 0-31 range are called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interrupt Service Routines&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISR&lt;/code&gt;,
-and those are handled in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isr.c&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;timer&quot;&gt;Timer&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/timer.c&quot;&gt;timer.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This file contains the handler for interrupt 0, or rather interrupt 32 as we’ve remapped
-interrupts as noted in the previous section. This interrupt comes from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PIT&lt;/code&gt;, or
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Programmable Interval Timer&lt;/code&gt;, which in the case that interests us is nothing more than a
-clock.&lt;br /&gt;
-We set a frequency for that clock to fire, and we register a handler to keep track of time.&lt;/p&gt;
-
-&lt;h2 id=&quot;keyboard&quot;&gt;Keyboard&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/devices/keyboard.c&quot;&gt;keyboard.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This is more of a proof of concept, something I wanted to see working soon, rather than a
-useful or working component of SnowflakeOS. Basically, it sets up an interrupt handler for
-interrupt 1. In that handler, it reads the given signal from the corresponding IO port,
-converts it to ASCII and prints it, with modifiers if any.&lt;br /&gt;
-There’s no API to speak of, I don’t know yet how I’ll expose it to userspace.&lt;/p&gt;
-
-&lt;h2 id=&quot;physical-memory-manager-pmm&quot;&gt;Physical Memory Manager (PMM)&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/pmm.c&quot;&gt;pmm.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now that file is very important, as it contains functions that manage physical memory,
-regardless of paging changes. Its job is to make the allocation of physical pages of
-memory pretty much trivial, along with de-allocation.&lt;br /&gt;
-It starts by reading the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiboot&lt;/code&gt; structure provided by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GRUB&lt;/code&gt;, and marks as such the
-areas described as unavailable, as well as areas already occupied by the kernel.&lt;br /&gt;
-It does its job of keeping track of free pages though a bitmap allocated after the kernel
-in memory. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;th bit in that bitmap indicates whether the page at address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n*4096&lt;/code&gt; is
-free, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; meaning free.&lt;/p&gt;
-
-&lt;h2 id=&quot;paging&quot;&gt;Paging&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/paging.c&quot;&gt;paging.c&lt;/a&gt;, &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/mem/liballoc.c&quot;&gt;liballoc.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I won’t get into the ‘why’ or the ‘how’ of paging here, but I’ll describe what it does
-currently in SnowflakeOS. First, it’s the mechanism that allows the kernel to live at
-address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0xC0100000&lt;/code&gt; when physically the kernel is stored at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0x100000&lt;/code&gt; - the kernel is
-said to be a “higher half” kernel. That mechanism is address translation from a virtual
-address space to the physical address space.&lt;br /&gt;
-Having our kernel mapped to high addresses is useful as it frees lower memory: we’ll be
-able to map the code of our processes there at fixed addresses, with their stacks right
-below the kernel. We’ll have one address space per process, with the kernel mapped into
-each so that we can make syscalls.&lt;br /&gt;
-I borrowed a library called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;liballoc&lt;/code&gt; to implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kmalloc&lt;/code&gt; in SnowflakeOS. It works
-by dynamically allocating pages and dividing them in smaller chunks, keeping track of
-allocations. The code in this library is horrific, though, and I intend to get rid of it.&lt;/p&gt;
-
-&lt;h2 id=&quot;syscalls&quot;&gt;Syscalls&lt;/h2&gt;
-
-&lt;p&gt;Source files: &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/29163f3af06f782bab188a0b60b5402b33ad14d9/kernel/src/sys/syscall.c&quot;&gt;syscall.c&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Which brings us to syscalls, or system calls. Those are a way to call a kernel function
-from a userspace process, thereby gaining access to higher privilege but in a way that
-is entirely controlled by the kernel.&lt;br /&gt;
-Concretely, syscalls are implemented by registering an unused interrupt handler, and by
-checking the arguments passed to that interrupt (I’ll use registers for parameter passing)
-to call the proper kernel function, and if needed, return a result.&lt;br /&gt;
-That interrupt can be triggered from userspace though the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int&lt;/code&gt; instruction; it’s a software
-interrupt, as opposed to hardware interrupts caused by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PIT&lt;/code&gt;, etc…&lt;br /&gt;
-As of now, this mechanism is untested.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="meta" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In my first run in summer 2015, I programmed the components listed in the following categories, pretty much in that order. I’ve barely touched them since, so explaining each of them here should help me get some knowledge back.</summary></entry></feed>
+perspective.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3. The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them out.</summary></entry></feed>
