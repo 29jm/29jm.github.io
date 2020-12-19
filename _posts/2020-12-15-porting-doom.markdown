@@ -7,21 +7,21 @@ thumbnail: /assets/doom.jpg
 ---
 
 ![Doom running on SnowflakeOS](/assets/doom.jpg){: class="thumbnail" title="The Doomslayer has awoken"}
-Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we'll investigate the latter phenomenon, and how it came to happen in SnowflakeOS.
+Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we'll investigate this last phenomenon, and how it came to happen in SnowflakeOS.
 
 ## Doooom
 
-"Why doom?", no one asks? Because doom's awesome, that's why. Everyone, once in a while, feels like annihilating truckloads of demons with their bare hands or bare chainsaws. Don't they? I have a slight preference for the more recent Doom games{% anecdote n|not having experienced the firsts when they came out %} myself, but first things first, eh.  
-Doom's code is surprisingly self-sufficient, requiring mostly just{% anecdote n|this was not trivial :/ %} a working libc, but being a relatively big program, it's a perfect stress test for any platform. Running doom is proof of being able to run awesomeness.
+"Why doom?", no one asks? Because doom's awesome, that's why. Everyone, once in a while, feels like annihilating truckloads of demons with their bare hands or bare chainsaws. Don't they? Yes, yes they do. I have a slight preference for the more recent Doom games{% anecdote 1|not having experienced the firsts when they came out %} myself, but first things first, eh.  
+Doom's code is surprisingly self-sufficient, requiring mostly just{% anecdote 2|this was not trivial :/ %} a working libc, but being a relatively big program, it's a perfect stress test for any platform. Running doom is proof of being able to run awesomeness.
 
 Last time I tried porting doom (to be precise, [doomgeneric][dg]), I admitted defeat, promising myself I'd get back at it with better tools. So, what did it take? Simple things:
-+ loading a larger file system: /u/TheMonax pointed out a simple fix for a stupidity of mine that limited the size of grub modules I could load, fixed in [7d94942](https://github.com/29jm/SnowflakeOS/commit/7d9494271329675e5f13a378012c58b301199cbd)
-+ making static variables part of userspace executables, aka `PROGBITS`: this way, the kernel doesn't need to guess how much memory the program needs for its globals and statics, it's all accounted for in the program size; changed in [889b92c](https://github.com/29jm/SnowflakeOS/commit/889b92c82311bb996428a2a6a5ef078d7b31953e)
-+ support for command line arguments: doom could have run without, but I wanted those anyway, added in [88ecc9a](https://github.com/29jm/SnowflakeOS/commit/88ecc9ad0d5f865b07472ad3bd12f8f6665edab9)
++ loading a larger file system: /u/TheMonax pointed out a simple fix for a stupidity of mine that limited the size of grub modules I could load, fixed [here](https://github.com/29jm/SnowflakeOS/commit/7d9494271329675e5f13a378012c58b301199cbd)
++ making static variables part of userspace executables, aka `PROGBITS`: this way, the kernel doesn't need to guess how much memory the program needs for its globals and statics, it's all accounted for in the program size{% anecdote 3|of course, an ELF loader would be the better fix %}; changed in [this commit](https://github.com/29jm/SnowflakeOS/commit/889b92c82311bb996428a2a6a5ef078d7b31953e)
++ support for command line arguments: doom could have run without, but I wanted those anyway, added [here](https://github.com/29jm/SnowflakeOS/commit/88ecc9ad0d5f865b07472ad3bd12f8f6665edab9)
 + many file-related functions: `chdir`, `remove`, `rename`, `ftell`/`fseek`, `fflush`, `stat`... added in various commits all over the place
-+ string formatting functions: `sprintf` & co, which I added by porting [stb_printf][stb] in [3b55ee5](https://github.com/29jm/SnowflakeOS/commit/3b55ee5bd97c606feb61457edd9bc0cdba67cc61)
-+ fewer bugs: one caused a buffer overflow in the ext2 driver when reading a file at an offset ([aa3ca50](https://github.com/29jm/SnowflakeOS/commit/aa3ca5024a965d7195eba1203d04a2e1877cfb37)), another was in `strncpy`, in [ad444d3](https://github.com/29jm/SnowflakeOS/commit/ad444d3dec854d737e44df26ab18fb5edd7a955a)...
-+ working 64-bit arithmetic: simple things like 64-bit division is compiled by gcc as a call to `__divdi3(int64_t a, int64_t b)`, which I had at first implemented as... `return a / b`, which did not quite work out. gcc provides an implementation in libgcc, but this time I decided I'd rather have the source for those, and included [arith64][arith64] in [92e21ab](https://github.com/29jm/SnowflakeOS/commit/92e21abe8246b15ab6d33a4d2f996032a6b5696e).
++ string formatting functions: `sprintf` & co, which I added by porting [stb_printf][stb] in [this commit](https://github.com/29jm/SnowflakeOS/commit/3b55ee5bd97c606feb61457edd9bc0cdba67cc61)
++ fewer bugs: one caused a buffer overflow in the ext2 driver when reading a file at an offset, fixed ([here](https://github.com/29jm/SnowflakeOS/commit/aa3ca5024a965d7195eba1203d04a2e1877cfb37)), another was in `strncpy`{% anecdote 4|egregious, I know %}, fixed in [this commit](https://github.com/29jm/SnowflakeOS/commit/ad444d3dec854d737e44df26ab18fb5edd7a955a)...
++ working 64-bit arithmetic: simple things like 64-bit division is compiled by gcc as a call to `__divdi3(int64_t a, int64_t b)`, which I had at first implemented as... `return a / b`, which did not quite work out. gcc provides an implementation in libgcc, but this time I decided I'd rather have the source for those{% anecdote 5|probably a bad idea %}, and included [arith64][arith64] [there](https://github.com/29jm/SnowflakeOS/commit/92e21abe8246b15ab6d33a4d2f996032a6b5696e).
 
 Once everything's there, all that's left to do is make small adjustments to the Makefile so that doom gets linked with the same linker script and assembly prologue as the other apps, and voilà!
 
@@ -31,45 +31,54 @@ Doom compiles and runs with no hacks at all on our part. All credits to John Car
     <video controls>
     <source src="/assets/doom.mp4" type="video/mp4">
     </video> 
-    <figcaption>It's not that just that I'm bad, there's this old "keyboard drops keypresses" thing... ;)</figcaption>
+    <figcaption>It's not that just that I'm bad, there's also this old "keyboard drops keypresses" thing... ;)</figcaption>
 </figure>
 
 ## That which is not doom but is still cool
 
 Me remembering that porting doom was an option is pretty recent relative to this blog post. Other things were done!
 
-SnowflakeOS now prints stacktraces since [b9510a4](https://github.com/29jm/SnowflakeOS/commit/b9510a491fbd88fa86445308884dfe52cb57a427), with function names if it crashes in the kernel. This has been super useful for all subsequent development, and at little cost, too. All that's required code-wise is listed in the [wiki][stacktrace], and adding symbols to that takes just little more; here's what's done in SnowflakeOS:
+SnowflakeOS now [prints stacktraces](https://github.com/29jm/SnowflakeOS/commit/b9510a491fbd88fa86445308884dfe52cb57a427), with function names if it crashes in the kernel. This has been super useful for all subsequent development, and at little cost, too. All that's required code-wise is listed in the [wiki][stacktrace], and adding symbols to that takes just little more; here's what's done in SnowflakeOS:
 1. at link time, grab the kernel's symbol map generated by the linker: `ld ... -Map=linker.map`
-2. declutter it with awk magic: `awk '$1 ~ /0x[0-9a-f]{16}/ {print substr($1, 3), $2}' linker.map > symbols.map`, yielding many lines like "0xabcdef some_func"
+2. declutter it with awk magic: `awk '$1 ~ /0x[0-9a-f]{16}/ {print substr($1, 3), $2}' linker.map > symbols.map`, yielding lines like "0xabcdef some_func"
 3. load it as a grub module, though I'll change it at some point so that it's loaded from the file system
 4. when traversing stack frames, look up each address in that file and print the corresponding symbol
 
-A contributor wanted to work on a new process scheduler, which would have been near impossible given the spaghetti-like nature of this subsystem then, so I took this opportunity to refactor the process code in [da2cd09](https://github.com/29jm/SnowflakeOS/commit/da2cd0987b54b38ef61a03e210a6e79eed5cac06), which is now scheduler-independent. Schedulers implement a generic interface, basically a `sched_next`, `sched_add` and `sched_exit` functions, and the process switching code deals with those. This design looks sufficient to cover our use-cases, but we'll have to see how well it accomodates something other than a round robin scheduler.  
+A contributor wanted to work on a new process scheduler, which would have been near impossible given the spaghetti-like nature of this subsystem then, so I took this opportunity to [refactor the process code](https://github.com/29jm/SnowflakeOS/commit/da2cd0987b54b38ef61a03e210a6e79eed5cac06), which is now scheduler-independent. Schedulers implement a generic interface, basically a `sched_next`, `sched_add` and `sched_exit` functions, and the process switching code deals with those. This design looks sufficient to cover our use-cases, but we'll have to see how well it accomodates something other than a round robin scheduler.  
 Making this change was _hard_. At some point, nothing worked anymore and I had no idea why. I took a deep dive into the whole thing again, like I had for some of the older posts on here, and as soon as I understood it again, it started working. I fixed some bugs in the process, or rather, things that worked by accident. For instance, my clock in the bochs emulator became fast, which it turns out is the normal behavior. No idea what was happening before. There was also [this cool bug](https://github.com/29jm/SnowflakeOS/commit/b1b4dd4c79c21d86e037e5d34e57dff393e9f47c), in which the code worked in all but `-O2+` builds, due to me being dumb and gcc doing god-like work.
 
-We now have a virtual file system, or vfs! That means we can seamlessly mix different file systems into a single folder hierarchy, by mounting them wherever we want. As it happens, the only file system we have support for is ext2, so this feature was tested with two ext2 images. I also briefly made a fake{% anecdote n|no idea of the terminology here, but think /proc stuff %} file system whose files were the open windows of the wm, mounted on /wm, and processes owning windows owned the corresponding file descriptors, so that when they exited, `close` was called on the window files, automatically closing the windows. I like the idea, but the implementation was a bit too hacky so I didn't keep it, though I think it'll resurface later.
+We now have a virtual file system! That means we can seamlessly mix different file systems into a single folder hierarchy, by mounting them wherever we want. As it happens, the only file system we have support for is ext2, so this feature was tested with two ext2 images. I also briefly made a fake{% anecdote 6|no idea of the terminology here, but think /proc stuff %} file system whose files were the open windows of the wm, mounted on /wm, and processes owning windows owned the corresponding file descriptors, so that when they exited, `close` was called on the window files, automatically closing the windows. I like the idea, but the implementation was a bit too hacky so I didn't keep it, though I think it'll resurface later.
 
-This one is big to me: `stdout` [is a thing](https://github.com/29jm/SnowflakeOS/commit/f426ba00fc5905b0c91e28b8edfaef6c78f52cfd). Ever wonder what the hell `stdout` is, how it works? For the longest time this was entirely unclear to me. I still don't have a definitive answer on linux, but on SnowflakeOS, I've found a way to do it that makes sense to me. By default, a process inherits the file descriptors of its parent - as is tradition - including the one referring to `stdout`. But say, the first process, it doesn't inherit anything, it has to acquire an `stdout`. In SnowflakeOS, a process can declare{% anecdote n|through a syscall %} itself as being a "terminal", which gives it this somewhat special file descriptor, `stdout`: it refers to a file that can handle read/write operations but is entirely in memory, as a circular buffer. The app that declared itself as a terminal is then expected to *read* from `stdout`, and do something with it, like draw its content in its window. Child processes{% anecdote n|there's technically no such thing in SnowflakeOS, but a process does start another %} inherit this exact `stdout`, thus calling `fprintf(stdout, "stuff")` writes to the circular buffer that the parent terminal is reading from. With one or many terminals, it all works out.
-![catting a file](/assets/cat.jpg)
+This one is big to me: `stdout` [is a thing](https://github.com/29jm/SnowflakeOS/commit/f426ba00fc5905b0c91e28b8edfaef6c78f52cfd). Ever wonder what the hell `stdout` is, how it works? For the longest time this was entirely unclear to me. I still don't have a definitive answer on linux, but on SnowflakeOS, I've found a way to do it that makes sense to me. By default, a process inherits the file descriptors of its parent - as is tradition - including the one referring to `stdout`. But say, the first process, it doesn't inherit anything, it has to acquire an `stdout`. In SnowflakeOS, a process can declare{% anecdote 7|through a syscall %} itself as being a "terminal", which gives it this somewhat special file descriptor, `stdout`: it refers to a file that can handle read/write operations but is entirely in memory, as a circular buffer. The app that declared itself as a terminal is then expected to *read* from `stdout`, and do something with it, like draw its content in its window. Child processes{% anecdote 8|there's technically no such thing in SnowflakeOS, but a process does start another %} inherit this exact `stdout`, thus calling `fprintf(stdout, "stuff")` writes to the circular buffer that the parent terminal is reading from. With one or many terminals, it all works out.
+<figure>
+    <img src="/assets/cat.jpg">
+    <figcaption>There's a prompt problem, yes, because hacks</figcaption>
+</figure>
 
 On the UI side, the `calc` app finally works! It's been sitting there, its interface done but not connected to anything, but no longer, thanks to [@the-grue][the-grue]'s work, who also contributed the new mouse cursor that you can see in the doom video! 
-![the calc app](/assets/calc.jpg)
+<figure>
+    <img src="/assets/calc.jpg">
+    <figcaption>No dimension hardcoded here</figcaption>
+</figure>
+
+Finally, I've finally taken some time to read (gnu) [make's documentation][make]{% anecdote 9|it's very well written, fwiw %} properly, and I fixed a few remaining issues with files being rebuilt for no reason, most importantly regenerating the ISO, which is one of the longest operation of the build.
 
 ## That which did not fit in the other categories
 
 I've begun working on some documentation for the project, things that would help someone understand the project and contribute, which would be awesome. There's now a [CONTRIBUTING.md][contributing] that goes through the usual points. It also describes how to setup `clang-format`, another new addition that I too will abide by. I even used it to format doom's source, making it a bit more comfortable to debug. There is also a project [wiki][wiki], two pages now, but more will come with documentation on the various subsystems and how they interact. If a topic you'd like to see covered is missing, I take requests :)
 
-Unrelatedly, SnowflakeOS crashes on real hardware (see issue [#18][issue-crash]). I haven't given this bug my full attention yet, but I bet it'll be *pretty* hard to figure that one out. If anyone reading this has any tips, I'll take them all!
+Unrelatedly, SnowflakeOS bugs out on real hardware/virtual box (see issue [#18][issue-crash]). I haven't given this bug my full attention yet, but I bet it'll be *pretty hard* to figure that one out. If anyone reading this has any tips, I'll take them all!
 
 Doom was a long term goal, so, what next? I'm not out of ideas yet, here are a few to end this post:
 + ACPI support: includes a switch to multiboot2
 + A hierarchy of processes, `fork` & friends
 + A better desktop
 + Hard disk support
++ Fixing some of these `TODO`s...
 
-Hopefully one of those done by next post, see you then :)
+Hopefully one of those will be done by next post, see you then :)
 
-[arith64]:https://github.com/glitchub/arith64
+[arith64]: https://github.com/glitchub/arith64
 [stb]: https://github.com/nothings/stb/blob/master/stb_sprintf.h
 [stacktrace]: https://wiki.osdev.org/Stack_Trace
 [the-grue]: https://github.com/the-grue
@@ -77,3 +86,4 @@ Hopefully one of those done by next post, see you then :)
 [contributing]: https://github.com/29jm/SnowflakeOS/blob/master/CONTRIBUTING.md
 [issue-crash]:https://github.com/29jm/SnowflakeOS/issues/18
 [dg]: https://github.com/ozkl/doomgeneric
+[make]: https://www.gnu.org/software/make/manual/make.html
