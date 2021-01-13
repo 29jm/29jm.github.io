@@ -19,7 +19,7 @@ html {
 
 body {
 	background: $white;
-  font: 18px/1.4 $helvetica;
+  font: 16pt $helvetica;
   color: $darkGray;
 }
 
@@ -124,13 +124,9 @@ img {
 }
 
 // Specify the color of the selection
-::-moz-selection {
-  color: $black;
-  background: $lightGray;
-}
 ::selection {
-  color: $black;
-  background: $lightGray;
+  color: white;
+  background: $blue;
 }
 
 // Nicolas Gallagher's micro clearfix hack
@@ -251,8 +247,9 @@ nav {
 
 figcaption {
   text-align: center;
-  font-style: italic;
   font-size: smaller;
+  margin-top: 10px;
+  font-family: Avenir;
 }
 
 .post video {
@@ -338,7 +335,7 @@ figcaption {
   margin-top: 50px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  background-color: $white;
 }
 
 footer {

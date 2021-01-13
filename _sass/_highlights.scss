@@ -2,13 +2,18 @@
 .highlight > .highlight, // ```
 .entry > .highlight {
   border-radius: 2px;
-  background-color: #efefef;
+  background-color: $lightGray;
   padding: 7px 7px 7px 10px;
   overflow-x: auto;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
 code {
-  font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  font-family: 'Source Code Pro', 'Courier', monospace;
+  font-size: 14pt;
+  background-color: $lightGray;
+  border-radius: 3px;
 }
 
 // `those` words
