@@ -1,7 +1,6 @@
 /***************/
 /* MEYER RESET */
 /***************/
-@import url();
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -67,13 +66,13 @@ html {
 
 body {
   background: #fbf9f0;
-  font: 16pt "Palatino Linotype", Arial;
+  font: 14pt "Palatino Linotype", Arial;
   color: #333;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 660px;
   padding: 0 10px;
   width: 100%;
 }
@@ -93,14 +92,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 32px;
 }
 h1 a {
   color: inherit;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
 }
 
 h3 {
@@ -387,9 +386,12 @@ footer {
 
 code {
   font-family: 'Source Code Pro', 'Courier', monospace;
-  font-size: 14pt;
+  font-size: 12pt;
   background-color: #ebe8e0;
   border-radius: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
 }
 
 .highlighter-rouge {
