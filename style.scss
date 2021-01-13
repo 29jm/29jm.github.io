@@ -19,13 +19,13 @@ html {
 
 body {
 	background: $white;
-  font: 16pt $helvetica;
+  font: 14pt $helvetica;
   color: $darkGray;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 660px;
   padding: 0 10px;
   width: 100%;
 }
@@ -45,14 +45,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 32px;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
 }
 
 h3 {

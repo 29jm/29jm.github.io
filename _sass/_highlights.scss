@@ -11,9 +11,12 @@
 
 code {
   font-family: 'Source Code Pro', 'Courier', monospace;
-  font-size: 14pt;
+  font-size: 12pt;
   background-color: $lightGray;
   border-radius: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
 }
 
 // `those` words
