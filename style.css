@@ -1,7 +1,7 @@
 /***************/
 /* MEYER RESET */
 /***************/
-@import url("https://fonts.googleapis.com/css?family=Avenir");
+@import url();
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -288,7 +288,7 @@ figcaption {
   text-align: center;
   font-size: smaller;
   margin-top: 10px;
-  font-family: Avenir;
+  font-family: "Avenir", Arial;
 }
 
 .post video {
