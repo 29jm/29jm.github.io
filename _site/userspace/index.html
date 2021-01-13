@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getting to userspace - and back ! – SnowflakeOS's blog</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3.
+The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them  out.
+
+" />
+    <meta property="og:description" content="
+Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3.
+The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them  out.
+
+" />
+    
+    <meta name="author" content="SnowflakeOS" />
+
+    
+    <meta property="og:title" content="Getting to userspace - and back !" />
+    <meta property="twitter:title" content="Getting to userspace - and back !" />
+    
+    
+    <meta property="og:thumbnail" content="/assets/userspace.jpg" />
+    
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=G" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir" />
+    <link rel="alternate" type="application/rss+xml" title="SnowflakeOS - Locally grown blog posts, by Johan Manuel" href="/feed.xml" />
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169883671-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169883671-1');
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/assets/logo_big.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">SnowflakeOS</a></h1>
+            <p class="site-description">Locally grown blog posts, by Johan Manuel</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Getting to userspace - and back !</h1>
+
+  <div class="entry">
+    <p><img src="/assets/userspace.jpg" alt="Userspace printing" class="thumbnail" title="See that 'Hello, world'? Userspace!" />
+Before now, SnowflakeOS ran entirely in kernel mode, or <code class="language-plaintext highlighter-rouge">ring 0</code>. Now, the time has come for it to move on to better places, those of userland, also called <code class="language-plaintext highlighter-rouge">ring 3</code>.<br />
+The transition to having processes roam free in <code class="language-plaintext highlighter-rouge">ring 3</code> was mostly made in the series of commits from <a href="https://github.com/29jm/SnowflakeOS/commit/a0af7081f44b3c746e661f1e5488ccb06073fa5a">here</a> to <a href="https://github.com/29jm/SnowflakeOS/commit/3ed963cc8847f6ed92ac83c5220190600131f2c3">there</a>, and I encourage readers<sup>[<a href="" title="...what now?">1</a>]</sup> to check them  out.</p>
+
+<h2 id="whats-a-process-anyway">What’s a process, anyway?</h2>
+
+<p>Well, as of right now, a process is described by the following structure:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_proc_t</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">_proc_t</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">pid</span><span class="p">;</span>
+    <span class="c1">// Length of program memory in number of pages</span>
+    <span class="kt">uint32_t</span> <span class="n">stack_len</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">code_len</span><span class="p">;</span>
+    <span class="kt">uintptr_t</span> <span class="n">directory</span><span class="p">;</span>
+    <span class="kt">uintptr_t</span> <span class="n">kernel_stack</span><span class="p">;</span>
+    <span class="n">registers_t</span> <span class="n">registers</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">process_t</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>I’ll explain. A process consists of executable code, a stack, and an execution
+context. And another stack for execution in the kernel, I’ll get back to it.<br />
+The executable code along with the stack is stored in physical memory somewhere,
+of course, but it needs to be mapped through paging to be accessible (if only to
+write the code to the physical page!), so what we store is a page directory. It
+maps addresses <code class="language-plaintext highlighter-rouge">0x00000000+</code> to the pages containing our code, and addresses
+below our kernel to our stack pages. It also maps the kernel exactly as the
+initial kernel page directory did; it’s a copy. Notice that once the code is
+copied to physical memory, the page directory suffices to reference it; physical
+memory never moves. We only keep track of the size occupied by the code and stack,
+though I haven’t made these things dynamic yet, both are 4 MiB pages.</p>
+
+<p>The execution context consists of basically one thing: the process’s registers, to
+the surprise of no one who’s written assembly before. Indeed, registers do not
+only include working registers like <code class="language-plaintext highlighter-rouge">eax</code> et al, there’s also <code class="language-plaintext highlighter-rouge">eip</code> storing the
+address of the next instruction to be executed, <code class="language-plaintext highlighter-rouge">esp</code> storing the stack pointer,
+<code class="language-plaintext highlighter-rouge">eflags</code>… The page directory can be considered context too, as it
+may hold dynamically allocated memory (not yet implemented).</p>
+
+<h2 id="lets-switch-to-it">Let’s switch to it</h2>
+
+<p>With that said, starting a process in usermode is simply a matter of switching to
+a correctly setup page directory, and pointing <code class="language-plaintext highlighter-rouge">eip</code> and <code class="language-plaintext highlighter-rouge">esp</code> to the right place!
+And resuming an interrupted process is the same, but restoring registers beforehand.<br />
+[Edit: this was a pretty poor way of resuming a process, see <a href="/2019/10/06/switches-and-knobs.html">the next post</a>
+for a better one]</p>
+
+<p>The way to do these things is a bit convoluted though, as we need to <code class="language-plaintext highlighter-rouge">iret</code> (aka
+interrupt return) to our code, we can’t just jump to it, the reason being that we
+need to change privilege level (from 0 to 3):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">asm</span> <span class="nf">volatile</span> <span class="p">(</span>
+    <span class="s">"push $0x23</span><span class="se">\n</span><span class="s">"</span>    <span class="c1">// user ds selector</span>
+    <span class="s">"mov %0, %%eax</span><span class="se">\n</span><span class="s">"</span>
+    <span class="s">"push %%eax</span><span class="se">\n</span><span class="s">"</span>    <span class="c1">// %esp</span>
+    <span class="s">"push $512</span><span class="se">\n</span><span class="s">"</span>     <span class="c1">// %eflags with 9th bit set to allow calling interrupts</span>
+    <span class="s">"push $0x1B</span><span class="se">\n</span><span class="s">"</span>    <span class="c1">// user cs selector</span>
+    <span class="s">"mov %1, %%eax</span><span class="se">\n</span><span class="s">"</span>
+    <span class="s">"push %%eax</span><span class="se">\n</span><span class="s">"</span>    <span class="c1">// %eip</span>
+    <span class="s">"iret</span><span class="se">\n</span><span class="s">"</span>
+    <span class="o">:</span>                 <span class="cm">/* read registers: none */</span>
+    <span class="o">:</span> <span class="s">"r"</span> <span class="p">(</span><span class="n">esp_val</span><span class="p">),</span> <span class="s">"r"</span> <span class="p">(</span><span class="n">eip_val</span><span class="p">)</span> <span class="cm">/* inputs %0 and %1 stored anywhere */</span>
+    <span class="o">:</span> <span class="s">"%eax"</span>          <span class="cm">/* registers clobbered by hand in there */</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="getting-control-back">Getting control back</h2>
+
+<p>How do we get back to kernel mode execution once we’ve made the jump? The
+answer is twofold: through syscalls and scheduling - interrupts in both cases.
+Because right now scheduling is handled though syscalls in SnowflakeOS, I’ll
+describe only those. In our kernel, calling <code class="language-plaintext highlighter-rouge">int $48</code> with <code class="language-plaintext highlighter-rouge">eax</code> set to <code class="language-plaintext highlighter-rouge">n</code>
+triggers the <code class="language-plaintext highlighter-rouge">n</code>th interrupt: process execution stops, privilege changes to 0 and
+execution then resumes in the syscall handler. Because the kernel is mapped into
+our process’s address space, no page directory switch is needed here. However, one
+thing needs to be changed, and it’s the stack: we can’t just pollute the process’s
+stack, and <code class="language-plaintext highlighter-rouge">x86</code> gives us (forces us to use) a mechanism to switch stack as part
+of the jump to ring 0. So what’s usually done, and what I did is allocating
+memory for a kernel stack per process, and before switching to the execution of
+that process, setting the “stack-to-be-switched-to” variable (in the <code class="language-plaintext highlighter-rouge">TSS</code>, a <code class="language-plaintext highlighter-rouge">GDT</code>
+entry) to that stack.</p>
+
+<p>Right now syscall <code class="language-plaintext highlighter-rouge">0</code> is <code class="language-plaintext highlighter-rouge">yield</code>, and it switches execution to the process pointed
+to by the <code class="language-plaintext highlighter-rouge">next</code> pointer in the <code class="language-plaintext highlighter-rouge">process_t</code> structure. It’s cooperative
+multitasking, preemptive will come later.</p>
+
+<h2 id="collateral-damage">Collateral damage</h2>
+
+<h3 id="kmalloc-is-dead-hail-the-new-kmalloc">kmalloc is dead, hail the new kmalloc</h3>
+
+<p>In the process of implementing that, I got rid of <code class="language-plaintext highlighter-rouge">liballoc</code> and replaced it with
+a dead-simple mechanism: I now map a certain zone after the kernel, and <code class="language-plaintext highlighter-rouge">kmalloc</code>
+advances a pointer through it with each allocation. Sure, it doesn’t allow freeing
+memory, but it has a great advantage: the previous <code class="language-plaintext highlighter-rouge">kmalloc</code> needed to modify
+kernel page tables dynamically, and those changes aren’t automatically reflected
+across all copies of the initial page directory! It’s important because when
+context switches, for instance while in kernel mode, the previous kernel stack
+must remain mapped, as there are no stack switches when privilege level doesn’t
+change.</p>
+
+<p>I’ll reintroduce a cool allocator with the userspace <code class="language-plaintext highlighter-rouge">libc</code>, the kernel
+will stay simple and only grant pages at at time to processes. I’m not sure how
+I’ll distribute the virtual address space, in fact, I’ll have to think about it.
+Same way I did the kernel heap, probably, but right in the middle of
+<code class="language-plaintext highlighter-rouge">0x0-0xC0000000</code>.</p>
+
+<h3 id="implementing-useful-system-calls">Implementing useful system calls</h3>
+
+<p>The real fun begins now that things are in working order: syscalls!<br />
+I started with <code class="language-plaintext highlighter-rouge">yield</code> to get started with multitasking, and quickly implemented
+<code class="language-plaintext highlighter-rouge">exit</code>, though testing that last one took a while: I’ve spent hours debugging 
+assembly in in Bochs to get <code class="language-plaintext highlighter-rouge">yield</code> to work.</p>
+
+<p>Only then, I started implementing a <code class="language-plaintext highlighter-rouge">putchar</code> syscall. First, I needed to make my
+TTY work in processes, which involved mapping it somewhere; I decided to put it
+<a href="https://github.com/29jm/SnowflakeOS/blob/36fc37d92dac7e248fb2863ba09a80813ff0e5d5/kernel/src/mem/paging.c#L41-L48">in my kernel heap</a>. Tada, I can print again! I should have started
+by doing that, it would have made a lot of debugging easier; but then again I’ve
+learned <strong>a lot</strong> of assembly without it. Implementing the syscall was trivial
+after that, and I was able to get my first “Hello world” from userspace.<br />
+I tried my hand at a <code class="language-plaintext highlighter-rouge">wait</code> syscall to pause a process for some time, but I
+approached it the wrong way, or at least in a way that Bochs liked, but QEMU did
+not: waiting for time to pass in the syscall handler. In QEMU, timer interrupts
+don’t trigger then, so time never passes :( I’ll get back to it from a scheduler
+perspective.</p>
+
+
+  </div>
+
+  <div class="date">
+    Written on September 29, 2019
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/29jm"><i class="svg-icon github"></i></a>
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>

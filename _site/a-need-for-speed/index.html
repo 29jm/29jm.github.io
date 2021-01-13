@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A need for speed – SnowflakeOS's blog</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!
+
+" />
+    <meta property="og:description" content="
+At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!
+
+" />
+    
+    <meta name="author" content="SnowflakeOS" />
+
+    
+    <meta property="og:title" content="A need for speed" />
+    <meta property="twitter:title" content="A need for speed" />
+    
+    
+    <meta property="og:thumbnail" content="/assets/snowy_bg.jpg" />
+    
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=G" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir" />
+    <link rel="alternate" type="application/rss+xml" title="SnowflakeOS - Locally grown blog posts, by Johan Manuel" href="/feed.xml" />
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169883671-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169883671-1');
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/assets/logo_big.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">SnowflakeOS</a></h1>
+            <p class="site-description">Locally grown blog posts, by Johan Manuel</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>A need for speed</h1>
+
+  <div class="entry">
+    <p><img src="/assets/snowy_bg.jpg" alt="thumbnail" class="thumbnail" title="I choose the worst wallpapers" />
+At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!</p>
+
+<blockquote>
+  <p>Wait a minute… this has nothing to do with kernel dev</p>
+</blockquote>
+
+<p>Guess again! SnowflakeOS’s window manager is in the kernel<sup>[<a href="" title="don't bully me">1</a>]</sup>. It is quite rude for a system call to take a whole second to return, and sadly this is the situation we found ourselves in.</p>
+
+<h2 id="how-did-we-end-up-like-this">How did we end up like this?</h2>
+
+<p>It’s relatively easy to make a slow window manager, which is what we did. Just redraw all of your windows when you wish to redraw one, hell, redraw your whole desktop when you move the mouse!</p>
+
+<p>Of course, don’t forget to use an off-screen buffer so that you can copy the whole screen buffer twice every chance you get.</p>
+
+<p>To be fair, I don’t write window managers everyday :)</p>
+
+<h2 id="hello-clipping-my-old-friend">Hello clipping my old friend</h2>
+
+<p>The key to performance, always, is to not do things. And indeed, not doing much will be the path to our goal here, through an arcane concept called clipping.</p>
+
+<blockquote>
+  <p>I’d work all night if it meant nothing got done.</p>
+  <ul>
+    <li>Ron Swanson</li>
+  </ul>
+</blockquote>
+
+<h3 id="quick-overview">Quick overview</h3>
+
+<p>Consider this situation, in which a window needs redrawing:</p>
+
+<p><img src="/assets/lshape.png" alt="needs redrawing" /></p>
+
+<p>We can only see an L-shaped portion of it, clearly we don’t want to redraw more than that. It’s not easy copying an L-shape from a big array of pixels though, imagine the look of that <code class="language-plaintext highlighter-rouge">for</code> loop :)</p>
+
+<p>This is why we’re going to cut up this L into rectangles, like this:</p>
+
+<p><img src="/assets/lshape_split.png" alt="split window" /></p>
+
+<p>Much better, now this is something we can work with!</p>
+
+<p>This whole “cutting stuff up into rectangles” is very visual, easy for us to do, but it’s not easy to see how to turn it into an algorithm. It’ll be some work, but it’ll pay off!</p>
+
+<h3 id="implementation">Implementation</h3>
+
+<p>As mentionned a few articles ago, <a href="http://www.trackze.ro/tag/windowing-systems-by-example/">this awesome series of articles</a> will be the basis for SnowflakeOS’s implementation of clipping. Many thanks to the author!</p>
+
+<h4 id="rectangle-splitting">Rectangle splitting</h4>
+
+<p>Our basic need is to be able to “split a rectangle by another”: given a rectangle to be split, <code class="language-plaintext highlighter-rouge">R</code>, and a rectangle that covers it <code class="language-plaintext highlighter-rouge">S</code> (for <em>splitting rectangle</em>), we want to get new rectangles, called <em>clipping rectangles of <code class="language-plaintext highlighter-rouge">R</code></em>, satisfying the following conditions:</p>
+<ul>
+  <li>their union must cover the area <code class="language-plaintext highlighter-rouge">R \ S</code>,</li>
+  <li>they must be disjoint: no two of them should intersect.</li>
+</ul>
+
+<p>In the above image for instance, “redraw me” was split by “doom.exe”, which produced two clipping rectangles, marked 1 and 2.</p>
+
+<p>Clipping rectangles are never unique, but for our purpose they may as well be.</p>
+
+<p>The core idea of the splitting algorithm is to examine each edge of <code class="language-plaintext highlighter-rouge">S</code> and check if it cuts through <code class="language-plaintext highlighter-rouge">R</code>. If it does, we have created a first clipping rectangle, and we can repeat the operation for the next edges, only now with a smaller rectangle to cut.</p>
+
+<p>Here’s the algorithm:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list_t</span><span class="o">*</span> <span class="nf">rect_split_by</span><span class="p">(</span><span class="n">rect_t</span> <span class="n">rect</span><span class="p">,</span> <span class="n">rect_t</span> <span class="n">split</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">list_t</span><span class="o">*</span> <span class="n">list</span> <span class="o">=</span> <span class="n">list_new</span><span class="p">();</span>
+    <span class="n">rect_t</span><span class="o">*</span> <span class="n">tmp</span><span class="p">;</span>
+
+    <span class="c1">// Split by the left edge</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">split</span><span class="p">.</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">left</span> <span class="o">&amp;&amp;</span> <span class="n">split</span><span class="p">.</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">rect_new</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">top</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">split</span><span class="p">.</span><span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">list_add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+        <span class="n">rect</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">split</span><span class="p">.</span><span class="n">left</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Split by the top edge</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">split</span><span class="p">.</span><span class="n">top</span> <span class="o">&gt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">top</span> <span class="o">&amp;&amp;</span> <span class="n">split</span><span class="p">.</span><span class="n">top</span> <span class="o">&lt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">bottom</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">rect_new</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">top</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">split</span><span class="p">.</span><span class="n">top</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">right</span><span class="p">);</span>
+        <span class="n">list_add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+        <span class="n">rect</span><span class="p">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">split</span><span class="p">.</span><span class="n">top</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Split by the right edge</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">split</span><span class="p">.</span><span class="n">right</span> <span class="o">&gt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">left</span> <span class="o">&amp;&amp;</span> <span class="n">split</span><span class="p">.</span><span class="n">right</span> <span class="o">&lt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">rect_new</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">top</span><span class="p">,</span> <span class="n">split</span><span class="p">.</span><span class="n">right</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">right</span><span class="p">);</span>
+        <span class="n">list_add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+        <span class="n">rect</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">split</span><span class="p">.</span><span class="n">right</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Split by the bottom edge</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">split</span><span class="p">.</span><span class="n">bottom</span> <span class="o">&gt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">top</span> <span class="o">&amp;&amp;</span> <span class="n">split</span><span class="p">.</span><span class="n">bottom</span> <span class="o">&lt;=</span> <span class="n">rect</span><span class="p">.</span><span class="n">bottom</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">rect_new</span><span class="p">(</span><span class="n">split</span><span class="p">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">right</span><span class="p">);</span>
+        <span class="n">list_add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+        <span class="n">rect</span><span class="p">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">split</span><span class="p">.</span><span class="n">bottom</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Not an easy read, for sure. I won’t detail the <code class="language-plaintext highlighter-rouge">list_t</code> and <code class="language-plaintext highlighter-rouge">rect_t</code> types and associated functions, but you can trust that they do what they say. The list implementation can be found <a href="https://github.com/29jm/SnowflakeOS/blob/50b726c2be2c0f9e3e57aa7d262b9bc048687777/kernel/src/misc/list.c">here</a>, and operations on <code class="language-plaintext highlighter-rouge">rect_t</code> can be found <a href="https://github.com/29jm/SnowflakeOS/blob/59d0379ca3df1a7eb1a3fbf6914e49a134f47e97/kernel/src/misc/wm/rect.c">here</a>.</p>
+
+<h4 id="some-more-convenient-tools">Some more convenient tools</h4>
+
+<p>The previous algorithm solves our previous situation perfectly, but suppose now that two windows cover the one we wish to redraw:</p>
+
+<p><img src="/assets/2cover.png" alt="covered window" /></p>
+
+<p>Say we split our window by “doom.exe 2”, and we get two clipping rectangles out of it. One of those is going to intersect with the “doom.exe 3” window, and this is no good, we’d be drawing a hidden part of the window.</p>
+
+<p>What can we do? Well, let’s just split each one of our newly-acquired clipping rectangles by that second window! We’ll get a new list of clipping rectangles for each clipping rectangle intersecting with “doom.exe 3”… What we want is to keep only those new clips, and not the old ones. Well, there’s your algorithm.</p>
+
+<p>To put it another way: given a list of clipping rectangles, and a splitting rectangle <code class="language-plaintext highlighter-rouge">R</code>, this algorithm punches an <code class="language-plaintext highlighter-rouge">R</code>-shaped hole in the area covered by the clips, while maintaining the two conditions listed previously.</p>
+
+<p>The implementation is a bit easier to reason about this time:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">rect_subtract_clip_rect</span><span class="p">(</span><span class="n">list_t</span><span class="o">*</span> <span class="n">rects</span><span class="p">,</span> <span class="n">rect_t</span> <span class="n">clip</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rects</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rect_t</span><span class="o">*</span> <span class="n">current</span> <span class="o">=</span> <span class="n">list_get_at</span><span class="p">(</span><span class="n">rects</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// O(n²)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rect_intersect</span><span class="p">(</span><span class="o">*</span><span class="n">current</span><span class="p">,</span> <span class="n">clip</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">rect_t</span><span class="o">*</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">list_remove_at</span><span class="p">(</span><span class="n">rects</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">list_t</span><span class="o">*</span> <span class="n">splits</span> <span class="o">=</span> <span class="n">rect_split_by</span><span class="p">(</span><span class="o">*</span><span class="n">rect</span><span class="p">,</span> <span class="n">clip</span><span class="p">);</span>
+        <span class="kt">uint32_t</span> <span class="n">n_splits</span> <span class="o">=</span> <span class="n">splits</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">splits</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">list_add_front</span><span class="p">(</span><span class="n">rects</span><span class="p">,</span> <span class="n">list_remove_at</span><span class="p">(</span><span class="n">splits</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="n">kfree</span><span class="p">(</span><span class="n">current</span><span class="p">);</span>
+        <span class="n">kfree</span><span class="p">(</span><span class="n">splits</span><span class="p">);</span>
+
+        <span class="c1">// Skip the rects we inserted at the front and those already checked</span>
+        <span class="c1">// Mind the end of loop increment</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">n_splits</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The subtility is that we’re both removing and adding rectangles in our list of clips each iteration, so we need to keep a good track of where we are in our loop. The original author just set <code class="language-plaintext highlighter-rouge">i = 0</code> at the end of the loop, which works great of course because the new clips we create never intersect with <code class="language-plaintext highlighter-rouge">clip</code>, but it wastes like, 30 clock cycles… :)</p>
+
+<p>The cool thing with this new algorithm is that it superseeds the previous one entirely. Indeed, we don’t need a special case when we want to split a window: just put it in a list, and call the algorithm! Credit to the first one of course, it powers the whole thing.</p>
+
+<h3 id="its-how-you-use-it">It’s how you use it</h3>
+
+<p>Good, the hard work is done. We can draw stuff efficiently now, we have the technology!</p>
+
+<h4 id="drawing-a-window">Drawing a window</h4>
+
+<p>Consider our window’s rectangle. List all of the windows covering it, and punch a hole in the rectangle for each of them. Draw the areas of the window described by the clipping rectangles obtained. Simple as that!</p>
+
+<p>Translated word for word<sup>[<a href="" title="slight overstatement">2</a>]</sup> in <code class="language-plaintext highlighter-rouge">C</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">wm_draw_window</span><span class="p">(</span><span class="n">wm_window_t</span><span class="o">*</span> <span class="n">win</span><span class="p">,</span> <span class="n">rect_t</span> <span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">rect_t</span> <span class="n">win_rect</span> <span class="o">=</span> <span class="n">rect_from_window</span><span class="p">(</span><span class="n">win</span><span class="p">);</span>
+    <span class="n">list_t</span><span class="o">*</span> <span class="n">clip_windows</span> <span class="o">=</span> <span class="n">wm_get_windows_above</span><span class="p">(</span><span class="n">win</span><span class="p">);</span>
+    <span class="n">list_t</span><span class="o">*</span> <span class="n">clip_rects</span> <span class="o">=</span> <span class="n">list_new</span><span class="p">();</span>
+
+    <span class="n">list_add</span><span class="p">(</span><span class="n">clip_rects</span><span class="p">,</span> <span class="n">rect</span><span class="p">);</span>
+
+    <span class="c1">// Punch a hole for each covering window</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">clip_windows</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">wm_window_t</span><span class="o">*</span> <span class="n">cw</span> <span class="o">=</span> <span class="n">list_remove_at</span><span class="p">(</span><span class="n">clip_windows</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">rect_t</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">rect_from_window</span><span class="p">(</span><span class="n">cw</span><span class="p">);</span>
+        <span class="n">rect_subtract_clip_rect</span><span class="p">(</span><span class="n">clip_rects</span><span class="p">,</span> <span class="n">clip</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Draw whatever is left in our clipping rects</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">clip_rects</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rect_t</span><span class="o">*</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">list_get_at</span><span class="p">(</span><span class="n">clip_rects</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// O(n²)</span>
+
+        <span class="c1">// Fun edge case</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rect_intersect</span><span class="p">(</span><span class="o">*</span><span class="n">clip</span><span class="p">,</span> <span class="n">win_rect</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">wm_partial_draw_window</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="o">*</span><span class="n">clip</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">rect_clear_clipped</span><span class="p">(</span><span class="n">clip_rects</span><span class="p">);</span>
+    <span class="n">kfree</span><span class="p">(</span><span class="n">clip_rects</span><span class="p">);</span>
+    <span class="n">kfree</span><span class="p">(</span><span class="n">clip_windows</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice the <code class="language-plaintext highlighter-rouge">wm_partial_draw_window</code> function call: it’s the only function that does any actual pixel work. It’s both mundane and insane (“the land of off-by-ones” you may say), and you can check it out <a href="https://github.com/29jm/SnowflakeOS/blob/59d0379ca3df1a7eb1a3fbf6914e49a134f47e97/kernel/src/misc/wm/wm.c#L154-L187">here</a>.</p>
+
+<h4 id="drawing-part-of-the-screen">Drawing part of the screen</h4>
+
+<p>Imagine you’re closing a window. Then you have to redraw whatever was below that window, and that could be like, several windows. Do we redraw them entirely? Of course not, we can just redraw the parts of them that was covered by the closed window.</p>
+
+<p>This is what led to the second parameter of <code class="language-plaintext highlighter-rouge">wm_draw_window</code>, i.e. a <code class="language-plaintext highlighter-rouge">rect</code> that says “draw within this area”. It’s used in the following short function that implements the redrawing of an area:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">wm_refresh_partial</span><span class="p">(</span><span class="n">rect_t</span> <span class="n">clip</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">windows</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">wm_window_t</span><span class="o">*</span> <span class="n">win</span> <span class="o">=</span> <span class="n">list_get_at</span><span class="p">(</span><span class="n">windows</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// O(n²)</span>
+        <span class="n">rect_t</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">rect_from_window</span><span class="p">(</span><span class="n">win</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">rect_intersect</span><span class="p">(</span><span class="n">clip</span><span class="p">,</span> <span class="n">rect</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">wm_draw_window</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">clip</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>What happens when a part of the screen you want to redraw isn’t covered by any window? As you may read above, nothing. Thankfully this doesn’t happen<sup>[<a href="" title="well, nothing _does_ happen">3</a>]</sup>, because there’s a huge window that draws the wallpaper… Ahem, I’ll get to it at some point ^^’</p>
+
+<p>As a quick aside, you may have noticed the <code class="language-plaintext highlighter-rouge">O(n²)</code> sprinkled here and there in the code. Those are reminders for me to replace the list implementation I used: while really easy to use, iterating such a list automatically has quadratic complexity, which is obviously ridiculous. I doubt that it matters at all until you reach an absurd amount of windows, but it irks me a good bit. I’ll take <a href="https://github.com/torvalds/linux/blob/master/include/linux/list.h">Linux’s</a> <code class="language-plaintext highlighter-rouge">list.h</code> to replace it, it looks just perfect.</p>
+
+<h2 id="performance">Performance</h2>
+
+<p>Let’s see if we can get some numbers in here, check that all this work wasn’t in vain.</p>
+
+<p>Our <a href="https://github.com/29jm/SnowflakeOS/blob/59d0379ca3df1a7eb1a3fbf6914e49a134f47e97/modules/src/test.c">test</a> will be spawning a hundred windows from a single process, plus the wallpaper. We will record the whole thing, and count the frames needed to go from a black screen to the 100<sup>th</sup> window.</p>
+
+<h4 id="before-clipping-as-of-march-14th">Before clipping, as of March 14th</h4>
+
+<video controls="">
+  <source src="/assets/hundred_wins_before.mp4" type="video/mp4" />
+</video>
+
+<p>It took 172 frames to get from the wallpaper to the last window, or 5.74 seconds.</p>
+
+<h4 id="after-clipping">After clipping</h4>
+
+<video controls="">
+  <source src="/assets/hundred_wins_after.mp4" type="video/mp4" />
+</video>
+
+<p>Now, it takes 11 frames, or 0.37 seconds. This is an improvement of about <strong>1500%</strong>…</p>
+
+<h3 id="mission-accomplished">Mission accomplished!</h3>
+
+<p>We will for sure get smooth mouse movements and smooth window dragging in the next article now <sup>[<a href="" title="plot twist: we already do">4</a>]</sup>, until next time!</p>
+
+
+  </div>
+
+  <div class="date">
+    Written on May  8, 2020
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/29jm"><i class="svg-icon github"></i></a>
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>

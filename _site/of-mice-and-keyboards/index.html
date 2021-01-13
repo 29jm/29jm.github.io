@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mouse support and other PS/2 shenanigans – SnowflakeOS's blog</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.
+So I went over to OSDev’s article about PS/2 keyboards, which sent me to the article about the PS/2 controller, and I knew I wanted to do things properly, and at the same time, gain mouse support.
+
+" />
+    <meta property="og:description" content="
+At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.
+So I went over to OSDev’s article about PS/2 keyboards, which sent me to the article about the PS/2 controller, and I knew I wanted to do things properly, and at the same time, gain mouse support.
+
+" />
+    
+    <meta name="author" content="SnowflakeOS" />
+
+    
+    <meta property="og:title" content="Mouse support and other PS/2 shenanigans" />
+    <meta property="twitter:title" content="Mouse support and other PS/2 shenanigans" />
+    
+    
+    <meta property="og:thumbnail" content="/assets/sos-kbd.png" />
+    
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=G" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir" />
+    <link rel="alternate" type="application/rss+xml" title="SnowflakeOS - Locally grown blog posts, by Johan Manuel" href="/feed.xml" />
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169883671-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169883671-1');
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/assets/logo_big.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">SnowflakeOS</a></h1>
+            <p class="site-description">Locally grown blog posts, by Johan Manuel</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Mouse support and other PS/2 shenanigans</h1>
+
+  <div class="entry">
+    <p><img src="/assets/sos-kbd.png" alt="Keyboard and mouse both working" class="thumbnail" title="Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day." />
+At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.<br />
+So I went over to OSDev’s article about <a href="https://wiki.osdev.org/Keyboard">PS/2 keyboards</a>, which sent me to the article about the <a href="https://wiki.osdev.org/%228042%22_PS/2_Controller">PS/2 controller</a>, and I knew I wanted to do things properly, and at the same time, gain mouse support.</p>
+
+<p>Here above you can see keyboard input being written to the screen, and mouse coordinates on the bottom right corner - wait for it.</p>
+
+<h2 id="the-ps2-controller">The PS/2 controller</h2>
+
+<p>Source: <a href="https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/src/devices/ps2.c">ps2.c</a>, <a href="https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/include/kernel/ps2.h">ps2.h</a></p>
+
+<p>“PS/2” stands for “Personal System/2” and is the old green or purple round port which fit old keyboards. These ports were linked to the PS/2 “8042” controller, an old chip which, miraculously, still manages to exist in some form in modern computers. Indeed, while PS/2 devices have been replaced by USB ones, the BIOS (most of them anyway) offers an emulation of the 8042 on top of USB. Ideally I’d implement the USB protocol, but this is an OS project, not an USB project, and dealing with PS/2 devices is easy in comparison.</p>
+
+<p>The steps to initialize the PS/2 controller to some base state are numerous and detailed in the relevant section of the wiki page. I’ve implemented them in <a href="https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/src/devices/ps2.c#L12-L158">ps2.c</a>, a ~140 lines function full of hopefully well commented IO. Most of it looks something like this:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Give the controller a command</span>
+<span class="n">ps2_write</span><span class="p">(</span><span class="n">PS2_CMD</span><span class="p">,</span> <span class="n">PS2_WRITE_CONFIG</span><span class="p">);</span>
+<span class="c1">// and its associated data byte</span>
+<span class="n">ps2_write</span><span class="p">(</span><span class="n">PS2_DATA</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">ps2_write(port, byte)</code> is a wrapper around the x86 instruction <code class="language-plaintext highlighter-rouge">outb</code> which writes a byte to an IO port. This function also makes sure the controller is ready to receive a byte, and similarly, <code class="language-plaintext highlighter-rouge">ps2_read(port)</code> makes sure the controller has sent us a byte.</p>
+
+<p>The outline of the initialization steps is that first, you need to pray that there really is a PS/2 controller to talk to: the correct way to do this is to query the ACPI tables, but hey, QEMU and Bochs are guaranteed to have one. Then, you need to test if there is a second controller (which usually handles the mouse) and run self-tests. The last step is to reset devices plugged into our functionning PS/2 controllers. Finally, we query their identity - keyboard, mice - and start the relevant device drivers.</p>
+
+<p>Implementing the various steps didn’t take me long; but chasing its bugs did. Specifically, a bug that appeared only on QEMU. After initialization of the PS/2 controllers, my keyboard code stopped working. The keyboard simply didn’t send IRQs. And to get the mouse working, at first I needed to disable my keyboard code!<br />
+I finally figured it out by looking at the controller’s configuration byte: I was inadvertently setting a bit that disabled the keyboard clock. Somehow Bochs doesn’t care if it’s set when enabling IRQs from devices, it just unsets it, however QEMU doesn’t let it fly.</p>
+
+<h2 id="a-ps2-mouse-driver">A PS/2 mouse driver</h2>
+
+<p><img src="/assets/mouse_crash.gif" alt="Moving my mouse to the left crashed Bochs" title="I have *no* idea why or how this is animated" /></p>
+
+<p>I’ve had weird crashes implementing this. This happened when I moved my mouse to the left in Bochs!</p>
+
+<p>Source: <a href="https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/src/devices/mouse.c">mouse.c</a>, <a href="https://github.com/29jm/SnowflakeOS/blob/357ecc40169c2b8e02c7866ea383171cf436def4/kernel/include/kernel/mouse.h">mouse.h</a></p>
+
+<p>First, one needs to enable reporting from the mouse, it then starts sending out IRQs on line 12. Each IRQ corresponds to a byte available for reading from the PS/2 controller’s data port, <code class="language-plaintext highlighter-rouge">0x60</code>. The bytes must be treated in packets of three to four depending on the type of mouse we detected, or features we enabled. The bytes are sent in this order:</p>
+
+<ul>
+  <li>flags: direction of the x and y movements, state of mice buttons, others…</li>
+  <li>x movement</li>
+  <li>y movement</li>
+</ul>
+
+<p>and if there is a fourth byte, it contains scroll wheel movements and the state of buttons four and five of the mouse. Here’s the code receiving the bytes:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">mouse_handle_interrupt</span><span class="p">(</span><span class="n">registers_t</span><span class="o">*</span> <span class="n">regs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">UNUSED</span><span class="p">(</span><span class="n">regs</span><span class="p">);</span>
+
+    <span class="kt">uint8_t</span> <span class="n">byte</span> <span class="o">=</span> <span class="n">ps2_read</span><span class="p">(</span><span class="n">PS2_DATA</span><span class="p">);</span>
+
+    <span class="c1">// Try to stay synchronized by discarding obviously out of place bytes</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">current_byte</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">byte</span> <span class="o">&amp;</span> <span class="n">MOUSE_ALWAYS_SET</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">packet</span><span class="p">[</span><span class="n">current_byte</span><span class="p">]</span> <span class="o">=</span> <span class="n">byte</span><span class="p">;</span>
+    <span class="n">current_byte</span> <span class="o">=</span> <span class="p">(</span><span class="n">current_byte</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">bytes_per_packet</span><span class="p">;</span>
+
+    <span class="c1">// We've received a full packet</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">current_byte</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mouse_handle_packet</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>All we need to do then in <code class="language-plaintext highlighter-rouge">mouse_handle_packet</code> is keeping track of the mouse movements, and at a later time, making them available to userspace. Then, and only then, we’ll get a mouse pointer.</p>
+
+<h2 id="a-better-ps2-keyboard-driver">A better PS/2 keyboard driver</h2>
+
+<p>Source: <a href="https://github.com/29jm/SnowflakeOS/blob/617e66a7107bd5821ef381a64598fa33c8891c08/kernel/src/devices/kbd.c">kbd.c</a>, <a href="https://github.com/29jm/SnowflakeOS/blob/617e66a7107bd5821ef381a64598fa33c8891c08/kernel/include/kernel/kbd.h">kbd.h</a></p>
+
+<p>Now that I was initializing the PS/2 controller instead of letting it do its thing, my driver was working all funky. The reason lies in scan code sets.</p>
+
+<p>First things first, a scan code is one or more bytes sent by the keyboard when a key event happens. For instance, pressing ‘D’ on my keyboard may send <code class="language-plaintext highlighter-rouge">0x23</code>, and releasing it may send <code class="language-plaintext highlighter-rouge">0xF0</code> followed by <code class="language-plaintext highlighter-rouge">0x23</code>. Some keys - in some scan code sets - send up to 8 bytes!</p>
+
+<p>Now, a scan code set is the map between a physical key and the bytes the keyboard sends, and there are basically 3 of them. The previous example was true for scan code set 2; in scan code set 1, pressing ‘D’ would have caused the keyboard to send <code class="language-plaintext highlighter-rouge">0x20</code>, and releasing it would have given <code class="language-plaintext highlighter-rouge">0xA0</code>.</p>
+
+<p>When I did zero PS/2 controller initialization, my keyboard defaulted to scan code set 1, with a twist: scan code translation, i.e. the controller converting scan codes to old IBM-PC compatible scan codes. This scan code set and weird translation mechanism are too vintage even for SnowflakeOS; it was time to handle scan code set 2.</p>
+
+<p>In this shiny new 1983 scan code set, things are a bit more complicated than with scan code set 1. There are two categories of keys:<br />
+There are the simple keys, which send a one-byte scan code when pressed, and <code class="language-plaintext highlighter-rouge">0xF0</code> followed by that same scan code when released.<br />
+Then there are the other keys, which send multibyte scan codes. They can be identified as they send an <code class="language-plaintext highlighter-rouge">0xE0</code> byte first, followed by a <code class="language-plaintext highlighter-rouge">0xF0</code> byte in case of a release event, followed by one or more bytes of scan code.</p>
+
+<p>Now keep in mind that we receive bytes one at a time in our interrupt handler, so we need to keep track of previously received bytes until we’ve identified a whole key event, and the difficulty is in the variable length of such packets. Obviously, what we need is some kind of state machine and a buffer to hold our bytes. Here’s the function in <a href="https://github.com/29jm/SnowflakeOS/blob/617e66a7107bd5821ef381a64598fa33c8891c08/kernel/src/devices/kbd.c#L133-L179">kbd.c</a> in charge of updating the state of the driver’s state machine:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bool</span> <span class="nf">kbd_process_byte</span><span class="p">(</span><span class="n">kbd_context_t</span><span class="o">*</span> <span class="n">ctx</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">sc</span><span class="p">,</span> <span class="n">kbd_event_t</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">scancode</span><span class="p">[</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">current</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">sc</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">sc_pos</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">current</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">KBD_NORMAL</span><span class="p">:</span> <span class="c1">// Not in the middle of a scancode</span>
+            <span class="n">event</span><span class="o">-&gt;</span><span class="n">pressed</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">sc</span> <span class="o">==</span> <span class="mh">0xF0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">KBD_RELEASE_SHORT</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">sc</span> <span class="o">==</span> <span class="mh">0xE0</span> <span class="o">||</span> <span class="n">sc</span> <span class="o">==</span> <span class="mh">0xE1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">KBD_CONTINUE</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">event</span><span class="o">-&gt;</span><span class="n">key_code</span> <span class="o">=</span> <span class="n">simple_sc_to_kc</span><span class="p">[</span><span class="n">sc</span><span class="p">];</span>
+            <span class="p">}</span>
+
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">KBD_RELEASE_SHORT</span><span class="p">:</span> <span class="c1">// We received `0xF0` previously</span>
+            <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">KBD_NORMAL</span><span class="p">;</span>
+            <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">event</span><span class="o">-&gt;</span><span class="n">key_code</span> <span class="o">=</span> <span class="n">simple_sc_to_kc</span><span class="p">[</span><span class="n">sc</span><span class="p">];</span>
+            <span class="n">event</span><span class="o">-&gt;</span><span class="n">pressed</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">KBD_CONTINUE</span><span class="p">:</span> <span class="c1">// We received `0xE0` at some point before</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">sc</span> <span class="o">==</span> <span class="mh">0xF0</span> <span class="o">&amp;&amp;</span> <span class="n">sc_pos</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">event</span><span class="o">-&gt;</span><span class="n">pressed</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">kbd_is_valid_scancode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">scancode</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sc_pos</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">key_code</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">KBD_NORMAL</span><span class="p">;</span>
+                <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">==</span> <span class="n">KBD_NORMAL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It’s quite a big function, and still most of the heavy lifting is done in <code class="language-plaintext highlighter-rouge">kbd_is_valid_scancode(bytes, len, &amp;key_code)</code>, in charge of identifying valid multibyte scancodes and translating those into key codes. Our <code class="language-plaintext highlighter-rouge">kbd_process_byte</code> function indicates that a valid scan code has been received by returning <code class="language-plaintext highlighter-rouge">true</code>, and makes the key event available through its <code class="language-plaintext highlighter-rouge">event</code> parameter.<br />
+If you’re really paying attention, you may notice a possible buffer overflow with <code class="language-plaintext highlighter-rouge">ctx-&gt;scancode[ctx-&gt;current++]</code>, but thankfully <code class="language-plaintext highlighter-rouge">kbd_is_valid_scancode</code> is guaranteed to return <code class="language-plaintext highlighter-rouge">true</code> before that… Hmm, this is a bit too clunky, perhaps I’ll put a proper check back in just in case I ever modify <code class="language-plaintext highlighter-rouge">kbd_is_valid_scancode</code>’s interface in the future.</p>
+
+<p>Anyway, SnowflakeOS can now handle a full QWERTY layout. This is a bit dumb as I myself have a French, AZERTY layout; let’s just say I’m being international :)<br />
+Ideally I’d move most of the keycode translation stuff to userspace where a keymap could be loaded, and there’d be no more problems.</p>
+
+
+  </div>
+
+  <div class="date">
+    Written on October 14, 2019
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/29jm"><i class="svg-icon github"></i></a>
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>

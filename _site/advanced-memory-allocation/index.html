@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taming memory allocators – SnowflakeOS's blog</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!
+
+" />
+    <meta property="og:description" content="
+Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!
+
+" />
+    
+    <meta name="author" content="SnowflakeOS" />
+
+    
+    <meta property="og:title" content="Taming memory allocators" />
+    <meta property="twitter:title" content="Taming memory allocators" />
+    
+    
+    <meta property="og:thumbnail" content="/assets/sos-spam.jpg" />
+    
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=G" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir" />
+    <link rel="alternate" type="application/rss+xml" title="SnowflakeOS - Locally grown blog posts, by Johan Manuel" href="/feed.xml" />
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169883671-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169883671-1');
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/assets/logo_big.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">SnowflakeOS</a></h1>
+            <p class="site-description">Locally grown blog posts, by Johan Manuel</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Taming memory allocators</h1>
+
+  <div class="entry">
+    <p><img src="/assets/sos-spam.jpg" alt="Current state of the GUI" class="thumbnail" title="This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?" />
+Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!</p>
+
+<h2 id="the-basics">The basics</h2>
+
+<p>I decided to take guidance from <a href="http://dmitrysoshnikov.com/compilers/writing-a-memory-allocator/">this post</a> by Dmitry Soshnikov, implementing in this post only the basics, to get to a point at which I can freely call <code class="language-plaintext highlighter-rouge">kmalloc</code> and <code class="language-plaintext highlighter-rouge">kfree</code>, without throwing away too much memory. And perhaps <code class="language-plaintext highlighter-rouge">malloc</code> and <code class="language-plaintext highlighter-rouge">free</code> in userspace later?</p>
+
+<p>There is some terminology to get down before diving into the details:</p>
+
+<ul>
+  <li><em>memory allocator</em>: a function that a program can call that returns an address to which the program can freely write. Typically, <code class="language-plaintext highlighter-rouge">malloc</code>. Different allocators have different qualities, such as performance, minimizing memory fragmentation…</li>
+  <li><em>memory block</em>: a contiguous range of memory addresses, with a few attributes such as whether it’s in use or has been freed, its address and size… These attributes are stored in the block’s <em>header</em>.</li>
+  <li><em>alignment</em>: an address <code class="language-plaintext highlighter-rouge">addr</code> is said to be <code class="language-plaintext highlighter-rouge">N</code>-aligned if <code class="language-plaintext highlighter-rouge">addr % N == 0</code>. It’s important for a kernel allocator to be able to allocate buffers with specific alignments, as we’ll later see.</li>
+</ul>
+
+<h2 id="our-previous-allocator-now-too-simple">Our previous allocator: now too simple</h2>
+
+<p>Previously, SnowflakeOS used what’s called a <em>bump allocator</em>, i.e. an allocator that keeps track of the last block only, and that always allocates after that last block, with no means of freeing previous blocks individually.</p>
+
+<p>I would’ve liked to keep that design as the implementation is concise and easy to understand, but unfortunately it’s now too simple for my use. Not being able to reuse blocks is the deal breaker here, as the window manager will have to do a lot of small and short-lived allocations, and the goal is to not to run out of memory in five seconds.</p>
+
+<p>The new allocator will have to keep one feature from its predecessor, the ability to hand out addresses with a specific alignment. This is strictly needed, as we need to be able to remap a newly acquired page from our allocator, and pages boundaries are multiples of 4 KiB. See for instance <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/devices/term.c#L53-L55">this use case</a>.</p>
+
+<h2 id="the-new-allocator">The new allocator</h2>
+
+<p>We’ll write a <em>first-fit</em> memory allocator that can deliver arbitrarily-aligned addresses. You can find the whole source <a href="https://github.com/29jm/SnowflakeOS/blob/3433a8c4abcc9a3193813b940882558ff623875d/kernel/src/mem/mem.c">here</a>, and an updated version for the end of this post <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/libc/src/stdlib/malloc.c">here</a>.</p>
+
+<p>First, our blocks are defined by the following struct. The first two members constitute the header:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_mem_block_t</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">_mem_block_t</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">size</span><span class="p">;</span> <span class="c1">// We use the last bit as a 'used' flag</span>
+    <span class="kt">uint8_t</span> <span class="n">data</span><span class="p">[];</span>
+<span class="p">}</span> <span class="n">mem_block_t</span><span class="p">;</span>
+</code></pre></div></div>
+<p>That last member is what’s called a “flexible array member” in C99. It’s an array without a given dimension, i.e. we can manage its size manually by saying “I know that the memory after this struct is mine, let me access it though this member”. Here, it’ll be the pointer returned by our <code class="language-plaintext highlighter-rouge">kmalloc</code> function.</p>
+
+<p>And secondly, we use a simple first-fit design, i.e. when allocating something, we first look through our list of blocks and see if there’s a free one that fits our criteria of size and alignment. The global algorithm is as follows:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span><span class="o">*</span> <span class="nf">kamalloc</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">align</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">align_to</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+
+    <span class="n">mem_block_t</span><span class="o">*</span> <span class="n">block</span> <span class="o">=</span> <span class="n">mem_find_block</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">align</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">block</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">block</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">|=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Mark it as used</span>
+        <span class="k">return</span> <span class="n">block</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">mem_new_block</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">align</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="kt">uintptr_t</span><span class="p">)</span> <span class="n">block</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">KERNEL_HEAP_BEGIN</span> <span class="o">+</span> <span class="n">KERNEL_HEAP_SIZE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"[MEM] The kernel ran out of memory!"</span><span class="p">);</span>
+        <span class="n">abort</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">block</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>And the “first-fit” logic is implemented in <code class="language-plaintext highlighter-rouge">mem_find_block</code> here, in no particular magic:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mem_block_t</span><span class="o">*</span> <span class="nf">mem_find_block</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">align</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">bottom</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">mem_block_t</span><span class="o">*</span> <span class="n">block</span> <span class="o">=</span> <span class="n">bottom</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">block</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">||</span> <span class="n">block</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">||</span> <span class="o">!</span><span class="n">mem_is_aligned</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">align</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">block</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">block</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The load-bearing portion of our allocator is in the creation of blocks, in <code class="language-plaintext highlighter-rouge">mem_new_block</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mem_block_t</span><span class="o">*</span> <span class="nf">mem_new_block</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">align</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">header_size</span> <span class="o">=</span> <span class="n">offsetof</span><span class="p">(</span><span class="n">mem_block_t</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+
+    <span class="c1">// We start the heap right where the first allocation works</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">top</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">uintptr_t</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">align_to</span><span class="p">(</span><span class="n">KERNEL_HEAP_BEGIN</span><span class="o">+</span><span class="n">header_size</span><span class="p">,</span> <span class="n">align</span><span class="p">)</span> <span class="o">-</span> <span class="n">header_size</span><span class="p">;</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="p">(</span><span class="n">mem_block_t</span><span class="o">*</span><span class="p">)</span> <span class="n">addr</span><span class="p">;</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">bottom</span><span class="p">;</span>
+        <span class="n">top</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span> <span class="o">|</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">top</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">top</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// I did the math and we always have next_aligned &gt;= next.</span>
+    <span class="kt">uintptr_t</span> <span class="n">next</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uintptr_t</span><span class="p">)</span> <span class="n">top</span> <span class="o">+</span> <span class="n">mem_block_size</span><span class="p">(</span><span class="n">top</span><span class="p">);</span>
+    <span class="kt">uintptr_t</span> <span class="n">next_aligned</span> <span class="o">=</span> <span class="n">align_to</span><span class="p">(</span><span class="n">next</span><span class="o">+</span><span class="n">header_size</span><span class="p">,</span> <span class="n">align</span><span class="p">)</span> <span class="o">-</span> <span class="n">header_size</span><span class="p">;</span>
+
+    <span class="n">mem_block_t</span><span class="o">*</span> <span class="n">block</span> <span class="o">=</span> <span class="p">(</span><span class="n">mem_block_t</span><span class="o">*</span><span class="p">)</span> <span class="n">next_aligned</span><span class="p">;</span>
+    <span class="n">block</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span> <span class="o">|</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">block</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="c1">// Insert a free block between top and our aligned block, if there's enough</span>
+    <span class="c1">// space. That block is 8-bytes aligned.</span>
+    <span class="n">next</span> <span class="o">=</span> <span class="n">align_to</span><span class="p">(</span><span class="n">next</span><span class="o">+</span><span class="n">header_size</span><span class="p">,</span> <span class="n">MIN_ALIGN</span><span class="p">)</span> <span class="o">-</span> <span class="n">header_size</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">next_aligned</span> <span class="o">-</span> <span class="n">next</span> <span class="o">&gt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">mem_block_t</span><span class="p">)</span> <span class="o">+</span> <span class="n">MIN_ALIGN</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mem_block_t</span><span class="o">*</span> <span class="n">filler</span> <span class="o">=</span> <span class="p">(</span><span class="n">mem_block_t</span><span class="o">*</span><span class="p">)</span> <span class="n">next</span><span class="p">;</span>
+        <span class="n">filler</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">next_aligned</span> <span class="o">-</span> <span class="n">next</span> <span class="o">-</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">mem_block_t</span><span class="p">);</span>
+        <span class="n">top</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">filler</span><span class="p">;</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">filler</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">top</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">block</span><span class="p">;</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="n">block</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">block</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Notice that second <code class="language-plaintext highlighter-rouge">if</code>: as we want to support arbitrary alignment of the blocks we hand out, we want to prevent space from being wasted in between blocks, so unused blocks will be created to fill the gaps as they appear. For instance, imagine the heap is at 0x40, and a 0x1000-aligned block is requested. Then a gap of about <code class="language-plaintext highlighter-rouge">0x1000-0x40=0xFC0</code> bytes will be created between the first block and the new one. We’ll create a block there with minimum alignment to fill the gap.</p>
+
+<p>Note that the pages that consitute the memory we’ll be distributing are already mapped in the kernel. That way the kernel can allocate after starting to execute in multiple page directories, without having to mirror the paging changes in each process. This is where the preallocation is done in <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/mem/paging.c#L38-L41">paging.c</a>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// Setup the kernel heap</span>
+    <span class="n">heap</span> <span class="o">=</span> <span class="n">KERNEL_HEAP_BEGIN</span><span class="p">;</span>
+    <span class="kt">uintptr_t</span> <span class="n">heap_phys</span> <span class="o">=</span> <span class="n">pmm_alloc_pages</span><span class="p">(</span><span class="n">KERNEL_HEAP_SIZE</span><span class="o">/</span><span class="mh">0x1000</span><span class="p">);</span>
+    <span class="n">paging_map_pages</span><span class="p">(</span><span class="n">KERNEL_HEAP_BEGIN</span><span class="p">,</span> <span class="n">heap_phys</span><span class="p">,</span> <span class="n">KERNEL_HEAP_SIZE</span><span class="o">/</span><span class="mh">0x1000</span><span class="p">,</span> <span class="n">PAGE_RW</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="think-of-the-userspace-children">Think of the (userspace) children!</h2>
+
+<h3 id="porting-the-allocator-to-userspace">Porting the allocator to userspace</h3>
+
+<p>Sure, the kernel and its window manager are what will be stressing memory the most for a while, and we could get away with keeping a bump allocator for our userspace <code class="language-plaintext highlighter-rouge">malloc</code>. That memory is freed on exit anyway. But where’s the fun in that? Can’t we adapt our code so that it works in both the kernel and in userspace?</p>
+
+<p>Of course we can. We already have a build-level mechanism for that with our C library, which is built twice: once for the kernel with the <code class="language-plaintext highlighter-rouge">_KERNEL_</code> preprocessor symbol defined, and a second time for userspace.</p>
+
+<p>There are two things that we’ll have to adapt for userspace:</p>
+<ol>
+  <li>Our allocated blocks will now live after our program in memory, i.e. at <code class="language-plaintext highlighter-rouge">sbrk(0)</code>, and not after our kernel executable.</li>
+  <li>Whereas the kernel has its whole memory pool preallocated, that makes no sense for userspace, so we’ll have to call <code class="language-plaintext highlighter-rouge">sbrk</code> regularly to ask the kernel for more memory.</li>
+</ol>
+
+<p>To address the first point, I added the following bit of code to the beginning of <code class="language-plaintext highlighter-rouge">malloc</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// If this is the first allocation, setup the block list:</span>
+    <span class="c1">// it starts with an empty, used block, in order to avoid edge cases.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">top</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">header_size</span> <span class="o">=</span> <span class="n">offsetof</span><span class="p">(</span><span class="n">mem_block_t</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+
+<span class="cp">#ifdef _KERNEL_
+</span>        <span class="kt">uintptr_t</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">KERNEL_HEAP_BEGIN</span><span class="p">;</span>
+<span class="cp">#else
+</span>        <span class="kt">uintptr_t</span> <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uintptr_t</span><span class="p">)</span> <span class="n">sbrk</span><span class="p">(</span><span class="n">header_size</span><span class="p">);</span>
+<span class="cp">#endif
+</span>        <span class="n">bottom</span> <span class="o">=</span> <span class="p">(</span><span class="n">mem_block_t</span><span class="o">*</span><span class="p">)</span> <span class="n">addr</span><span class="p">;</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">bottom</span><span class="p">;</span>
+        <span class="n">top</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// That means used, of size 0</span>
+        <span class="n">top</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>And to address the second point, I added this distinction before calling <code class="language-plaintext highlighter-rouge">mem_new_block</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c1">// We'll have to allocate a new block, so we check if we haven't</span>
+        <span class="c1">// exceeded the memory we can distribute.</span>
+        <span class="kt">uintptr_t</span> <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uintptr_t</span><span class="p">)</span> <span class="n">top</span> <span class="o">+</span> <span class="n">mem_block_size</span><span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="o">+</span> <span class="n">header_size</span><span class="p">,</span> <span class="n">align</span><span class="p">;</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">align_to</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">align</span><span class="p">)</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
+<span class="cp">#ifdef _KERNEL_
+</span>        <span class="c1">// The kernel can't allocate more</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">&gt;</span> <span class="n">KERNEL_HEAP_BEGIN</span> <span class="o">+</span> <span class="n">KERNEL_HEAP_SIZE</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"[MEM] The kernel ran out of memory!"</span><span class="p">);</span>
+            <span class="n">abort</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="cp">#else
+</span>        <span class="c1">// But userspace can ask the kernel for more</span>
+        <span class="kt">uintptr_t</span> <span class="n">brk</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uintptr_t</span><span class="p">)</span> <span class="n">sbrk</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">&gt;</span> <span class="n">brk</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sbrk</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">brk</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="cp">#endif
+</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">mem_new_block</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">align</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="testing-it">Testing it</h3>
+
+<video controls="">
+  <source src="/assets/spam-win.mp4" type="video/mp4" />
+</video>
+
+<p>To test that new <code class="language-plaintext highlighter-rouge">malloc</code>, I made <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/modules/src/test.c">a program</a> to open and close windows continually while keeping the number of windows constant, which you can see in action above.</p>
+
+<p>To be somewhat scientific, I counted the number of calls to <code class="language-plaintext highlighter-rouge">sbrk</code>. If everything was right, this program would call it a few times, then blocks would be reused <em>ad infinitum</em>.</p>
+
+<p>And it did! With 20 windows, I counted 69 <code class="language-plaintext highlighter-rouge">sbrk</code>s, and no signs of more coming up even after five minutes of frenetic window respawning.</p>
+
+<h3 id="a-point-on-kerneluserspace-interactions">A point on kernel/userspace interactions</h3>
+
+<p>It may not be clear what the code paths are for the userspace version of <code class="language-plaintext highlighter-rouge">malloc</code>, so I’ll detail them a bit.</p>
+
+<p>When a program calls <code class="language-plaintext highlighter-rouge">malloc</code>, execution stays in userspace, because the allocator is in the C library linked to it, along with everything else. If <code class="language-plaintext highlighter-rouge">malloc</code>’s memory pool needs expansion (i.e. there’s no room to add a free block), the <code class="language-plaintext highlighter-rouge">sbrk</code> system call is run, and execution jumps <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/sys/proc.c#L278-L320">in the kernel</a>. That system call maps pages as needed to expand the heap of the program. The process of mapping those pages may itself involve <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/mem/paging.c#L68">allocating memory</a> for the kernel to create new page tables, but in this case, the kernel calls <code class="language-plaintext highlighter-rouge">pmm_alloc_page</code> to get a fresh page of physical memory directly, so <code class="language-plaintext highlighter-rouge">kmalloc</code> is never involved.</p>
+
+<p>It would have been pretty neat to have <code class="language-plaintext highlighter-rouge">malloc</code> call <code class="language-plaintext highlighter-rouge">kmalloc</code>, wouldn’t it? I like the idea of a piece of code calling another compilation of itself, anyway.</p>
+
+<p>This is what <code class="language-plaintext highlighter-rouge">putchar</code> does, so at least such cross-source calling goodness is done somewhere. A call to <code class="language-plaintext highlighter-rouge">putchar</code> in userspace translates to the <code class="language-plaintext highlighter-rouge">putchar</code> <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/kernel/src/sys/syscall.c#L74">system call</a> which calls the kernel version of <code class="language-plaintext highlighter-rouge">putchar</code>, which is about two lines above the first call in the <a href="https://github.com/29jm/SnowflakeOS/blob/132529e3bec0855597b769510ececd3f9213a8a9/libc/src/stdio/putchar.c">source</a>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">putchar</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="cp">#ifdef _KERNEL_
+</span>    <span class="n">term_putchar</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+    <span class="n">serial_write</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">c</span><span class="p">);</span>
+<span class="cp">#else
+</span>    <span class="n">asm</span> <span class="p">(</span>
+        <span class="s">"mov $3, %%eax</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"mov %[c], %%ecx</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"int $0x30</span><span class="se">\n</span><span class="s">"</span> <span class="c1">// Syscall</span>
+        <span class="o">::</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="s">"r"</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="o">:</span> <span class="s">"%eax"</span>
+    <span class="p">);</span>
+<span class="cp">#endif
+</span>    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Neat.</p>
+
+<h2 id="miscellaneous-bugs-crushed-since-last-time">Miscellaneous bugs crushed since last time</h2>
+
+<h3 id="a-scrambled-w">A scrambled ‘w’</h3>
+
+<p>When I first tested my new kernel allocator, it seemed to work fine except for one detail. The ‘w’ of “SnowflakeOS” in the top left corner of the background and in the title bar of my window looked all wrong:</p>
+
+<p><img src="/assets/scrambled_w.png" alt="scrambled w" /></p>
+
+<p>And only when compiling without the nice blue background and identity mapping more pages than needed at the beginning of memory. Which I did then, otherwise I perhaps wouldn’t have spotted this bug.</p>
+
+<p>I fixed it in <a href="https://github.com/29jm/SnowflakeOS/commit/ca7fedf2468319ecbeb503cf67d1031f2f5cb622">this commit</a>, basically by paying attention to where my GRUB modules (i.e. my programs) were in memory, and protecting that memory. Indeed, those modules were loaded right after my kernel in memory, and guess what I used that area for? The bitmap of my physical memory manager. That’s not a story a James Molloy would tell you<sup>[<a href="" title="I owe much to his tutorials &lt;3">1</a>]</sup>.</p>
+
+<p>Now I check exactly where my modules end and place my physical memory manager after that, and I identity map exactly the right number of pages to be able to copy the modules into kernel memory.</p>
+
+<h3 id="classic-windows">Classic windows</h3>
+
+<p>The gif at the top of this post looks somewhat okay, but it took some effort. Basically, I wanted a program that spawned <code class="language-plaintext highlighter-rouge">N</code> windows then closed the oldest ones and replaced them, in a loop. The first iteration of that popup-spamming program would either spawn +oo windows, or spawn <code class="language-plaintext highlighter-rouge">N</code> windows then get stuck in an infinite loop somewhere.</p>
+
+<p>The problem, explained in <a href="https://github.com/29jm/SnowflakeOS/commit/c16b531d3073cc15d5a9ccdcf0bbc70186c1d755">this commit</a>, was that I had failed to maintain the integrity of my doubly linked list of windows when deleting an element, and the list turned into a circular list when traversed backwards, leading to an infinite loop in <code class="language-plaintext highlighter-rouge">wm_count_windows</code>.</p>
+
+<h2 id="till-next-time">Till next time</h2>
+
+<p>That’s it for this post, which is already far too long, too late and all over the place.<br />
+Thank you for reading till the end!</p>
+
+
+  </div>
+
+  <div class="date">
+    Written on March  7, 2020
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/29jm"><i class="svg-icon github"></i></a>
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>
