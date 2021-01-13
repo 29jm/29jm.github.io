@@ -15,8 +15,8 @@ $lightGray: #ebe8e0;
 $white: #fbf9f0;
 
 // Font stacks
-$helvetica: "Palatino Linotype", Arial;
-$helveticaNeue: "Avenir", Arial;
+$helvetica: "Palatino Linotype", serif;
+$helveticaNeue: "Avenir", "Gill Sans", sans-serif;
 
 // Mobile breakpoints
 @mixin mobile {
