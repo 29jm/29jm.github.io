@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>On context switching and C programs in userland – SnowflakeOS's blog</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the iret instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.
+
+" />
+    <meta property="og:description" content="
+In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the iret instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.
+
+" />
+    
+    <meta name="author" content="SnowflakeOS" />
+
+    
+    <meta property="og:title" content="On context switching and C programs in userland" />
+    <meta property="twitter:title" content="On context switching and C programs in userland" />
+    
+    
+    <meta property="og:thumbnail" content="/assets/garbage.jpg" />
+    
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="SnowflakeOS - Locally grown blog posts, by Johan Manuel" href="/feed.xml" />
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169883671-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169883671-1');
+</script>
+
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/assets/logo_big.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">SnowflakeOS</a></h1>
+            <p class="site-description">Locally grown blog posts, by Johan Manuel</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>On context switching and C programs in userland</h1>
+
+  <div class="entry">
+    <p><img src="/assets/garbage.jpg" alt="Executing garbage" class="thumbnail" title="It's abstract art, okay?" />
+In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the <code class="language-plaintext highlighter-rouge">iret</code> instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.</p>
+
+<h2 id="context-switching">Context switching</h2>
+
+<p>I noticed that issue and at first decided to tackle it my own way, <code class="language-plaintext highlighter-rouge">mov</code>ing the contents of my <code class="language-plaintext highlighter-rouge">registers_t</code> structure to the corresponding registers, but it proved a bit difficult. It would have been doable with more thought, but instead I searched the internet for the “usual” way to restore context.</p>
+
+<p>It turns out there’s a very elegant way to do it: instead of using <code class="language-plaintext highlighter-rouge">iret</code> everytime, simply switch stack and let the execution get back to the interrupt handler by just letting execution reach the end of the function.<br />
+This works because the stack state of every interrupted process is the same when getting to the stack-switching part of execution: what we do is simply pop registers from the next process’s stack, not the one that was last interrupted.<br />
+For now the subroutine is implemented in assembly as I mainly copied it from <a href="https://wiki.osdev.org/Multitasking_Systems">a wiki page</a> but I should be able to turn it into <code class="language-plaintext highlighter-rouge">C</code> no problem, contrary to what the page says. Here’s the current code:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">proc_switch_process:</span> <span class="cp"># void proc_switch_process();
+</span>    <span class="cp"># Save register state
+</span>    <span class="n">push</span> <span class="o">%</span><span class="n">ebx</span>
+    <span class="n">push</span> <span class="o">%</span><span class="n">esi</span>
+    <span class="n">push</span> <span class="o">%</span><span class="n">edi</span>
+    <span class="n">push</span> <span class="o">%</span><span class="n">ebp</span>
+
+    <span class="cp"># current_process-&gt;esp = %esp
+</span>    <span class="n">mov</span> <span class="n">current_process</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+    <span class="n">mov</span> <span class="o">%</span><span class="n">esp</span><span class="p">,</span> <span class="mi">24</span><span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">)</span>
+
+    <span class="cp"># %eax = current_process = current_process-&gt;next
+</span>    <span class="n">mov</span> <span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+    <span class="n">mov</span> <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="n">current_process</span>
+
+    <span class="cp"># Set esp0 to the next process's kernel stack in the TSS
+</span>    <span class="n">push</span> <span class="o">%</span><span class="n">eax</span>
+    <span class="n">push</span> <span class="mi">20</span><span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">)</span> <span class="err">#</span> <span class="n">kernel_stack</span>
+    <span class="n">call</span> <span class="n">gdt_set_kernel_stack</span>
+    <span class="n">add</span> <span class="err">$</span><span class="mi">4</span><span class="p">,</span> <span class="o">%</span><span class="n">esp</span>
+    <span class="n">pop</span> <span class="o">%</span><span class="n">eax</span>
+
+    <span class="cp"># Switch to the next process's kernel stack
+</span>    <span class="n">mov</span> <span class="mi">24</span><span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">),</span> <span class="o">%</span><span class="n">esp</span>
+
+    <span class="cp"># Switch page directory
+</span>    <span class="n">mov</span> <span class="mi">16</span><span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">),</span> <span class="o">%</span><span class="n">ebx</span> <span class="err">#</span> <span class="n">directory</span>
+    <span class="n">mov</span> <span class="o">%</span><span class="n">ebx</span><span class="p">,</span> <span class="o">%</span><span class="n">cr3</span>
+
+    <span class="cp"># Restore registers from the next process's kernel stack
+</span>    <span class="n">pop</span> <span class="o">%</span><span class="n">ebp</span>
+    <span class="n">pop</span> <span class="o">%</span><span class="n">edi</span>
+    <span class="n">pop</span> <span class="o">%</span><span class="n">esi</span>
+    <span class="n">pop</span> <span class="o">%</span><span class="n">ebx</span>
+
+    <span class="n">ret</span>
+</code></pre></div></div>
+
+<p>That leaves the problem of how to switch to tasks which haven’t been started yet, and thus haven’t had the chance to be interrupted: we can’t switch to their kernel stack to restore the process’s context, there’s nothing there. I haven’t thought this through, but I don’t think we can <code class="language-plaintext highlighter-rouge">iret</code> manually a second time, we’d mess up the kernel stack of the currently executing process.<br />
+I opted for the solution of setting up that stack manually in <code class="language-plaintext highlighter-rouge">proc_run_code</code>. It’s ugly (<a href="https://github.com/29jm/SnowflakeOS/blob/f14f7cc4b6b176170910cfb65911bc8e7826257e/kernel/src/sys/proc.c#L92-L134">see for yourselves</a>), but hey, it works. I’ll make something nicer at some point, I haven’t researched how it’s usually done.</p>
+
+<p>Implementing preemptive multitasking, i.e. interrupting and resuming tasks without asking them was then simply a matter of calling <code class="language-plaintext highlighter-rouge">proc_switch_context</code> from my timer interrupt handler.</p>
+
+<p>If you look at the commit implementing all this, <a href="https://github.com/29jm/SnowflakeOS/commit/f14f7cc4b6b176170910cfb65911bc8e7826257e#diff-332df72cc6226373195d53da4685f4e6R216">here</a>, you’ll notice that I’m not calling <code class="language-plaintext highlighter-rouge">iret</code> when first entering usermode. And yet the code seemed to work, and it in fact sort of did! By a miracle of chance, the <code class="language-plaintext highlighter-rouge">ret</code> instruction for the function <code class="language-plaintext highlighter-rouge">proc_enter_usermode</code> popped the pushed <code class="language-plaintext highlighter-rouge">eip = 0</code> from my inline assembly, thereby calling my process code. Of course with a simple <code class="language-plaintext highlighter-rouge">ret</code> the execution was still in ring 0, but on subsequent switches, everything was as right as ever.</p>
+
+<h2 id="ongoing-code-documentation">Ongoing code documentation</h2>
+
+<p>Understanding and debugging that new context-switching method took me quite a while and led me to improve my interrupt code. It’s now pretty well documented, see for instance <a href="https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/kernel/src/cpu/asm/isr.S">isr.S</a> or <a href="https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/kernel/include/kernel/gdt.h">gdt.h</a>. I had several misunderstandings in that area of the code, notably differences between <code class="language-plaintext highlighter-rouge">ISRs</code> and <code class="language-plaintext highlighter-rouge">IRQs</code>, their relation with the <code class="language-plaintext highlighter-rouge">IDT</code> and the <code class="language-plaintext highlighter-rouge">GDT</code>… Now it’s all good.</p>
+
+<p>Quick explanation. The <code class="language-plaintext highlighter-rouge">IDT</code> is a table that stores pointers to interrupt handlers along with details like which code segment to use when switching execution to the handler, etc… <code class="language-plaintext highlighter-rouge">ISRs</code> are one type of interrupts, numbered from 0 to 32 and also called “exceptions”, and <code class="language-plaintext highlighter-rouge">IRQs</code> are another, numbered from 32 to 47, also called “hardware exceptions”. The <code class="language-plaintext highlighter-rouge">GDT</code> describes memory segments referred to in the <code class="language-plaintext highlighter-rouge">IDT</code>.<br />
+It’s interesting to note that the <code class="language-plaintext highlighter-rouge">IDT</code> and <code class="language-plaintext highlighter-rouge">GDT</code> have very similar structures, and that both are particularly horrid. For instance, the address of the start of a memory segment is split into three non-contiguous parts in a <code class="language-plaintext highlighter-rouge">GDT</code> entry: two of 8 bits and one of 16. Crazy stuff.</p>
+
+<h2 id="rebuilding-the-build-system">Rebuilding the build system</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SnowflakeOS</span> <span class="err">$</span> <span class="n">time</span> <span class="n">make</span> <span class="n">SnowflakeOS</span><span class="p">.</span><span class="n">iso</span>
+<span class="p">[...]</span>
+<span class="n">real</span> <span class="mi">0</span><span class="n">m1</span><span class="p">,</span><span class="mi">140</span><span class="n">s</span>
+<span class="n">user</span> <span class="mi">0</span><span class="n">m0</span><span class="p">,</span><span class="mi">733</span><span class="n">s</span>
+<span class="n">sys</span>  <span class="mi">0</span><span class="n">m0</span><span class="p">,</span><span class="mi">347</span><span class="n">s</span>
+</code></pre></div></div>
+
+<p>With such progess in my userland, I now had to have a straightforward way of building programs. At first I hacked my libc’s <code class="language-plaintext highlighter-rouge">Makefile</code> to build <code class="language-plaintext highlighter-rouge">C</code> programs and link them with <code class="language-plaintext highlighter-rouge">libc</code>. I don’t know exactly what was wrong, but I couldn’t get GCC to compile them to flat binaries. I then looked into making an ELF loader, but it looked difficult to get right. Then I decided it was time to simplify my build system and do things correctly.</p>
+
+<p>I replaced my interdependent shell scripts with a simple <a href="https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/Makefile"><code class="language-plaintext highlighter-rouge">Makefile</code></a> combining all of their functionalities. It would now be pretty easy to automate the whole cross-compiler toolchain building phase in there too.<br />
+The build process is still fundamentaly the exact same: first headers are copied to a fakeroot environment, then code is compiled per-project (a project being the kernel, the libc and modules, for now) using the system headers from the fakeroot directory.<br />
+There’s a slight problem as this <code class="language-plaintext highlighter-rouge">Makefile</code> relies on the order of compilation of projects which isn’t specified very strictly, so running <code class="language-plaintext highlighter-rouge">make -j</code> (parallel compilation) will cause errors.</p>
+
+<p>After that, I managed to get module compilation in working order.</p>
+
+<h2 id="userland-programs-as-grub-modules">Userland programs as GRUB modules</h2>
+
+<p><img src="/assets/executing-c.png" alt="A C program printing &quot;Hello, C world&quot; on the screen" /></p>
+
+<p>Notice the “Hello, C world” line on here? That’s <a href="https://github.com/29jm/SnowflakeOS/blob/cd91aa6c16e68f14c5c784ccef5de4e9969f967e/modules/src/test.c">a usermode process</a> calling my libc’s <code class="language-plaintext highlighter-rouge">printf</code> implementation, which itself uses my <code class="language-plaintext highlighter-rouge">putchar</code> system call to print characters:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">putchar</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="cp">#ifdef _KERNEL_
+</span>    <span class="n">term_putchar</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="cp">#else
+</span>    <span class="n">asm</span> <span class="p">(</span>
+        <span class="s">"mov $3, %%eax</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"mov %[c], %%ebx</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"int $0x30</span><span class="se">\n</span><span class="s">"</span>
+        <span class="o">:</span>
+        <span class="o">:</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="s">"r"</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="o">:</span> <span class="s">"%eax"</span>
+    <span class="p">);</span>
+<span class="cp">#endif
+</span>    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>At the bottom right of the screenshot is the currently executing process. Also, notice how I sneakily increased the version number when writing this article :)</p>
+
+<p>There’s one peculiar thing at play here worth noting: I thought it good to follow the advice from <a href="https://littleosbook.github.io/#using-c-for-user-mode-programs">here</a>, to have an assembly prologue to call <code class="language-plaintext highlighter-rouge">main</code> in my <code class="language-plaintext highlighter-rouge">C</code> programs and to call <code class="language-plaintext highlighter-rouge">exit</code> with <code class="language-plaintext highlighter-rouge">main</code>’s return value. And to push <code class="language-plaintext highlighter-rouge">main</code>’s arguments too, in the future. But I couldn’t get GCC to put my prologue code at the entry point: it always, <em>always</em> places a call to <code class="language-plaintext highlighter-rouge">main</code> as the first instruction, then a few <code class="language-plaintext highlighter-rouge">nop</code>s, and only then my prologue, which of course is more of an epilogue at this point.<br />
+It’s enough to call <code class="language-plaintext highlighter-rouge">exit</code>, and I guess if I really want my <code class="language-plaintext highlighter-rouge">argc</code> and <code class="language-plaintext highlighter-rouge">argv</code> I’ll set up the process stack myself, I’ve done that before ;)</p>
+
+
+  </div>
+
+  <div class="date">
+    Written on October  6, 2019
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/29jm"><i class="svg-icon github"></i></a>
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>
