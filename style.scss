@@ -6,6 +6,7 @@
 //
 
 @import "reset";
+@import "fonts";
 @import "variables";
 // Syntax highlighting @import is at the bottom of this file
 
@@ -19,7 +20,7 @@ html {
 
 body {
 	background: $white;
-  font: 14pt $helvetica;
+  font: 14pt $contentFont;
   color: $darkGray;
 }
 
@@ -31,7 +32,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
+  font-family: $titleFont;
   color: $darkerGray;
   line-height: 1.7;
   margin: 1em 0 15px;
@@ -46,6 +47,7 @@ h1 {
   font-size: 36px;
   a {
     color: inherit;
+    text-decoration: none;
   }
 }
 
@@ -67,8 +69,8 @@ p {
 }
 
 a {
-  color: $blue;
-  text-decoration: none;
+  color: $darkerGray;
+  text-decoration: underline;
 	cursor: pointer;
   &:hover, &:active {
     color: $blue;
@@ -121,12 +123,6 @@ img {
   color: $gray;
 }
 
-// Specify the color of the selection
-::selection {
-  color: white;
-  background: $blue;
-}
-
 // Nicolas Gallagher's micro clearfix hack
 // http://nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before,
@@ -170,6 +166,7 @@ img {
     float: none;
     display: block;
     margin: 0 auto;
+    margin-bottom: 15px;
   }
 
   img {
@@ -191,7 +188,7 @@ img {
   margin: 0;
   color: $darkGray;
   cursor: pointer;
-  font-family: $helveticaNeue;
+  font-family: $titleFont;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -210,7 +207,7 @@ img {
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
+  font-family: $titleFont;
   font-size: 18px;
 
   @include mobile {
@@ -247,7 +244,7 @@ figcaption {
   text-align: center;
   font-size: smaller;
   margin-top: 10px;
-  font-family: $helveticaNeue;
+  font-family: $titleFont;
 }
 
 .post video {
