@@ -1,0 +1,255 @@
+---
+layout: post
+title: "HRP - Notes de voyage"
+author: Johan Manuel
+tags: hiking
+thumbnail: /assets/doom.jpg
+---
+
+<figure>
+    <img src="/assets/hrp-path.png">
+</figure>
+En août 2020, j'ai entrepris de marcher le long de la Haute Route Pyrénéenne, depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée.
+
+Avant le covid, le plan était de randonner le Kungsleden en Suède ; plan tombé à l'eau au profit d'une alternative locale. C'était ma première randonnée en solo, et de loin la plus longue, et j'en garde des souvenirs géniaux - c'était facilement la meilleure partie de 2020 pour moi. Pas un seul réveil difficile, pas une seule journée ordinaire. Jour après jour, j'ai noté un résumé de mes journées, retranscris ici relativement tels quels. La liste de mon équipement est disponible sur [lighterpack][lp]. En terme de préparation, j'avais mon expérience passée, et le guide de Tom Martens{% anecdote n|the man can write, believe it %} au format ebook, disponible [chez Cicerone][tom].
+
+## Journal
+
+### Day 1: Cauterets to Oulettes de Gaube
+
+Bivouac au pied du Vignemale, face Nord. Pas de difficultés ce matin à la descente du train, ni logistiques ni autres. De Cauterets, le chemin longe une rivière à l'ombre, nombreuses cascades. Cagnard l'après-midi lors de l'ascension vers le refuge de la Oulette de Gaube. Je croise à ce refuge un gars ayant l'air ultralight, à son sac et à sa sawyer mini{% anecdote n|il m'indique que celles-ci peuvent se visser sur les bouteilles de Perrier %}. K, parti de Hendaye le 6 juin. Rennais! Il attendait sa trail family. M, prof de philo, D, vieux à qui j'ai pas parlé (il vient de perdre son portable: coup dur), V et P.
+
+Ils tentent le Petit Vignemale demain matin, je m'engage à les suivre, sans promesse sur le reste de la journée. L'étape d'aujourd'hui leur a semblé facile, reposante, alors qu'elle m'a tué. J'avais pour plan de bivouaquer n'importe où avant Gavarnie, faire mes courses le lendemain matin, et potentiellement suivre la HRP. Je crois maintenant que c'est ce que je vais faire. Marcher seul et sans contraintes m'attire plus pour l'instant. Quitte à retrouver ce groupe plus tard. Ces gens sont tellement chill, j'aurais aimé pouvoir discuter correctement avec eux. Ils sont tous plus agés que moi, ont un job, se connaissent depuis un moment. Tant de codes pré-établis qu'il faut déchiffrer. Un orage éclate à quelques kilomètres. La pluie s'intensifie.
+
+<figure>
+    <img src="/assets/hrp-day1.jpg">
+    <figcaption>Le refuge des Oulettes, au pied du Vignemale</figcaption>
+</figure>
+
+### Day 2: Oulettes de Gaubes to Gavarnie
+
+Gros orage hier soir qui a secoué la tente déjà mal pitchée. It held. Ce matin, les grégaires du GR n'étaient plus deter à faire le Petit Vignemale, à cause du vent, entre autres. Je les quitte, gravis la hourquette puis le Petit Vignemale. 3K ! À la descente je retrouve les gens à Baysellance, je n'y reste pas. Ils me rattrapent vite. Premier river crossing pieds trempés. Au barrage d'Ossoue, pause de quelques heures pour moi. Le groupe repart direction Gavarnie, moi je vise le refuge d'avant. La fin de journée est superbe: personne ou presque sur le GR. Au moment de poser ma tente au refuge de la Grange de Holle, M débarque: ils n'ont pas trouvé de place au camping de Gavarnie. Je suis décidé à prendre la HRP le lendemain.
+
+<figure>
+    <img src="/assets/hrp-day2.jpg">
+    <figcaption>Descente dans la vallée d'Ossoue</figcaption>
+</figure>
+
+### Day 3: Gavarnie to Héas
+
+Extra solide journée, que j'avais pensé courte. Ascension épuisante à la Hourquette d'Alans le matin, après avoir fait des courses à Gavarnie, village au final sympathique. Acheté une serviette et de la bouffe: erreur, oublié le fromage, et la florette passe mal. Après-midi dans le cirque d'Estaube, chaleur écrasante. J'y ai vu une marmotte en mangeant, et un curieux animal que j'aurais dit félin.
+
+Lessive avant le lac des Gloriettes, touristique. J'opte pour contourner le lac par le Sud, direction cabane des Groutes. J'apprends alors ce qu'IGN appelle "autre chemin", et que celui-ci monte à 2000m... Glorieuse solitude avec magnifique vue. Descente raide à Héas où je campe au camping attenant à l'auberge Munia, les Cairns. Ambiance _Comme un Avion_, et surtout, une douche ! Boutons aux épaules, je change de haut. Tant pis pour mes bras{% anecdote n|pas de manches, coups de soleil %}. Demain objectif Lacs de Barroude, et le lendemain, Parzán.
+
+<figure>
+    <img src="/assets/hrp-day3.jpg">
+    <figcaption>Pitch perfect au camping d'Héas</figcaption>
+</figure>
+
+### Day 4: Héas to Lacs de Barroude
+
+Seulement la moitié d'une étape selon Cicerone, effectivement j'arrive tôt. C'est une très bonne chose, les lacs de Barroude sont mon idée du paradis sur Terre. Le mur de Barroude surplombe deux lacs issus d'un glacier. La vallée est verdoyante et accidentée. Des centaines de moutons. Le plus grand des deux lacs possède quelques îlots et deux presqu'îles. À mon arrivée, j'aperçois un randonneur chillant sur la première presqu'île, sorte de volcan miniature. Je m'installe sur la suivante. Baignade, juste une minute, l'eau est fraîche. Je me suis écorché l'orteil gauche :/ Fissuré ? J'ai ici un gros cal douloureux depuis un moment. En venant ici, la Hourquette d'Héas était à couper le souffle. Un trou de deux mètres dans la roche sépare deux vallées, avec un souffle extraordinaire. Comme si tout le vent d'une vallée passait là pour rejoindre d'autre. Le dénivelé ne m'a pas posé de soucis aujourd'hui. Habitude ? Demain, Parzán, journée très facile si mon orteil coopère.
+
+Vraiment pas satisfait de mon système de bouffe. Selon mes estimations, j'ai mangé 1614 kcal aujourd'hui... Avec fromage ça aurait été 2000 kcal, toujours pas ouf.
+
+<figure>
+    <img src="/assets/hrp-day4.jpg">
+    <figcaption>Départ des lacs de Barroude</figcaption>
+</figure>
+
+### Day 5: Barroude to Parzán
+
+Des vieux m'indiquaient des isards ce matin mais nulle trace. Bain près de la grande route - la chaleur me tue. Courses ratées à Parzán: 3600 kcal pour trois jours → j'allais mourrir de faim. Demain je pars à Bielsa chercher un distributeur de billets, plus de bouffe, de quoi me sustenir et payer le repas d'auberge à Viados ou Soula.
+
+Parler espagnol me fait perdre 50 points de QI.
+
+<figure>
+    <img src="/assets/hrp-day5.jpg">
+    <figcaption>En s'éloignant de Parzán</figcaption>
+</figure>
+
+### Day 6: Parzán to Añes Cruces
+
+Impossible de rejoindre Bielsa: le stop ne marche pas. Provisions++ à Parzán (oréos !) et je remonte cette satané pente. Un vieux me demande un indice: ai-je vu sa femme{% anecdote n| non ! j'ai pas eu le fin mot de l'histoire %} ? Le camping près du refuge de Viados est fermé{% anecdote n|et pas moyen de camper au refuge: il est en dessous de 2000m %}... Peu importe, j'avais placé cette journée sous le signe de la sueur et de la fatigue. Je push jusqu'à la cabane d'Añes Cruces, dépassant quatre espagnols que je retrouverai là bas. Devant la cabane, des Allemands m'indiquent la présence d'un français à l'intérieur. Un HRPiste UL ! On discute de gear, de plans, du terrain{% anecdote n|"s'il fallait démonter sa tente chaque fois que y'a de l'orage, on aurait pas fini" - une philosophie que j'apprécie vraiment %}. Il tente de la faire en 3 semaines mais me dis prendre du retard. 6h30 tous les jours → midi sieste. Beaucoup d'expérience et de détermination, c'est impressionnant. Après une nuit passée près d'une souris dans le mur, à mal dormir sur le sol de la cabane, il me dit s'appeler T, T d'un certain forum de randonnée :)
+
+<figure>
+    <img src="/assets/hrp-day6.jpg">
+    <figcaption>Le soleil se lève sur Añes Cruces, vu de très loin</figcaption>
+</figure>
+
+### Day 7: Añes Cruces to Loudenvielle
+
+La route vers le refuge de la Soula en France est magnifique. Je monte au port d'Aigües Tortes par des "sentiers" rocailleux, géniaux. En haut, un désert de scree impressionnant, des grands oiseaux, et une source formant une large mare. La Soula me rappelle S.T.A.L.K.E.R, situé dans une station hydroélectrique. La suite, la partie amazonie d'Océanopolis. On voyait le nuage par dessus depuis la frontière, j'y serai jusqu'à la fin. Dans la forêt descendant à Port de Prats, je croise un groupe de 7 ou 8 marcheurs, qui me trollent ("pas droit de couper") d'abord, puis qui valident mon plan camping. Cool guys. Je leur met une bonne heure d'avance dans la descente et fait la moitié du chemin jusque Loudenvielle avant qu'ils me rattrapent et m'y déposent, m'indiquant le distributeur de billets. Je rejoins le camping, a priori complet, où à l'accueil, K vient de prendre la dernière place, qu'il me propose de partager. Il l'avait déniché en appelant l'office du tourisme ! Incroyable type, incroyable chance pour moi. Douche, puis bonne discussion avec K. Il veut sortir de la société, vivre en nomade, a été réalisateur, solide cinéphile. Very, very cool guy. Il renverse de la superglue sur ses lunettes ce qui le force à faire du stop jusqu'à Bagnères. On échange nos numéros pour s'y retrouver.
+
+<figure>
+    <img src="/assets/hrp-day7c.jpg">
+    <figcaption>Brume côté français, du port d'Aigües Tortes</figcaption>
+</figure>
+
+### Day 8: Loudenvielle to Lacs d'Espingo
+
+Je ne repars du camping qu'à 11h, il pleuvait avant. Re-douche. Je croise D, passe le col d'Esquierry puis monte au lac d'Oô, montée interminable et surpeuplée. Lac peu impressionnant, amoindri par sa popularité et le barrage qui s'y construit. On m'indique "eu pas potable" au refuge, et plus haut je trempe ma chaussure en en refaisant. Vers 20h j'approche d'Espingo, et un gars me rattrape. Il s'appelle J, est Australien, vit en France, est chercheur en machine learning et visite les lacs d'Espingo plus ou moins sur un coup de tête. Wow ! Chillax, on trouve un campsite au bord du second lac, derniers arrivés parmis une douzaine de campeurs. La brume couvre tout au dessus de nous, c'est magnifique. Il n'a jamais monté sa tente achetée pour l'occasion, est en jeans et baskets, mange dans une assiette{% anecdote n|respect, il allait plus vite que moi %}... Je filtre, mange puis produit du Lindt: malade, je l'avais senti venir à Oô. J est allé méditer plus loin. Le matin, condensation à bloc.
+
+<figure>
+    <img src="/assets/hrp-day8.jpg">
+    <figcaption>Devant un des lacs d'Espingo, sous la brume</figcaption>
+</figure>
+
+### Day 9: Lacs d'Espingo to Bagnères de Luchon
+
+Grand froid le matin. Couplé à la condensation, je ne sens plus mes mains après avoir rangé ma tente. Au revoir à J et je pars. Peu d'eau avant je ne sais quel col où je sèche ma tente. Après celui-ci, autoroute vers Bagnères. À Superbagnères, station de ski, je traverse un troupeau de vaches. Une femme a la même idée en sens inverse et se fait frapper des cornes d'une mère{% anecdote n|première fois que je vois ça; rien de grave %}. J'indique le GR à un père et son fils, perdus. Je me sens comme porteur de l'idéal randonnesque. À Bagnères, glace, ice tea, courses, et je croise K. On boit un godet. Il a réparé ses lunettes et prend un zéro demain. Ne me suivra pas sur la HRP: mal au genou, peu rassuré par la mention "very steep descent", E grade du guide. Une fois de plus, on se quitte. Au camping, the usual. Beaucoup de route demain avant même de commencer l'étape. Hope for the best.
+
+<figure>
+    <img src="/assets/hrp-day9.jpg">
+    <figcaption>Superbagnères</figcaption>
+</figure>
+
+### Day 10: Bagnères to Col de Mulleres
+
+Journée écrasante, physiquement mais aussi moralement. Plus de chemin pour rejoindre la HRP qu'anticipé. Passé le refuge de Benasque, j'arrive à la Besurta vers 15h, début de l'étape. Ici, un monde fou, venu en bus, qui passe toutes les demi-heures. Chaleur. Passé le trou du Toro et le plateau d'Aigualluts, les touristes sont remplacés par des vaches. L'ascension devient technique, grisante. il est 17h+, je perds un peu mon sang-froid. Pas raisonnable de passer le col à cette heure-ci, d'ailleurs quand l'atteindrai-je ? Camper si tôt quand mes jambes fonctionnent et que l'ascension est si belle ? Je grimpe, repérant les lieux de bivouac possibles. Finalement, je décide que trop c'est trop, que Mulleres sera demain, et je fais demi-tour jusque près d'un étang de glacier, ~2450m. Je pitch ma tente avec des cailloux pour la première fois.
+
+19h30, des espagnols passent ma tente, ils vont grimper le col. Je questionne mon choix de remettre l'ascension à demain, j'aurais finalement pu dormir en cabane. Mon corps me dit que j'ai bien fait. À moins d'un orage cette nuit, mais vu le grand ciel bleu, comment serait-ce posssible ?
+
+20h+: en fait le sol sous ma tente est froid. Dehors, il fait encore chaud. J'ai pas l'expérience d'un espagnol, faut pas que je m'y compare. Maintenant je saurai.
+
+Qu'est-ce que c'est beau. Seul, pas une vache, dans la vallée d'Escaleta. Demain matin sera glacial, et le soleil ne se lèvera pas sur ma tente avant 10h au moins, caché par je ne sais quelle barrière rocheuse adjacente au Tuc de Mulleres. Such is life. Pour l'instant, j'adore être ici. Je m'en veux un peu d'avoir laissé K. Je me promets de le rejoindre au moins une fois, lui payer un godet.
+
+<figure>
+    <img src="/assets/hrp-day10.jpg">
+    <figcaption>Mon spot de bivouac, au bord de l'eau</figcaption>
+</figure>
+
+### Day 11: Mulleres to Lac deth Cap deth Port
+
+Montée au col longue. Ce que je prends d'abord pour le col est en fait de l'autre côté du Tuc, que je monte - 3010m. Un alpiniste du coin partage son expérience, il connaït tous les sommets à la ronde. Le guide disait du col "extremely steep descent": very true. La suite est un chaos de pierres infini et une demie forêt jusqu'à Espitau de Vielha où je fais une courte sieste. Je décide de suivre le GR11 jusqu'au refuge de la Restanca, gagnant 3 heures, mais manquant Lac de Mar que le guide assurait des plus beau. Tant pis. Je commence cette étape suivante à 16h. Soleil. Forêt escarpée. Marche facile à l'ombre à partir de 18h+. Arrivé 21h20 j'atteins la Restanca où je suis content de ne pas rester: que des français en grands groupes types dayhikers. Je pousse jusqu'au lac indiqué campable par le guide. Mon arrivée dérange un groupe de quatre ou cinq isards. Leur position me révèle un bon spot de camping, solide nuit.
+
+<figure>
+    <img src="/assets/hrp-day11.jpg">
+    <figcaption>Le col de Mulleres, au creux de l'anse. "Extremely steep".</figcaption>
+</figure>
+
+### Day 12: Restanca to Salardú
+
+Beaucoup de touristes, ce qui tue mon intérêt pour les lieux visités. Picnic dans un coin sympa, m'étant trompé de chemin, suivant bêtement ma trace GPX. Deux dames (allemandes ?) m'adressent la parole, reconnaissant un fellow HRPiste. Elle vont également se ravitailler. Je les dépasse. Ma chaussure droite a un problème: un bout de semelle se décolle. Trois bouts de duct tape tiennent jusqu'à Salardú, où, surprise, il n'y a pas de superglue. Je loge au refuge Juli Soler. La patronne a fait la HRP, parle un bon français. Seul dans une chambre pour quatre. Repas extra complet. Je dors mal though: chaleur, et problème de se rendre à Vielha le lendemain, mission superglue.
+
+<figure>
+    <img src="/assets/hrp-day12.jpg">
+    <figcaption>Premier lac de la journée</figcaption>
+</figure>
+
+### Day 13: Salardú to Airoto+
+
+Je manque le bus → stop to Vielha. J'attends 9h que le supermarché ouvre → no superglue, je cherche le Casino indiqué, galère et trouve. À 10h, je prends le bus pour Salardú. 10h35, ma chaussure est réparée, on the road again. J'oublie près d'un banc mon buff, il me manqué déjà. Passés les premiers Estanys de Baciver surpeuplés, je mange aux Rosaris près des chevaux, regardant ma future montagne, le Tuc de Marimanha. Approche quasi frontale d'une pente raide, ça marche. En haut, je m'aperçois que le tonnerre continue de gronder à l'Ouest, j'accélère. Le col d'Airoto requiert un peu d'escalade inversée, et j'y fait ma première chute: RAS. La section "giant boulders" ne déçoit pas. J'ai trop poussé la descente, je remonte une pente à 80% sur 100m jusqu'au prochain col: je skip le refuge dont j'entends venir des éclats de voix depuis une heure. Je trouve à camper dans la descente du col, avant l'endroit indiqué dans le guide, au tarn plus bas. J'ai peu d'eau mais je suis claqué.
+
+<figure>
+    <img src="/assets/hrp-day13.jpg">
+    <figcaption>Au col d'Airoto, devant atteindre le col en haut à gauche</figcaption>
+</figure>
+
+### Day 14: Airoto to Alós d'Isil++
+
+Dans la decente, je fais un combat de regard avec un isard. Je fais mon eau/lessive/dej au petit lac plus bas. Un non-espagnol y fait également ses affaires. En repartant, je le salue, lui demande s'il fait la HRP - "Oui, c'est la HRP". Il est Belge, parle français. "Quel guide utilises-tu ?" "Cicerone, en anglais" "C'est moi qui l'ait écrit !" C'est Tom Martens, mon guide en personne ! Il ressemble à mon prof de maths de spé. Passionné et passionnant, me questionne sur mon chemin, mon ravitaillement, mon séjour au refuge de Salardú... Il grimpe les 3K des Pyrénées, écrit un guide sur leur ascension. N'imagine pas un été sans grimper les Pyrénées. Me montre une nouvelle route vers Alós d'Isil trouvée la veille. Me donne sa carte, on se salue. Pas pensé assez tôt à la photo, regrets là dessus. Ma journée est faite dans tous les cas. Je trouve facilement cette nouvelle route, qui longe un ruisseau, et j'atteins Alós à midi. Joli et vieux village ressemblant à Méranges. En repartant, je discute avec un genre de teneur de mini-musée et lui donne ma carte devenue inutile du Val d'Aran, au cas où il croise quelqu'un allant dans l'autre sens. Il me prévient d'un orage pour le soir. En mangeant près de la Noguera, je l'entends déjà, et peu après je sors le kway. Vers 15h peut-être c'est le déluge et la grêle. Je marche dans le ruisseau ayant remplacé les chemins. Mon short est trempé également. Mode automatique. J'ai froids aux mains. J'atteins le petit lac à 2000m+ et plante ma tente. Je mets ce qu'il me reste de sec et m'enquiltifie, ce qui conduit à une sieste sous le restant d'orage. Je mange, trop tôt. Ressors faire de l'eau et laver mon short au passage, en caleçon. Je dors mal. Pas d'orage pourtant.
+
+<figure>
+    <img src="/assets/hrp-day14b.jpg">
+    <figcaption>La carte d'un vrai</figcaption>
+</figure>
+
+### Day 15: Alós+ to Tavascan
+
+Je dépasse un vieux HRPiste en montant le col. J'ai mis du temps à me lever: réveillé 8h45. Mes rêves, comme toutes les nuits j'ai l'impression, sont menaçants. Un L4D2 trop difficile, une rando HRP & G'&G&S où mes semelles se sont entièrement décollées... On parle un peu gear{% anecdote n|il a un sac katabatic ! %}, je le dépasse.
+
+L'estany major est grandiose, une mer intérieure avec houle: vent et pluie pendant 20 minutes. Je passe trois lacs et atteins Enric Pujol, où je mange. S'y trouve un HRPiste sur le départ, sympa. En faisant une pause plus tard, un couple me dépasse. Fascinés par le bon état de mes chaussures. Lui a remplacé les siennes, elle va très prochainement devoir. Ils sont partis de Cauterets le même jour que moi{% anecdote n|comme beaucoup de français, ils suivent un autre guide que le mien: je ne les reverrai pas %} ! J'atteins le camping de Bordes de Graus à Tavascan, un peu bruyant mais sympa.
+
+<figure>
+    <img src="/assets/hrp-day15.jpg">
+    <figcaption>Les trois lacs et le refuge Enric Pujol</figcaption>
+</figure>
+
+### Day 16: Tavascan to Certascan
+
+Peu de choix à l'épicerie de Tavascan - joli village. Je prends des conserves pour la première fois, on verra. Reparti en stop, et rapidemment à Noarrre. Trop rapidemment peut-être, maintenant que mon sac est très lourd: les tendons de ma cheville gauche/intérieur crissent. Trop de touristes jusqu'à l'étang précédant le col de Certascan. Je souffre, j'ai vraiment peur que ça dure, ça mettrait fin à ma marche. Je renonce au pic à cause de ça, alors que Tom me l'avait décrit comme facile & worth it. Descente du col, je croise un type, Jamie-looking, avec un gros sac mais ne faisant pas la HRP: il se balade avec un ami qu'il dit berger, portant une semaine de bouffe. Il photographie une pleine lune. Je me prends un sandwich au refuge de Certascan. Kevin avait raison, ces sandwichs sont vides. Un peu par erreur, j'ai campé au lac d'avant celui de Jamie & co - tout le coin est paradisiaque. Pour prendre leur noms et leurs ballistos, j'irai leur dire bonjour demain matin. Fasse Cauchy que ma jambe aille mieux alors.
+
+<figure>
+    <img src="/assets/hrp-day16.jpg">
+    <figcaption>Noarre, village inaccessible par la route</figcaption>
+</figure>
+
+### Day 17: Certascan to Pla de Boet
+
+Petite pluie et vent, très gros vent le matin. Je skip le salut à Fred & Jamie. D'abord coincé derrière un grand groupe de randonneurs à la semaine dans la descente des lacs de Romedo, je vais ensuite me perdre dans une vallée sans nom où se trouve le Riu de Guiló, au Nord Nord Est quand je devais aller plein Sud... Perdu une heure, une heure et demie dans un relatif mauvais temps. Ma jambe marche ! J'ai des relances, mais dans mes deux jambes alternativement. J'ai dû abuser de la droite en compensant, puis de la gauche... Une fois dans la bonne vallée, gigantesque descente sans croiser âme qui vive, magnifique, sauvage. J'entame mes boîtes. Au fond de la vallée, au pont de Boavi, quelques touristes, familles etc... Disparus en haut de la remontée majeure. Là commence un orage. Je pousse un peu plus loin que nécessaire mais cette fois ma tente est plantée avant le gros de la tempête. Terrible pitch à 5 sardines. Grêle, vent qui lance ma tente entière dans toutes les directions. La sardine arrière droite paraît prête à lâcher mais tient bon. Je finis par sortir le quilt le vent calmé. Après 1h30 de pause, je décampe. Un isard s'enfuit près des lacs de Baborte. Il est tard mais je me sens de continuer. Grande descente avec pas mal de forêt jusque Pla de Boet. 1850m, en dessous de l'altitude légale de camping, pas pensé. Un couple d'espagnols y campe déjà, 21h. Ils grimpent le pic d'Estats demain, m'aident à monter ma tente.
+
+<figure>
+    <img src="/assets/hrp-day17.jpg">
+    <figcaption>La montagne après l'orage</figcaption>
+</figure>
+
+### Day 18: Boet to Refuge de Sorteny, Andorre
+
+Mal dormi, et condensation. Quelques tentes dans l'interminable montée vers Port de Boet, la frontière. Même dans la descente vers la Soucarrane je me sens assez faible. Pas plus mal au jambes que d'habitude, mais pas de puissance derrière. Grosse boîte de tortellinis pour compenser. Port de Rat, difficile alors que le chemin n'a rien d'exceptionnellement dur. Je me trompe d'ailleurs avant de commencer son ascension, je descends trop bas, de ~150m. Coup au moral qui m'aide pas non plus. Paracetamol en haut. Je descends jusqu'à la station de ski d'Arcalis en Andorre où je m'arrête profiter de la wifi, les plans de retrouvaille avec G&S se montent. Pas de nouvelles de G'. En repartant, 16h20, je me sens à 100% voire plus. Objectif Ordino, courses. Pas certain que le bus passe où je suis sur la G3, je rejoins El Serrat à grande vitesse. J'attrape de justesse le bus à 20 centimes et me retrouve à Ordino, courses satisfaisantes. Fort attrait pour les hamburgers à l'affiche des restos. Charmante ville qui paraît très moderne, en tout cas très bien modernisée. Reparti en bus to El Serrat, j'atteins le refuge de la Sorteny sans soucis. S'y trouvent des lits libres (gratuits et en métal) ! Je mange comme un ogre près d'un ruisseau et dors, tardivement, pas par faute d'essayer.
+
+<figure>
+    <img src="/assets/hrp-day18.jpg">
+    <figcaption>La ville d'Ordino</figcaption>
+</figure>
+
+### Day 19: Sorteny to Refuge de Juclar
+
+"Route-finding is very easy in Andorra" disait Tom, mais je me perds dans la première demi-heure, n'ayant pas suivi à la lettre ses instructions. Tous les chemins sur OSM n'existent pas jusqu'au bout ! Faible encore, mais mieux. Un gars me dépasse portant un sac et un vélo. Il grimpe comme moi jusqu'au col del Meners. De là, un certain nombre de touristes, mais chills. Légère fausse route (équivalente), j'approche la cabane de Coms de Jan par l'autre côté. J'y retrouve les deux HRPistes croisées avant Salardú. Elles sont belges, s'appellent N & K. On marche ensemble jusqu'à la cabana Sorda où elles s'arrêtent, 15h30. Les voir m'a redonné la pêche. Après une pause, je repars pour Juclar. Dure marche de 2h30, j'attrape des coups de soleil et une cloque à l'orteil gauche, indolore. Dormir est payant à Juclar... Je suis short de 10€ mais la patronne m'offre nuit et souper. Soupe, boeuf, riz, "there's more if you want" - mon amour pour cette dame est infini. Solide nuit.
+
+<figure>
+    <img src="/assets/hrp-day19.jpg">
+    <figcaption>En descendant du col del Meners</figcaption>
+</figure>
+
+### Day 20: Juclar to L'Hospitalet-Près-l'Andorre
+
+Jolis lacs passé le col d'Albe. Peu de gens par ici, deux trois petits groupes. Ceux là semblent du coin, plantent leurs tentes et pêchent je crois. Ils ont de la montée à faire depuis L'Hospitalet pourtant. Du GR, du GR, du GR... Cette ville a un style très particulier. Un pipeline qui la traverse, du bitume noir parmi des veilles maisons à moitié retapées. Camping peucher though. Les plans sont faits, G&S me rejoignent ici demain soir. Mon zéro day est arrivé !
+
+<figure>
+    <img src="/assets/hrp-day20.jpg">
+    <figcaption>Descente vers L'Hospitalet</figcaption>
+</figure>
+
+### Day 21: L'Hospitalet-Près-l'Andorre
+
+Direction boulangerie pour le petit dej, espérant croiser les belges malgré l'heure tardive - 10h. Je me trouve un banc face à la mairie et au retour les croise sur la terrace du bar-épicerie. Elles étaient je crois là à l'aller mais je les avais pas reconnues. Elles repartent en Belgique en bus dans 20 minutes ! Finirons une prochaine fois. Elles s'attendaient à croiser au gîte un groupe de trois français, je dis que je leur passerai le bonjour à l'occasion et les quitte. Lessive, siestes, douche, le bus arrive, 19h. Here they are! Avec des gros sacs, bouffe en conserve. Camping. S a crevé son pad sans cause probable, réparé avec le kit du xtherm de G.
+
+<figure>
+    <img src="/assets/hrp-day21.jpg">
+    <figcaption>L'Hospitalet-Près-L'Andorre</figcaption>
+</figure>
+
+### Day 22: L'Hospitalet-Près-l'Andorre to Étang des Fourrats
+
+Chemin tranquille, Cauterets-sque jusqu'au refuge des Bésines où on s'arrête manger. Après-midi de belle montagne, pleine de lacs, quelques passages rocheux, et une forêt étrangement sparse d'épicéas avant les Fourrats. L'étang est juste devant le Carlit, magnifique. Tom déconnait pas. G discute avec des marmottes ; on sèche nos affaires. Plein de gens campent un peu plus bas que nous.
+
+<figure>
+    <img src="/assets/hrp-day22.jpg">
+    <figcaption>Entre les Bésines et le Carlit</figcaption>
+</figure>
+
+### Day 23: Étang des Fourrats to Saillagouse
+
+Carlit ! Suite à un pari sur ma frilosité jambière, je porte le short rose de S, et pour bien faire, son kway 80s-style. G, et particulièrement S, galèrent dans la montée. Elle est longue, et constante. Au sommet en 45 minutes, j'y trouve un vieux apparemment ici depuis un bon moment. Photos, on discute. Il est de Saint-Brieuc, dans l'association Le Chemin Sauvage qui cherche à créer un chemin en V sur toute la France, évitant les grandes villes. Saint-Brieuc, Carlit, Ardennes, le V. Après 15 minutes au sommet, il se charge de monde. Photos de groupe dans les nuages, en tenue, et on redescent l'autre versant. Monde fou, et tout commence à m'agacer. Les gens, leurs chiens, leurs familles, la lenteur de G&S dont je ne réalise pas qu'ils sont crevés. L'atteinte des Bouillouses est misérable, sauf pour S me parlant de sa semaine mario.
+
+Tout est mieux à l'étape qui suit et je retrouve une forme de civilité. Courses pas ouf à Bolquère, et mon parrain nous prend sur la route vers Eyne: escale chez de la famille à moi. Repas de soupe, saucisson, salade, oeuf, superbe. Lérot.
+
+<figure>
+    <img src="/assets/hrp-day23.jpg">
+    <figcaption>Le Carlit, face Ouest</figcaption>
+</figure>
+
+### Day 24: Saillagouse to Noufonts
+
+Petit déjeuner parfait, pain beurre, confiture, miel, ... Courses au marché puis à Spar, pour quatre jours. Rôti, glace à midi. Puis il est temps de partir, ~15h on nous dépose à Eyne. Jolie remontée de la vallée d'Eyne. On suit Tom et décidons de poursuivre sur les crêtes. Coucher de soleil. On descend du col de Noufonts pour camper, bon terrain mais beaucoup de vent, dure nuit.
+
+<figure>
+    <img src="/assets/hrp-day24.jpg">
+    <figcaption>Le soir sur les crêtes, après la vallée d'Eyne</figcaption>
+</figure>
+
+## Postface
+
+[lp]: https://lighterpack.com/r/a304r5
+[tom]: https://www.cicerone.co.uk/the-pyrenean-haute-route-third
