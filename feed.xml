@@ -1,4 +1,249 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-14T21:05:21+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts, by Johan Manuel</subtitle><entry><title type="html">Porting Doom</title><link href="http://localhost:4000/porting-doom/" rel="alternate" type="text/html" title="Porting Doom" /><published>2020-12-15T00:00:00+01:00</published><updated>2020-12-15T00:00:00+01:00</updated><id>http://localhost:4000/porting-doom</id><content type="html" xml:base="http://localhost:4000/porting-doom/">&lt;p&gt;&lt;img src=&quot;/assets/doom.jpg&quot; alt=&quot;Doom running on SnowflakeOS&quot; class=&quot;thumbnail&quot; title=&quot;The Doomslayer has awoken&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-01-22T11:59:30+01:00</updated><id>/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts</subtitle><entry><title type="html">HRP - Notes de voyage</title><link href="/hiking/hiking-the-pyrenees/" rel="alternate" type="text/html" title="HRP - Notes de voyage" /><published>2021-01-21T00:00:00+01:00</published><updated>2021-01-21T00:00:00+01:00</updated><id>/hiking/hiking-the-pyrenees</id><content type="html" xml:base="/hiking/hiking-the-pyrenees/">&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-path.png&quot; /&gt;
+&lt;/figure&gt;
+&lt;p&gt;En août 2020, j’ai entrepris de marcher le long de la Haute Route Pyrénéenne, ou HRP, depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée. J’ai documenté le voyage au jour le jour, dont le résumé est fait ici.&lt;/p&gt;
+
+&lt;p&gt;Avant le covid, le plan était de randonner le Kungsleden en Suède ; plan tombé à l’eau au profit d’une alternative locale, plus technique et finalement plus ambitieuse. C’était ma première randonnée en solo, et de loin la plus longue, et j’en garde des souvenirs géniaux - ce moi d’août était facilement le meilleur de 2020 pour moi. Pas un seul réveil difficile, pas une seule journée ordinaire. Jour après jour, j’ai noté un résumé de mes journées, retranscris ici presque tels quels.&lt;/p&gt;
+
+&lt;p&gt;La liste de mon équipement est disponible sur &lt;a href=&quot;https://lighterpack.com/r/a304r5&quot;&gt;lighterpack&lt;/a&gt;. En terme de préparation, j’avais mon expérience passée, des traces GPX, et le &lt;a href=&quot;https://www.cicerone.co.uk/the-pyrenean-haute-route-third&quot;&gt;guide de Tom Martens&lt;/a&gt;&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;the man can write, believe it&lt;/span&gt;&lt;/sup&gt; au format ebook.&lt;/p&gt;
+
+&lt;h2 id=&quot;journal&quot;&gt;Journal&lt;/h2&gt;
+
+&lt;h3 id=&quot;day-1-cauterets-to-oulettes-de-gaube&quot;&gt;Day 1: Cauterets to Oulettes de Gaube&lt;/h3&gt;
+
+&lt;p&gt;Bivouac au pied du Vignemale, face Nord. Pas de difficultés ce matin à la descente du train, ni logistiques ni autres. De Cauterets, le chemin longe une rivière à l’ombre, nombreuses cascades. Cagnard l’après-midi lors de l’ascension vers le refuge de la Oulette de Gaube. Je croise à ce refuge un gars ayant l’air ultralight, à son sac et à sa sawyer mini&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;il m’indique que celles-ci peuvent se visser sur les bouteilles de Perrier&lt;/span&gt;&lt;/sup&gt;. K, parti de Hendaye le 6 juin. Rennais ! Il attendait sa trail family. M, prof de philo, D, vieux à qui j’ai peu parlé (il vient de perdre son portable: coup dur)&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;quelqu’un l’a trouvé, il l’a récupéré à Bagnères de Luchon !&lt;/span&gt;&lt;/sup&gt;, V et P.&lt;/p&gt;
+
+&lt;p&gt;Ils tentent le Petit Vignemale demain matin, je m’engage à les suivre, sans promesse sur le reste de la journée: l’étape d’aujourd’hui leur a semblé facile, reposante, alors qu’elle m’a tué. J’avais pour plan de bivouaquer n’importe où avant Gavarnie, faire mes courses le lendemain matin, et potentiellement suivre la HRP. Je crois maintenant que c’est ce que je vais faire. Marcher seul et sans contraintes m’attire plus pour l’instant. Quitte à retrouver ce groupe plus tard. Ces gens sont tellement chill, j’aurais aimé pouvoir discuter correctement avec eux. Ils sont tous plus agés que moi, ont un job, se connaissent depuis quelques semaines ; ils ont leurs codes. Un orage éclate à quelques kilomètres. La pluie s’intensifie.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day1.jpg&quot; /&gt;
+    &lt;figcaption&gt;Le refuge des Oulettes, au pied du Vignemale&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-2-oulettes-de-gaubes-to-gavarnie&quot;&gt;Day 2: Oulettes de Gaubes to Gavarnie&lt;/h3&gt;
+
+&lt;p&gt;Gros orage hier soir qui a secoué la tente déjà mal pitchée. It held. Ce matin, les grégaires du GR n’étaient plus deter à faire le Petit Vignemale, à cause du vent, entre autres. Je les quitte, gravis la Hourquette d’Ossoue puis le Petit Vignemale. 3 km de haut ! À la descente je retrouve les gens à Baysellance, je n’y reste pas. Ils me rattrapent vite. Premier river crossing pieds trempés. Au barrage d’Ossoue, pause de quelques heures pour moi. Le groupe repart direction Gavarnie, moi je vise le refuge d’avant. La fin de journée est superbe: personne ou presque sur le GR. Au moment de poser ma tente au refuge de la Grange de Holle, M débarque: ils n’ont pas trouvé de place au camping de Gavarnie. Je suis décidé à prendre la HRP le lendemain.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day2.jpg&quot; /&gt;
+    &lt;figcaption&gt;Descente dans la vallée d'Ossoue&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-3-gavarnie-to-héas&quot;&gt;Day 3: Gavarnie to Héas&lt;/h3&gt;
+
+&lt;p&gt;Extra solide journée, que j’avais pensé courte. Ascension épuisante à la Hourquette d’Alans le matin, après avoir fait des courses à Gavarnie, village au final sympathique. Acheté une serviette et de la bouffe: erreur, oublié le fromage, et la florette passe mal. Après-midi dans le cirque d’Estaube, chaleur écrasante. J’y ai vu une marmotte en mangeant, et un curieux animal que j’aurais dit félin&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;sûrement une autre marmotte&lt;/span&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lessive avant le lac des Gloriettes, destination de picnic prisée. J’opte pour contourner le lac par le Sud, évitant le bitume pris par la HRP, direction cabane des Groutes. J’apprends alors ce qu’IGN appelle “autre chemin”, et que celui-ci remonte à 2000m… Glorieuse solitude avec magnifique vue. Descente raide à Héas où je pose ma tente au camping attenant à l’auberge de la Munia, les Cairns. Ambiance &lt;em&gt;Comme un Avion&lt;/em&gt;, et surtout, une douche ! Boutons aux épaules, je change de haut. Tant pis pour mes bras, je mettrais de la crème solaire&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;pas de manches sur celui-ci :/&lt;/span&gt;&lt;/sup&gt;. Demain objectif Lacs de Barroude, et le lendemain, Parzán.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day3.jpg&quot; /&gt;
+    &lt;figcaption&gt;Pitch perfect au camping d'Héas&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-4-héas-to-lacs-de-barroude&quot;&gt;Day 4: Héas to Lacs de Barroude&lt;/h3&gt;
+
+&lt;p&gt;Seulement la moitié d’une étape selon Cicerone, effectivement j’arrive tôt. C’est une très bonne chose, les lacs de Barroude sont mon idée du paradis sur Terre. Le mur de Barroude surplombe deux lacs issus d’un glacier. La vallée est verdoyante et accidentée. Des centaines de moutons. Le plus grand des deux lacs possède quelques îlots et deux presqu’îles. À mon arrivée, j’aperçois un randonneur chillant sur la première presqu’île, sorte de volcan miniature. Je m’installe sur la suivante. Baignade, juste une minute, l’eau est fraîche. Je me suis écorché l’orteil gauche :/ Fissuré ? J’ai ici un gros cal douloureux depuis un moment. En venant ici, la Hourquette d’Héas était à couper le souffle. Un trou de deux mètres dans la roche sépare deux vallées, avec un souffle extraordinaire. Comme si tout le vent d’une vallée passait là pour rejoindre d’autre. Le dénivelé ne m’a pas posé de soucis aujourd’hui. Habitude ? Demain, Parzán, journée très facile si mon orteil coopère.&lt;/p&gt;
+
+&lt;p&gt;Vraiment pas satisfait de mon système de bouffe. Selon mes estimations, j’ai mangé 1614 kcal aujourd’hui… Avec fromage ça aurait été 2000 kcal, toujours pas ouf.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day4.jpg&quot; /&gt;
+    &lt;figcaption&gt;Départ des lacs de Barroude&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-5-barroude-to-parzán&quot;&gt;Day 5: Barroude to Parzán&lt;/h3&gt;
+
+&lt;p&gt;Des vieux m’indiquaient des isards ce matin mais nulle trace. Bain près de la grande route - la chaleur me tue. Courses ratées à Parzán: 3600 kcal pour trois jours → j’allais mourrir de faim. Demain je pars à Bielsa chercher un distributeur de billets, plus de bouffe, de quoi me sustenir et payer le repas d’auberge à Viados ou Soula.&lt;/p&gt;
+
+&lt;p&gt;Parler espagnol me fait perdre 50 points de QI.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day5.jpg&quot; /&gt;
+    &lt;figcaption&gt;En s'éloignant de Parzán&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-6-parzán-to-añes-cruces&quot;&gt;Day 6: Parzán to Añes Cruces&lt;/h3&gt;
+
+&lt;p&gt;Impossible de rejoindre Bielsa: le stop ne marche pas. Provisions++ à Parzán (oréos !) et je remonte cette satané pente. Un vieux me demande un indice: ai-je vu sa femme&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt; non ! j’ai pas eu le fin mot de l’histoire&lt;/span&gt;&lt;/sup&gt; ? Le camping près du refuge de Viados est fermé&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;et pas moyen de camper au refuge: il est en dessous de 2000m&lt;/span&gt;&lt;/sup&gt;… Peu importe, j’avais placé cette journée sous le signe de la sueur et de la fatigue. Je push jusqu’à la cabane d’Añes Cruces, dépassant quatre espagnols que je retrouverai là bas. Devant la cabane, des Allemands m’indiquent la présence d’un français à l’intérieur. Un HRPiste UL ! On discute de gear, de plans, du terrain&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;”s’il fallait démonter sa tente chaque fois que y’a de l’orage, on aurait pas fini” - une philosophie que j’apprécie vraiment&lt;/span&gt;&lt;/sup&gt;. Il tente de la faire en 3 semaines mais me dis prendre du retard. 6h30 tous les jours → midi sieste. Beaucoup d’expérience et de détermination, c’est impressionnant. Après une nuit passée près d’une souris dans le mur, à mal dormir sur le sol de la cabane, il me dit s’appeler T, T d’un certain forum de randonnée :)&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day6.jpg&quot; /&gt;
+    &lt;figcaption&gt;Le soleil se lève sur Añes Cruces, vu de très loin&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-7-añes-cruces-to-loudenvielle&quot;&gt;Day 7: Añes Cruces to Loudenvielle&lt;/h3&gt;
+
+&lt;p&gt;La route vers le refuge de la Soula en France est magnifique. Je monte au port d’Aigües Tortes par des “sentiers” rocailleux, géniaux. En haut, un désert de scree impressionnant, des grands oiseaux, et une source formant une large mare. La Soula me rappelle S.T.A.L.K.E.R, le refuge est au beau milieu d’une station hydroélectrique. La suite, la partie amazonie d’Océanopolis. On voyait le nuage par dessus depuis la frontière&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;il faisait si beau côté espagnol&lt;/span&gt;&lt;/sup&gt;, je serai encore dedans le lendemain. Dans la forêt descendant à Port de Prats, je croise un groupe de 7 ou 8 marcheurs, qui me trollent (“pas droit de couper”) d’abord, puis qui valident mon plan camping. Cool guys. Je prends une bonne heure d’avance dans la descente et fait la moitié du chemin jusque Loudenvielle avant qu’ils me rattrapent et m’y déposent, m’indiquant le distributeur de billets. Je rejoins le camping, a priori complet, où à l’accueil, K vient de prendre la dernière place, qu’il me propose de partager. Il l’avait déniché en appelant l’office du tourisme ! Incroyable type, incroyable chance pour moi. Douche, puis bonne discussion avec K. Après cette randonnée, il veut sortir de la société, vivre en nomade ; a été réalisateur, solide cinéphile. Quelqu’un de très très cool. Malchance, il renverse de la superglue sur ses lunettes ce qui le force à faire du stop jusqu’à Bagnères - “À quoi bon marcher ici si on n’y voit rien”. On échange nos numéros pour s’y retrouver.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day7c.jpg&quot; /&gt;
+    &lt;figcaption&gt;Brume côté français, vue du port d'Aigües Tortes&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-8-loudenvielle-to-lacs-despingo&quot;&gt;Day 8: Loudenvielle to Lacs d’Espingo&lt;/h3&gt;
+
+&lt;p&gt;Je ne repars du camping qu’à 11h, il pleuvait avant. Re-douche. Je croise D, passe le col d’Esquierry puis monte au lac d’Oô, montée interminable et surpeuplée. Lac qui me paraît surcoté, amoindri par sa popularité et le barrage qui s’y construit. On m’indique “eau pas potable” au refuge, et plus haut je trempe ma chaussure en en refaisant. Vers 20h j’approche d’Espingo, et un gars me rattrape. Il s’appelle J, est Australien, vit en France, est chercheur en machine learning et visite les lacs d’Espingo plus ou moins sur un coup de tête. Wow ! Chillax, on trouve un campsite au bord du second lac, derniers arrivés parmis une douzaine de campeurs. La brume couvre tout au dessus de nous, c’est magnifique. Il acheté sa tente pour l’occasion, est en jeans et baskets, mange dans une assiette&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;respect, il allait plus vite que moi&lt;/span&gt;&lt;/sup&gt;, ça change du monde que je croise habituellement. Je filtre, mange puis produit du Lindt: malade, je l’avais senti venir à Oô. J est allé méditer plus loin. Le matin, condensation à bloc.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day8.jpg&quot; /&gt;
+    &lt;figcaption&gt;Devant un des lacs d'Espingo, sous la brume&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-9-lacs-despingo-to-bagnères-de-luchon&quot;&gt;Day 9: Lacs d’Espingo to Bagnères de Luchon&lt;/h3&gt;
+
+&lt;p&gt;Grand froid le matin. Couplé à la condensation, je ne sens plus mes mains après avoir rangé ma tente. Au revoir à J et je pars. Peu d’eau avant je ne sais quel col où je sèche ma tente. Après celui-ci, autoroute vers Bagnères. À Superbagnères, station de ski, je traverse un troupeau de vaches. Une femme a la même idée en sens inverse et se fait frapper des cornes d’une mère&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;première fois que je vois ça; rien de grave&lt;/span&gt;&lt;/sup&gt;. J’indique le GR à un père et son fils, perdus. Je me sens comme porteur de l’idéal randonnesque. À Bagnères, glace, ice tea, courses, et je croise K. On boit un godet. Il a réparé ses lunettes et prend un zéro demain. Ne me suivra pas sur la HRP: mal au genou, et donc peu rassuré par la mention “very steep descent”, E grade du guide. Une fois de plus, on se quitte. Au camping, the usual. Beaucoup de route demain avant même de commencer l’étape. Hope for the best.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day9.jpg&quot; /&gt;
+    &lt;figcaption&gt;Superbagnères&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-10-bagnères-to-col-de-mulleres&quot;&gt;Day 10: Bagnères to Col de Mulleres&lt;/h3&gt;
+
+&lt;p&gt;Journée écrasante, physiquement mais aussi moralement. Plus de chemin pour rejoindre la HRP qu’anticipé, pas aidé par mon manque d’expérience en stop. Passé le refuge de Benasque, j’arrive à la Besurta vers 15h, début de l’étape. Ici, un monde fou, venu en bus, qui passe toutes les demi-heures. Chaleur. Passé le trou du Toro et le plateau d’Aigualluts, les touristes sont remplacés par des vaches. L’ascension devient technique, grisante. il est 17h+, je perds un peu mon sang-froid. Pas raisonnable de passer le col à cette heure-ci, d’ailleurs quand l’atteindrai-je ? Camper si tôt quand mes jambes fonctionnent et que l’ascension est si belle ? Je grimpe, repérant les lieux de bivouac possibles. Finalement, je décide que trop c’est trop, que Mulleres sera demain, et je fais demi-tour jusque près d’un étang de glacier, ~2450m. Je pitch ma tente avec des cailloux pour la première fois.&lt;/p&gt;
+
+&lt;p&gt;19h30, des espagnols passent ma tente, ils vont grimper le col. Je questionne mon choix de remettre l’ascension à demain, j’aurais finalement pu dormir en cabane. Mon corps me dit que j’ai bien fait. À moins d’un orage cette nuit, mais vu le grand ciel bleu, comment serait-ce posssible ?&lt;/p&gt;
+
+&lt;p&gt;20h+: en fait le sol sous ma tente est froid. Dehors, il fait encore chaud. J’ai pas l’expérience d’un espagnol, faut pas que je m’y compare. Maintenant je saurai.&lt;/p&gt;
+
+&lt;p&gt;Qu’est-ce que c’est beau. Seul, pas une vache, dans la vallée d’Escaleta. Demain matin sera glacial, et le soleil ne se lèvera pas sur ma tente avant 10h au moins, caché par je ne sais quelle barrière rocheuse adjacente au Tuc de Mulleres. Such is life. Pour l’instant, j’adore être ici. Je m’en veux un peu d’avoir laissé K. Je me promets de le rejoindre au moins une fois, lui payer un godet.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day10.jpg&quot; /&gt;
+    &lt;figcaption&gt;Mon spot de bivouac, au bord de l'eau&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-11-mulleres-to-lac-deth-cap-deth-port&quot;&gt;Day 11: Mulleres to Lac deth Cap deth Port&lt;/h3&gt;
+
+&lt;p&gt;Montée au col longue. Ce que je prends d’abord pour le col est en fait de l’autre côté du Tuc, que je monte - 3010m. Un alpiniste du coin partage son expérience, il connaït tous les sommets à la ronde. Le guide disait du col “extremely steep descent”: very true. La suite est un chaos de pierres infini et une demie forêt jusqu’à Espitau de Vielha où je fais une courte sieste. Je décide de suivre le GR11 jusqu’au refuge de la Restanca, gagnant 3 heures, mais manquant Lac de Mar que le guide assurait des plus beau. Tant pis. Je commence cette étape suivante à 16h. Soleil. Forêt escarpée. Marche facile à l’ombre à partir de 18h+. Arrivé 21h20 j’atteins la Restanca où je suis content de ne pas rester: que des français en grands groupes types dayhikers. Je pousse jusqu’au lac indiqué campable par le guide. Mon arrivée dérange un groupe de quatre ou cinq isards. Leur position me révèle un bon spot de camping, solide nuit.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day11.jpg&quot; /&gt;
+    &lt;figcaption&gt;Le col de Mulleres, au creux de l'anse. &quot;Extremely steep&quot;.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-12-restanca-to-salardú&quot;&gt;Day 12: Restanca to Salardú&lt;/h3&gt;
+
+&lt;p&gt;Beaucoup de touristes autour du refuge de la Restanca, les chemins sont loins d’être calmes. Picnic dans un coin sympa, m’étant trompé de chemin, suivant bêtement ma trace GPX. Deux dames (allemandes ?) m’interpellent, reconnaissant un fellow HRPiste. Elle vont également se ravitailler. On discute, je les dépasse. Ma chaussure droite a un problème: un bout de semelle se décolle. Trois bouts de duct tape tiennent jusqu’à Salardú, où, surprise, il n’y a pas de superglue. Je loge au refuge Juli Soler. La patronne a fait la HRP, parle un bon français. Seul dans une chambre pour quatre. Repas extra complet. Je dors mal though: chaleur, et problème de se rendre à Vielha le lendemain, mission superglue.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day12.jpg&quot; /&gt;
+    &lt;figcaption&gt;Premier lac de la journée&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-13-salardú-to-airoto&quot;&gt;Day 13: Salardú to Airoto+&lt;/h3&gt;
+
+&lt;p&gt;Je manque le bus → stop to Vielha. J’attends 9h que le supermarché ouvre → no superglue, je cherche le Casino indiqué, galère et trouve. À 10h, je prends le bus pour Salardú. 10h35, ma chaussure est réparée, on the road again. J’oublie près d’un banc mon buff, il me manqué déjà. Passés les premiers Estanys de Baciver surpeuplés, je mange aux Rosaris près des chevaux, regardant ma future montagne, le Tuc de Marimanha. Approche quasi frontale d’une pente raide, ça marche. En haut, je m’aperçois que le tonnerre continue de gronder à l’Ouest, j’accélère. Le col d’Airoto requiert un peu d’escalade inversée, et j’y fait ma première chute: RAS. La section “giant boulders” ne déçoit pas. J’ai trop poussé la descente, je remonte une pente à 80% sur 100m jusqu’au prochain col: je skip le refuge dont j’entends venir des éclats de voix depuis une heure. Je trouve à camper dans la descente du col, avant l’endroit indiqué dans le guide, un tarn plus bas. J’ai peu d’eau mais je suis claqué.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day13.jpg&quot; /&gt;
+    &lt;figcaption&gt;Au col d'Airoto, devant atteindre le col en haut à gauche&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-14-airoto-to-alós-disil&quot;&gt;Day 14: Airoto to Alós d’Isil++&lt;/h3&gt;
+
+&lt;p&gt;Dans la decente, je fais un combat de regard avec un isard. Je fais mon eau/lessive/dej au petit lac plus bas. Sur l’autre rive, quelqu’un y fait également ses affaires. En repartant, je le salue, lui demande s’il fait la HRP - “Oui, c’est la HRP”. Il est Belge, parle français. “Quel guide utilises-tu ?” “Cicerone, en anglais” “C’est moi qui l’ait écrit !” C’est Tom Martens, mon guide en personne ! Il ressemble à mon prof de maths de spé. Passionné et passionnant, me questionne sur mon chemin, mon ravitaillement, mon séjour au refuge de Salardú… Il grimpe les 3K des Pyrénées, écrit un guide sur leur ascension. N’imagine pas un été sans grimper les Pyrénées. Me montre une nouvelle route vers Alós d’Isil trouvée la veille. Me donne sa carte, on se salue. Pas pensé assez tôt à la photo, regrets là dessus. Ma journée est faite dans tous les cas. Je trouve facilement cette nouvelle route, qui longe un ruisseau, et j’atteins Alós à midi. Joli et vieux village ressemblant à Méranges. En repartant, je discute avec un genre de teneur de mini-expo historique et lui donne ma carte devenue inutile du Val d’Aran, au cas où il croise quelqu’un allant dans l’autre sens. Il me prévient d’un orage pour le soir. En mangeant près de la Noguera, je l’entends déjà, et peu après je sors le kway. Vers 15h peut-être c’est le déluge et la grêle. Je marche dans le ruisseau ayant remplacé les chemins. Mon short est trempé également. Mode automatique. J’ai froids aux mains. J’atteins le petit lac à 2000m+ et plante ma tente. Je mets ce qu’il me reste de sec et m’enquiltifie, ce qui conduit à une sieste sous le restant d’orage. Je mange, trop tôt. Ressors faire de l’eau et laver mon short au passage, en caleçon. Je dors mal. Pas d’orage pourtant.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day14b.jpg&quot; /&gt;
+    &lt;figcaption&gt;La carte d'un vrai&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-15-alós-to-tavascan&quot;&gt;Day 15: Alós+ to Tavascan&lt;/h3&gt;
+
+&lt;p&gt;Je dépasse un vieux HRPiste en montant le col. J’ai mis du temps à me lever: réveillé 8h45. Mes rêves, comme toutes les nuits j’ai l’impression, sont menaçants. Un L4D2 trop difficile, une rando HRP &amp;amp; G’&amp;amp;G&amp;amp;S où mes semelles se sont entièrement décollées… On parle un peu gear&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;il a un sac katabatic !&lt;/span&gt;&lt;/sup&gt;, je le dépasse.&lt;/p&gt;
+
+&lt;p&gt;L’estany major est grandiose, une mer intérieure avec houle: vent et pluie pendant 20 minutes. Je passe trois lacs et atteins Enric Pujol, où je me pose pour manger. S’y trouve un HRPiste sur le départ, sympa. En faisant une pause plus tard, un couple me dépasse. Fascinés par le bon état de mes chaussures. Lui a remplacé les siennes, elle va très prochainement devoir le faire. Ils sont partis de Cauterets le même jour que moi&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;comme beaucoup de français, ils suivent un autre guide que le mien: je ne les reverrai pas&lt;/span&gt;&lt;/sup&gt; ! J’atteins le camping de Bordes de Graus à Tavascan, un peu bruyant mais sympa.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day15.jpg&quot; /&gt;
+    &lt;figcaption&gt;Les trois lacs et le refuge Enric Pujol&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-16-tavascan-to-certascan&quot;&gt;Day 16: Tavascan to Certascan&lt;/h3&gt;
+
+&lt;p&gt;Peu de choix à l’épicerie de Tavascan - joli village. Je prends des conserves pour la première fois, on verra. Reparti en stop, et rapidemment à Noarrre. Trop rapidemment peut-être, maintenant que mon sac est très lourd: les tendons de ma cheville gauche/intérieur crissent. Trop de touristes jusqu’à l’étang précédant le col de Certascan. Je souffre, j’ai vraiment peur que ça dure, ça mettrait fin à ma marche. Je renonce au pic à cause de ça, alors que Tom me l’avait décrit comme facile &amp;amp; worth it. Descente du col, je croise un type, Jamie-looking, avec un gros sac mais ne faisant pas la HRP: il se balade avec un ami qu’il dit berger, portant une semaine de bouffe. Il photographie une pleine lune. Je me prends un sandwich au refuge de Certascan. Kevin avait raison, ces sandwichs sont vides. Un peu par erreur, j’ai campé au lac d’avant celui de Jamie &amp;amp; co - tout le coin est paradisiaque. Pour prendre leur noms et leurs ballistos, j’irai leur dire bonjour demain matin. Fasse Cauchy que ma jambe aille mieux alors.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day16.jpg&quot; /&gt;
+    &lt;figcaption&gt;Noarre, village inaccessible par la route&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-17-certascan-to-pla-de-boet&quot;&gt;Day 17: Certascan to Pla de Boet&lt;/h3&gt;
+
+&lt;p&gt;Petite pluie et vent, très gros vent le matin. Je skip le salut à Fred &amp;amp; Jamie. D’abord coincé derrière un grand groupe de randonneurs à la semaine dans la descente des lacs de Romedo, je vais ensuite me perdre dans une vallée sans nom où se trouve le Riu de Guiló, au Nord Nord Est quand je devais aller plein Sud… Perdu une heure, une heure et demie dans un relatif mauvais temps. Ma jambe marche ! J’ai des relances, mais dans mes deux jambes alternativement. J’ai dû abuser de la droite en compensant, puis de la gauche… Une fois dans la bonne vallée, gigantesque descente sans croiser âme qui vive, magnifique, sauvage. J’entame mes boîtes. Au fond de la vallée, au pont de Boavi, quelques touristes, familles etc… Disparus en haut de la remontée majeure. Là commence un orage. Je pousse un peu plus loin que nécessaire mais cette fois ma tente est plantée avant le gros de la tempête. Terrible pitch à 5 sardines. Grêle, vent qui lance ma tente entière dans toutes les directions. La sardine arrière droite paraît prête à lâcher mais tient bon contre tout bon sens. Je finis par sortir le quilt le vent calmé. Après 1h30 de pause, je décampe. Un isard s’enfuit près des lacs de Baborte. Il est tard mais je me sens de continuer. Grande descente avec pas mal de forêt jusque Pla de Boet. 1850m, en dessous de l’altitude légale de camping, pas pensé. Un couple d’espagnols y campe déjà, 21h. Ils devaient grimper le pic d’Estats aujourd’hui mais ont remis au lendemain à cause de la météo - good call. Ils m’aident à monter ma tente.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day17.jpg&quot; /&gt;
+    &lt;figcaption&gt;La montagne après l'orage&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-18-boet-to-refuge-de-sorteny-andorre&quot;&gt;Day 18: Boet to Refuge de Sorteny, Andorre&lt;/h3&gt;
+
+&lt;p&gt;Mal dormi, et condensation. Quelques tentes dans l’interminable montée vers Port de Boet, la frontière. Même dans la descente vers la Soucarrane je me sens assez faible. Pas plus mal au jambes que d’habitude, mais pas de puissance derrière. Grosse boîte de tortellinis pour compenser. Port de Rat, difficile alors que le chemin n’a rien d’exceptionnellement dur. Je me trompe d’ailleurs avant de commencer son ascension, je descends trop bas, de ~150m. Coup au moral qui m’aide pas non plus. Paracetamol en haut. Je descends jusqu’à la station de ski d’Arcalis en Andorre où je m’arrête profiter de la wifi, les plans de retrouvaille avec G&amp;amp;S se montent. G’ ne viendra probablement pas. En repartant, 16h20, je me sens à 100% voire plus. Objectif Ordino, courses. Pas certain que le bus passe où je suis sur la G3&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;connaissant maintenant les marqueurs d’arrêts de bus, il serait passé ^^&lt;/span&gt;&lt;/sup&gt;, je rejoins El Serrat à grande vitesse. J’attrape de justesse le bus à 20 centimes et me retrouve à Ordino, courses satisfaisantes. Fort attrait pour les hamburgers à l’affiche des restos. Charmante ville qui paraît très moderne, en tout cas très bien modernisée. Reparti en bus to El Serrat, j’atteins le refuge de la Sorteny sans soucis. S’y trouvent des lits libres (gratuits et en métal) ! Je mange comme un ogre près d’un ruisseau et dors, tardivement, pas par faute d’essayer.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day18.jpg&quot; /&gt;
+    &lt;figcaption&gt;La ville d'Ordino&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-19-sorteny-to-refuge-de-juclar&quot;&gt;Day 19: Sorteny to Refuge de Juclar&lt;/h3&gt;
+
+&lt;p&gt;“Route-finding is very easy in Andorra” disait Tom, mais je me perds dans la première demi-heure, n’ayant pas suivi à la lettre ses instructions. Tous les chemins sur OSM n’existent pas jusqu’au bout ! Faible encore, mais mieux. Un gars me dépasse portant un sac et un vélo. Il grimpe comme moi jusqu’au col del Meners. De là, un certain nombre de touristes, mais chills. Légère fausse route (équivalente), j’approche la cabane de Coms de Jan par l’autre côté. J’y retrouve les deux HRPistes croisées avant Salardú. Elles sont belges, s’appellent N &amp;amp; K’. On marche ensemble jusqu’à la cabana Sorda où elles s’arrêtent, 15h30. Les voir m’a redonné la pêche. Après une pause, je repars pour Juclar. Dure marche de 2h30, j’attrape des coups de soleil et une cloque à l’orteil gauche, indolore. Dormir est payant à Juclar, je pensais y trouver des lits libres… Je suis short de 10€ mais la patronne m’offre nuit et souper quand même. Soupe, boeuf, riz, “there’s more if you want” - mon amour pour cette dame est infini.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day19.jpg&quot; /&gt;
+    &lt;figcaption&gt;En descendant du col del Meners&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-20-juclar-to-lhospitalet-près-landorre&quot;&gt;Day 20: Juclar to L’Hospitalet-Près-l’Andorre&lt;/h3&gt;
+
+&lt;p&gt;Jolis lacs passé le col d’Albe. Peu de gens par ici, deux trois petits groupes. Ceux là semblent du coin, plantent leurs tentes et pêchent pour certains. Ils ont de la montée à faire depuis L’Hospitalet pourtant. Du GR, du GR, du GR… Cette ville a un style très particulier. Un pipeline qui la traverse, du bitume noir parmi des veilles maisons à moitié retapées. Camping peucher though. Les plans sont faits, G&amp;amp;S me rejoignent ici demain soir. Mon zéro day est arrivé !&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day20.jpg&quot; /&gt;
+    &lt;figcaption&gt;Descente vers L'Hospitalet&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-21-lhospitalet-près-landorre&quot;&gt;Day 21: L’Hospitalet-Près-l’Andorre&lt;/h3&gt;
+
+&lt;p&gt;Direction boulangerie pour le petit dej, espérant croiser les belges malgré l’heure tardive - 10h. Je me trouve un banc face à la mairie et au retour les croise sur la terrace du bar-épicerie. Elles étaient je crois là à l’aller mais je les avais pas reconnues. Elles repartent en Belgique en bus dans 20 minutes ! Finirons une prochaine fois. Elles s’attendaient à croiser au gîte un groupe de trois français, je dis que je leur passerai le bonjour à l’occasion&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;finalement jamais croisés; on ne suivait pas le même guide&lt;/span&gt;&lt;/sup&gt; et les quitte. Lessive, siestes, douche, le bus arrive, 19h. Here they are! Avec des gros sacs, bouffe en conserve. Camping. S a crevé son tapis de sol sans cause probable, réparé avec le kit du xtherm de G.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day21.jpg&quot; /&gt;
+    &lt;figcaption&gt;L'Hospitalet-Près-L'Andorre&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-22-lhospitalet-près-landorre-to-étang-des-fourrats&quot;&gt;Day 22: L’Hospitalet-Près-l’Andorre to Étang des Fourrats&lt;/h3&gt;
+
+&lt;p&gt;Chemin tranquille, Cauterets-sque jusqu’au refuge des Bésines où on s’arrête manger. Après-midi de belle montagne, pleine de lacs, quelques passages rocheux, et une forêt étrangement sparse d’épicéas avant les Fourrats. L’étang est juste devant le Carlit, magnifique. Tom déconnait pas. G discute avec des marmottes ; on sèche nos affaires. Plein de gens campent un peu plus bas que nous.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day22.jpg&quot; /&gt;
+    &lt;figcaption&gt;Entre les Bésines et le Carlit&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-23-étang-des-fourrats-to-saillagouse&quot;&gt;Day 23: Étang des Fourrats to Saillagouse&lt;/h3&gt;
+
+&lt;p&gt;Carlit ! Suite à un pari sur ma frilosité jambière, je porte le short rose de S, et pour bien faire, son kway 80s-style. G, et particulièrement S, galèrent dans la montée. Elle est longue, et constante. Au sommet en 45 minutes, j’y trouve un vieux apparemment ici depuis un bon moment. Photos, on discute. Il est de Saint-Brieuc, dans l’association &lt;a href=&quot;https://lecheminsauvage.com/&quot;&gt;Le Chemin Sauvage&lt;/a&gt; qui cherche à créer un chemin en V sur toute la France, évitant les grandes villes. Saint-Brieuc, Carlit, Ardennes, le V. Après 15 minutes, le sommet se charge de monde. Photos de groupe dans les nuages, en tenue, et on redescent l’autre versant. Monde fou, et tout commence à m’agacer. Les gens, leurs chiens, leurs familles, la lenteur de G&amp;amp;S dont je ne réalise pas qu’ils sont crevés. L’atteinte des Bouillouses est misérable, sauf pour S me parlant de sa semaine mario.&lt;/p&gt;
+
+&lt;p&gt;Tout est mieux à l’étape qui suit et je retrouve une forme de civilité. Courses pas ouf à Bolquère, et mon parrain nous prend sur la route vers Eyne: escale chez de la famille à moi. Repas de soupe, saucisson, salade, oeuf, superbe. Lérot.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day23.jpg&quot; /&gt;
+    &lt;figcaption&gt;Le Carlit, face Ouest&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;day-24-saillagouse-to-noufonts&quot;&gt;Day 24: Saillagouse to Noufonts&lt;/h3&gt;
+
+&lt;p&gt;Petit déjeuner parfait, pain beurre, confiture, miel, … Courses au marché puis à Spar, pour quatre jours. Rôti, glace à midi. Puis il est temps de partir, ~15h on nous dépose à Eyne. Jolie remontée de la vallée d’Eyne. On suit Tom et décidons de poursuivre sur les crêtes. Coucher de soleil. On descend du col de Noufonts pour camper, bon terrain mais beaucoup de vent, dure nuit.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp-day24.jpg&quot; /&gt;
+    &lt;figcaption&gt;Le soir sur les crêtes, après la vallée d'Eyne&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;postface&quot;&gt;Postface&lt;/h2&gt;</content><author><name>Johan Manuel</name></author><category term="hiking" /><category term="pyrenees" /><category term="hrp" /><category term="thru-hike" /><summary type="html">En août 2020, j’ai entrepris de marcher le long de la Haute Route Pyrénéenne, ou HRP, depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée. J’ai documenté le voyage au jour le jour, dont le résumé est fait ici.</summary></entry><entry><title type="html">Porting Doom</title><link href="/porting-doom/" rel="alternate" type="text/html" title="Porting Doom" /><published>2020-12-15T00:00:00+01:00</published><updated>2020-12-15T00:00:00+01:00</updated><id>/porting-doom</id><content type="html" xml:base="/porting-doom/">&lt;p&gt;&lt;img src=&quot;/assets/doom.jpg&quot; alt=&quot;Doom running on SnowflakeOS&quot; class=&quot;thumbnail&quot; title=&quot;The Doomslayer has awoken&quot; /&gt;
 Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.&lt;/p&gt;
 
 &lt;h2 id=&quot;doooom&quot;&gt;Doooom&lt;/h2&gt;
@@ -74,7 +319,7 @@ Making this change was &lt;em&gt;hard&lt;/em&gt;. At some point, nothing worked 
   &lt;li&gt;Fixing some of these &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TODO&lt;/code&gt;s…&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Hopefully one of those will be done by next post, see you then :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.</summary></entry><entry><title type="html">Filesystems for dummies</title><link href="http://localhost:4000/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>http://localhost:4000/filesystems-for-dummies</id><content type="html" xml:base="http://localhost:4000/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
+&lt;p&gt;Hopefully one of those will be done by next post, see you then :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.</summary></entry><entry><title type="html">Filesystems for dummies</title><link href="/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>/filesystems-for-dummies</id><content type="html" xml:base="/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
 Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.&lt;/p&gt;
 
 &lt;p&gt;But first, take a look at that whole new logo, designed by the magnificent &lt;a href=&quot;https://github.com/sylvain-kern&quot;&gt;sylvain-kern&lt;/a&gt; &amp;lt;3 The sign of a new era of prosperity for SnowflakeOS, to be sure.&lt;/p&gt;
@@ -258,7 +503,7 @@ A typical handler looks something like that:&lt;/p&gt;
 
 &lt;h4 id=&quot;on-that-note&quot;&gt;On that note…&lt;/h4&gt;
 
-&lt;p&gt;I’ll see you next time, hopefully talking about ELF loading and disk drivers and as many bugs as possible :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.</summary></entry><entry><title type="html">A terminal, at last</title><link href="http://localhost:4000/a-terminal-at-last/" rel="alternate" type="text/html" title="A terminal, at last" /><published>2020-05-24T00:00:00+02:00</published><updated>2020-05-24T00:00:00+02:00</updated><id>http://localhost:4000/a-terminal-at-last</id><content type="html" xml:base="http://localhost:4000/a-terminal-at-last/">&lt;p&gt;&lt;img src=&quot;/assets/sos-paint.jpg&quot; alt=&quot;picture&quot; class=&quot;thumbnail&quot; title=&quot;The author wasn't fucking around _this_ week.&quot; /&gt;
+&lt;p&gt;I’ll see you next time, hopefully talking about ELF loading and disk drivers and as many bugs as possible :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.</summary></entry><entry><title type="html">A terminal, at last</title><link href="/a-terminal-at-last/" rel="alternate" type="text/html" title="A terminal, at last" /><published>2020-05-24T00:00:00+02:00</published><updated>2020-05-24T00:00:00+02:00</updated><id>/a-terminal-at-last</id><content type="html" xml:base="/a-terminal-at-last/">&lt;p&gt;&lt;img src=&quot;/assets/sos-paint.jpg&quot; alt=&quot;picture&quot; class=&quot;thumbnail&quot; title=&quot;The author wasn't fucking around _this_ week.&quot; /&gt;
 Let’s face it, it’s hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.&lt;/p&gt;
 
 &lt;p&gt;But wait, you scream, last time you didn’t have moving windows, a mouse pointer, or the ability to get input from userspace, how come now we’re implementing a terminal?&lt;br /&gt;
@@ -520,7 +765,7 @@ If you’re like me and didn’t know about it, &lt;code class=&quot;language-pl
 
 &lt;hr /&gt;
 
-&lt;p&gt;On a final note, I wanted to thank /r/osdev’s users for sharing their progress, in particular skiftOS’s developer, whose beautiful UI and OS reminded me to try a little harder, because the results are clearly worth it.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Let’s face it, it’s hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.</summary></entry><entry><title type="html">A need for speed</title><link href="http://localhost:4000/a-need-for-speed/" rel="alternate" type="text/html" title="A need for speed" /><published>2020-05-08T00:00:00+02:00</published><updated>2020-05-08T00:00:00+02:00</updated><id>http://localhost:4000/a-need-for-speed</id><content type="html" xml:base="http://localhost:4000/a-need-for-speed/">&lt;p&gt;&lt;img src=&quot;/assets/snowy_bg.jpg&quot; alt=&quot;thumbnail&quot; class=&quot;thumbnail&quot; title=&quot;I choose the worst wallpapers&quot; /&gt;
+&lt;p&gt;On a final note, I wanted to thank /r/osdev’s users for sharing their progress, in particular skiftOS’s developer, whose beautiful UI and OS reminded me to try a little harder, because the results are clearly worth it.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Let’s face it, it’s hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.</summary></entry><entry><title type="html">A need for speed</title><link href="/a-need-for-speed/" rel="alternate" type="text/html" title="A need for speed" /><published>2020-05-08T00:00:00+02:00</published><updated>2020-05-08T00:00:00+02:00</updated><id>/a-need-for-speed</id><content type="html" xml:base="/a-need-for-speed/">&lt;p&gt;&lt;img src=&quot;/assets/snowy_bg.jpg&quot; alt=&quot;thumbnail&quot; class=&quot;thumbnail&quot; title=&quot;I choose the worst wallpapers&quot; /&gt;
 At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -756,7 +1001,7 @@ At the end of the last post we had a pretty solid memory allocator. Where does t
 
 &lt;h3 id=&quot;mission-accomplished&quot;&gt;Mission accomplished!&lt;/h3&gt;
 
-&lt;p&gt;We will for sure get smooth mouse movements and smooth window dragging in the next article now &lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;plot twist: we already do&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;, until next time!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!</summary></entry><entry><title type="html">Taming memory allocators</title><link href="http://localhost:4000/advanced-memory-allocation/" rel="alternate" type="text/html" title="Taming memory allocators" /><published>2020-03-07T00:00:00+01:00</published><updated>2020-03-07T00:00:00+01:00</updated><id>http://localhost:4000/advanced-memory-allocation</id><content type="html" xml:base="http://localhost:4000/advanced-memory-allocation/">&lt;p&gt;&lt;img src=&quot;/assets/sos-spam.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?&quot; /&gt;
+&lt;p&gt;We will for sure get smooth mouse movements and smooth window dragging in the next article now &lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;plot twist: we already do&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;, until next time!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!</summary></entry><entry><title type="html">Taming memory allocators</title><link href="/advanced-memory-allocation/" rel="alternate" type="text/html" title="Taming memory allocators" /><published>2020-03-07T00:00:00+01:00</published><updated>2020-03-07T00:00:00+01:00</updated><id>/advanced-memory-allocation</id><content type="html" xml:base="/advanced-memory-allocation/">&lt;p&gt;&lt;img src=&quot;/assets/sos-spam.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?&quot; /&gt;
 Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!&lt;/p&gt;
 
 &lt;h2 id=&quot;the-basics&quot;&gt;The basics&lt;/h2&gt;
@@ -997,7 +1242,7 @@ Today I’ll be writing about memory allocation, a fairly fundamental topic, per
 &lt;h2 id=&quot;till-next-time&quot;&gt;Till next time&lt;/h2&gt;
 
 &lt;p&gt;That’s it for this post, which is already far too long, too late and all over the place.&lt;br /&gt;
-Thank you for reading till the end!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!</summary></entry><entry><title type="html">Room for graphical improvement</title><link href="http://localhost:4000/room-for-improvements/" rel="alternate" type="text/html" title="Room for graphical improvement" /><published>2019-12-30T00:00:00+01:00</published><updated>2019-12-30T00:00:00+01:00</updated><id>http://localhost:4000/room-for-improvements</id><content type="html" xml:base="http://localhost:4000/room-for-improvements/">&lt;p&gt;&lt;img src=&quot;/assets/sos-with-bg.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;It's always christmas with SnowflakeOS&quot; /&gt;
+Thank you for reading till the end!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!</summary></entry><entry><title type="html">Room for graphical improvement</title><link href="/room-for-improvements/" rel="alternate" type="text/html" title="Room for graphical improvement" /><published>2019-12-30T00:00:00+01:00</published><updated>2019-12-30T00:00:00+01:00</updated><id>/room-for-improvements</id><content type="html" xml:base="/room-for-improvements/">&lt;p&gt;&lt;img src=&quot;/assets/sos-with-bg.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;It's always christmas with SnowflakeOS&quot; /&gt;
 In the last post, I presented the first working version of SnowflakeOS’s window manager. While it worked, it had&lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;still has&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; a few important shortcomings.&lt;/p&gt;
 
 &lt;h2 id=&quot;wm-design-simple-is-too-simple&quot;&gt;WM design: simple is too simple&lt;/h2&gt;
@@ -1068,7 +1313,7 @@ It turned out to be a lot more mundane: with optimisations on, my scheduler swit
 
 &lt;h3 id=&quot;background-improvements&quot;&gt;Background improvements&lt;/h3&gt;
 
-&lt;p&gt;Notice how the wallpaper doesn’t look like a graphical glitch anymore? I picked a background, converted it to raw RGB values, stuck it in a C header with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xxd -i&lt;/code&gt; and loaded it in the buffer of my background window. At 14 MiB of header file, it’s outright heavy, but thankfully once compiled it compresses down to around 2 MiB. A PNG parser is somewhere on my todo list :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In the last post, I presented the first working version of SnowflakeOS’s window manager. While it worked, it had[1] a few important shortcomings.</summary></entry><entry><title type="html">Graphics: from pixels to windows</title><link href="http://localhost:4000/window-manager/" rel="alternate" type="text/html" title="Graphics: from pixels to windows" /><published>2019-12-15T00:00:00+01:00</published><updated>2019-12-15T00:00:00+01:00</updated><id>http://localhost:4000/window-manager</id><content type="html" xml:base="http://localhost:4000/window-manager/">&lt;p&gt;&lt;img src=&quot;/assets/kerning.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;The background is generated by setting the ith pixel to 'i | i*512 | i % 512'&quot; /&gt;
+&lt;p&gt;Notice how the wallpaper doesn’t look like a graphical glitch anymore? I picked a background, converted it to raw RGB values, stuck it in a C header with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xxd -i&lt;/code&gt; and loaded it in the buffer of my background window. At 14 MiB of header file, it’s outright heavy, but thankfully once compiled it compresses down to around 2 MiB. A PNG parser is somewhere on my todo list :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In the last post, I presented the first working version of SnowflakeOS’s window manager. While it worked, it had[1] a few important shortcomings.</summary></entry><entry><title type="html">Graphics: from pixels to windows</title><link href="/window-manager/" rel="alternate" type="text/html" title="Graphics: from pixels to windows" /><published>2019-12-15T00:00:00+01:00</published><updated>2019-12-15T00:00:00+01:00</updated><id>/window-manager</id><content type="html" xml:base="/window-manager/">&lt;p&gt;&lt;img src=&quot;/assets/kerning.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;The background is generated by setting the ith pixel to 'i | i*512 | i % 512'&quot; /&gt;
 With SnowflakeOS starting to have more of the pieces a proper hobby OS should have, it was time to make this state of affair visible from the outside. Graphics!
 Ironically, by switching away from text mode, we lose the immediate ability to print text, but as you’ll see we’re going to get it all back. At some point anyway; what’s presented here is  the beginning of this process.&lt;/p&gt;
 
@@ -1306,7 +1551,7 @@ Good thing SnowflakeOS apps are always lightning fast ;)&lt;/p&gt;
 &lt;h2 id=&quot;long-time-no-c&quot;&gt;Long time no C&lt;/h2&gt;
 
 &lt;p&gt;It’s been a while since the last entry in this blog, but I’m hoping to pick up the pace. I’ve been very busy programming-wise with school projects, but less so now.&lt;br /&gt;
-One can’t reasonably spend their time writing C#, can they?&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">With SnowflakeOS starting to have more of the pieces a proper hobby OS should have, it was time to make this state of affair visible from the outside. Graphics! Ironically, by switching away from text mode, we lose the immediate ability to print text, but as you’ll see we’re going to get it all back. At some point anyway; what’s presented here is the beginning of this process.</summary></entry><entry><title type="html">Mouse support and other PS/2 shenanigans</title><link href="http://localhost:4000/of-mice-and-keyboards/" rel="alternate" type="text/html" title="Mouse support and other PS/2 shenanigans" /><published>2019-10-14T00:00:00+02:00</published><updated>2019-10-14T00:00:00+02:00</updated><id>http://localhost:4000/of-mice-and-keyboards</id><content type="html" xml:base="http://localhost:4000/of-mice-and-keyboards/">&lt;p&gt;&lt;img src=&quot;/assets/sos-kbd.png&quot; alt=&quot;Keyboard and mouse both working&quot; class=&quot;thumbnail&quot; title=&quot;Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day.&quot; /&gt;
+One can’t reasonably spend their time writing C#, can they?&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">With SnowflakeOS starting to have more of the pieces a proper hobby OS should have, it was time to make this state of affair visible from the outside. Graphics! Ironically, by switching away from text mode, we lose the immediate ability to print text, but as you’ll see we’re going to get it all back. At some point anyway; what’s presented here is the beginning of this process.</summary></entry><entry><title type="html">Mouse support and other PS/2 shenanigans</title><link href="/of-mice-and-keyboards/" rel="alternate" type="text/html" title="Mouse support and other PS/2 shenanigans" /><published>2019-10-14T00:00:00+02:00</published><updated>2019-10-14T00:00:00+02:00</updated><id>/of-mice-and-keyboards</id><content type="html" xml:base="/of-mice-and-keyboards/">&lt;p&gt;&lt;img src=&quot;/assets/sos-kbd.png&quot; alt=&quot;Keyboard and mouse both working&quot; class=&quot;thumbnail&quot; title=&quot;Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day.&quot; /&gt;
 At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.&lt;br /&gt;
 So I went over to OSDev’s article about &lt;a href=&quot;https://wiki.osdev.org/Keyboard&quot;&gt;PS/2 keyboards&lt;/a&gt;, which sent me to the article about the &lt;a href=&quot;https://wiki.osdev.org/%228042%22_PS/2_Controller&quot;&gt;PS/2 controller&lt;/a&gt;, and I knew I wanted to do things properly, and at the same time, gain mouse support.&lt;/p&gt;
 
@@ -1438,7 +1683,7 @@ Then there are the other keys, which send multibyte scan codes. They can be iden
 If you’re really paying attention, you may notice a possible buffer overflow with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctx-&amp;gt;scancode[ctx-&amp;gt;current++]&lt;/code&gt;, but thankfully &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kbd_is_valid_scancode&lt;/code&gt; is guaranteed to return &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; before that… Hmm, this is a bit too clunky, perhaps I’ll put a proper check back in just in case I ever modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kbd_is_valid_scancode&lt;/code&gt;’s interface in the future.&lt;/p&gt;
 
 &lt;p&gt;Anyway, SnowflakeOS can now handle a full QWERTY layout. This is a bit dumb as I myself have a French, AZERTY layout; let’s just say I’m being international :)&lt;br /&gt;
-Ideally I’d move most of the keycode translation stuff to userspace where a keymap could be loaded, and there’d be no more problems.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts. So I went over to OSDev’s article about PS/2 keyboards, which sent me to the article about the PS/2 controller, and I knew I wanted to do things properly, and at the same time, gain mouse support.</summary></entry><entry><title type="html">On context switching and C programs in userland</title><link href="http://localhost:4000/switches-and-knobs/" rel="alternate" type="text/html" title="On context switching and C programs in userland" /><published>2019-10-06T00:00:00+02:00</published><updated>2019-10-06T00:00:00+02:00</updated><id>http://localhost:4000/switches-and-knobs</id><content type="html" xml:base="http://localhost:4000/switches-and-knobs/">&lt;p&gt;&lt;img src=&quot;/assets/garbage.jpg&quot; alt=&quot;Executing garbage&quot; class=&quot;thumbnail&quot; title=&quot;It's abstract art, okay?&quot; /&gt;
+Ideally I’d move most of the keycode translation stuff to userspace where a keymap could be loaded, and there’d be no more problems.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts. So I went over to OSDev’s article about PS/2 keyboards, which sent me to the article about the PS/2 controller, and I knew I wanted to do things properly, and at the same time, gain mouse support.</summary></entry><entry><title type="html">On context switching and C programs in userland</title><link href="/switches-and-knobs/" rel="alternate" type="text/html" title="On context switching and C programs in userland" /><published>2019-10-06T00:00:00+02:00</published><updated>2019-10-06T00:00:00+02:00</updated><id>/switches-and-knobs</id><content type="html" xml:base="/switches-and-knobs/">&lt;p&gt;&lt;img src=&quot;/assets/garbage.jpg&quot; alt=&quot;Executing garbage&quot; class=&quot;thumbnail&quot; title=&quot;It's abstract art, okay?&quot; /&gt;
 In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iret&lt;/code&gt; instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.&lt;/p&gt;
 
 &lt;h2 id=&quot;context-switching&quot;&gt;Context switching&lt;/h2&gt;
@@ -1544,127 +1789,4 @@ There’s a slight problem as this &lt;code class=&quot;language-plaintext highl
 &lt;p&gt;At the bottom right of the screenshot is the currently executing process. Also, notice how I sneakily increased the version number when writing this article :)&lt;/p&gt;
 
 &lt;p&gt;There’s one peculiar thing at play here worth noting: I thought it good to follow the advice from &lt;a href=&quot;https://littleosbook.github.io/#using-c-for-user-mode-programs&quot;&gt;here&lt;/a&gt;, to have an assembly prologue to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; in my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C&lt;/code&gt; programs and to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;’s return value. And to push &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;’s arguments too, in the future. But I couldn’t get GCC to put my prologue code at the entry point: it always, &lt;em&gt;always&lt;/em&gt; places a call to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; as the first instruction, then a few &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nop&lt;/code&gt;s, and only then my prologue, which of course is more of an epilogue at this point.&lt;br /&gt;
-It’s enough to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt;, and I guess if I really want my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argc&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argv&lt;/code&gt; I’ll set up the process stack myself, I’ve done that before ;)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the iret instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.</summary></entry><entry><title type="html">Getting to userspace - and back !</title><link href="http://localhost:4000/userspace/" rel="alternate" type="text/html" title="Getting to userspace - and back !" /><published>2019-09-29T00:00:00+02:00</published><updated>2019-09-29T00:00:00+02:00</updated><id>http://localhost:4000/userspace</id><content type="html" xml:base="http://localhost:4000/userspace/">&lt;p&gt;&lt;img src=&quot;/assets/userspace.jpg&quot; alt=&quot;Userspace printing&quot; class=&quot;thumbnail&quot; title=&quot;See that 'Hello, world'? Userspace!&quot; /&gt;
-Before now, SnowflakeOS ran entirely in kernel mode, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ring 0&lt;/code&gt;. Now, the time has come for it to move on to better places, those of userland, also called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ring 3&lt;/code&gt;.&lt;br /&gt;
-The transition to having processes roam free in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ring 3&lt;/code&gt; was mostly made in the series of commits from &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/a0af7081f44b3c746e661f1e5488ccb06073fa5a&quot;&gt;here&lt;/a&gt; to &lt;a href=&quot;https://github.com/29jm/SnowflakeOS/commit/3ed963cc8847f6ed92ac83c5220190600131f2c3&quot;&gt;there&lt;/a&gt;, and I encourage readers&lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;...what now?&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; to check them  out.&lt;/p&gt;
-
-&lt;h2 id=&quot;whats-a-process-anyway&quot;&gt;What’s a process, anyway?&lt;/h2&gt;
-
-&lt;p&gt;Well, as of right now, a process is described by the following structure:&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_proc_t&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_proc_t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Length of program memory in number of pages&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code_len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;uintptr_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;uintptr_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kernel_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;registers_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;registers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I’ll explain. A process consists of executable code, a stack, and an execution
-context. And another stack for execution in the kernel, I’ll get back to it.&lt;br /&gt;
-The executable code along with the stack is stored in physical memory somewhere,
-of course, but it needs to be mapped through paging to be accessible (if only to
-write the code to the physical page!), so what we store is a page directory. It
-maps addresses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0x00000000+&lt;/code&gt; to the pages containing our code, and addresses
-below our kernel to our stack pages. It also maps the kernel exactly as the
-initial kernel page directory did; it’s a copy. Notice that once the code is
-copied to physical memory, the page directory suffices to reference it; physical
-memory never moves. We only keep track of the size occupied by the code and stack,
-though I haven’t made these things dynamic yet, both are 4 MiB pages.&lt;/p&gt;
-
-&lt;p&gt;The execution context consists of basically one thing: the process’s registers, to
-the surprise of no one who’s written assembly before. Indeed, registers do not
-only include working registers like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eax&lt;/code&gt; et al, there’s also &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eip&lt;/code&gt; storing the
-address of the next instruction to be executed, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;esp&lt;/code&gt; storing the stack pointer,
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eflags&lt;/code&gt;… The page directory can be considered context too, as it
-may hold dynamically allocated memory (not yet implemented).&lt;/p&gt;
-
-&lt;h2 id=&quot;lets-switch-to-it&quot;&gt;Let’s switch to it&lt;/h2&gt;
-
-&lt;p&gt;With that said, starting a process in usermode is simply a matter of switching to
-a correctly setup page directory, and pointing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eip&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;esp&lt;/code&gt; to the right place!
-And resuming an interrupted process is the same, but restoring registers beforehand.&lt;br /&gt;
-[Edit: this was a pretty poor way of resuming a process, see &lt;a href=&quot;/2019/10/06/switches-and-knobs.html&quot;&gt;the next post&lt;/a&gt;
-for a better one]&lt;/p&gt;
-
-&lt;p&gt;The way to do these things is a bit convoluted though, as we need to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iret&lt;/code&gt; (aka
-interrupt return) to our code, we can’t just jump to it, the reason being that we
-need to change privilege level (from 0 to 3):&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;asm&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;push $0x23&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// user ds selector&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;mov %0, %%eax&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;push %%eax&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// %esp&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;push $512&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// %eflags with 9th bit set to allow calling interrupts&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;push $0x1B&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// user cs selector&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;mov %1, %%eax&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;push %%eax&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// %eip&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;iret&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;                 &lt;span class=&quot;cm&quot;&gt;/* read registers: none */&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;esp_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eip_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* inputs %0 and %1 stored anywhere */&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;%eax&quot;&lt;/span&gt;          &lt;span class=&quot;cm&quot;&gt;/* registers clobbered by hand in there */&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;getting-control-back&quot;&gt;Getting control back&lt;/h2&gt;
-
-&lt;p&gt;How do we get back to kernel mode execution once we’ve made the jump? The
-answer is twofold: through syscalls and scheduling - interrupts in both cases.
-Because right now scheduling is handled though syscalls in SnowflakeOS, I’ll
-describe only those. In our kernel, calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int $48&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eax&lt;/code&gt; set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;
-triggers the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;th interrupt: process execution stops, privilege changes to 0 and
-execution then resumes in the syscall handler. Because the kernel is mapped into
-our process’s address space, no page directory switch is needed here. However, one
-thing needs to be changed, and it’s the stack: we can’t just pollute the process’s
-stack, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x86&lt;/code&gt; gives us (forces us to use) a mechanism to switch stack as part
-of the jump to ring 0. So what’s usually done, and what I did is allocating
-memory for a kernel stack per process, and before switching to the execution of
-that process, setting the “stack-to-be-switched-to” variable (in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TSS&lt;/code&gt;, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GDT&lt;/code&gt;
-entry) to that stack.&lt;/p&gt;
-
-&lt;p&gt;Right now syscall &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield&lt;/code&gt;, and it switches execution to the process pointed
-to by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;next&lt;/code&gt; pointer in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;process_t&lt;/code&gt; structure. It’s cooperative
-multitasking, preemptive will come later.&lt;/p&gt;
-
-&lt;h2 id=&quot;collateral-damage&quot;&gt;Collateral damage&lt;/h2&gt;
-
-&lt;h3 id=&quot;kmalloc-is-dead-hail-the-new-kmalloc&quot;&gt;kmalloc is dead, hail the new kmalloc&lt;/h3&gt;
-
-&lt;p&gt;In the process of implementing that, I got rid of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;liballoc&lt;/code&gt; and replaced it with
-a dead-simple mechanism: I now map a certain zone after the kernel, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kmalloc&lt;/code&gt;
-advances a pointer through it with each allocation. Sure, it doesn’t allow freeing
-memory, but it has a great advantage: the previous &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kmalloc&lt;/code&gt; needed to modify
-kernel page tables dynamically, and those changes aren’t automatically reflected
-across all copies of the initial page directory! It’s important because when
-context switches, for instance while in kernel mode, the previous kernel stack
-must remain mapped, as there are no stack switches when privilege level doesn’t
-change.&lt;/p&gt;
-
-&lt;p&gt;I’ll reintroduce a cool allocator with the userspace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;libc&lt;/code&gt;, the kernel
-will stay simple and only grant pages at at time to processes. I’m not sure how
-I’ll distribute the virtual address space, in fact, I’ll have to think about it.
-Same way I did the kernel heap, probably, but right in the middle of
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0x0-0xC0000000&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;implementing-useful-system-calls&quot;&gt;Implementing useful system calls&lt;/h3&gt;
-
-&lt;p&gt;The real fun begins now that things are in working order: syscalls!&lt;br /&gt;
-I started with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield&lt;/code&gt; to get started with multitasking, and quickly implemented
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt;, though testing that last one took a while: I’ve spent hours debugging 
-assembly in in Bochs to get &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield&lt;/code&gt; to work.&lt;/p&gt;
-
-&lt;p&gt;Only then, I started implementing a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;putchar&lt;/code&gt; syscall. First, I needed to make my
-TTY work in processes, which involved mapping it somewhere; I decided to put it
-&lt;a href=&quot;https://github.com/29jm/SnowflakeOS/blob/36fc37d92dac7e248fb2863ba09a80813ff0e5d5/kernel/src/mem/paging.c#L41-L48&quot;&gt;in my kernel heap&lt;/a&gt;. Tada, I can print again! I should have started
-by doing that, it would have made a lot of debugging easier; but then again I’ve
-learned &lt;strong&gt;a lot&lt;/strong&gt; of assembly without it. Implementing the syscall was trivial
-after that, and I was able to get my first “Hello world” from userspace.&lt;br /&gt;
-I tried my hand at a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait&lt;/code&gt; syscall to pause a process for some time, but I
-approached it the wrong way, or at least in a way that Bochs liked, but QEMU did
-not: waiting for time to pass in the syscall handler. In QEMU, timer interrupts
-don’t trigger then, so time never passes :( I’ll get back to it from a scheduler
-perspective.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Before now, SnowflakeOS ran entirely in kernel mode, or ring 0. Now, the time has come for it to move on to better places, those of userland, also called ring 3. The transition to having processes roam free in ring 3 was mostly made in the series of commits from here to there, and I encourage readers[1] to check them out.</summary></entry></feed>
+It’s enough to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt;, and I guess if I really want my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argc&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argv&lt;/code&gt; I’ll set up the process stack myself, I’ve done that before ;)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the iret instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.</summary></entry></feed>
