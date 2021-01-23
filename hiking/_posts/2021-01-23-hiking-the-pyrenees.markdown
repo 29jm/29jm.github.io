@@ -324,7 +324,7 @@ Pas de déception à Sailfort, c'est vraiment un dernier grand rempart avant la 
 
 En recollant un morceau de semelle, un couple de randonneurs retraités me dépassent. Je les rattrape, on fait le dernier bout de route ensemble vers Banyuls. Lui finit la Trans'pyr complète en sens inverse{% anecdote 22|autre façon de dire HRP, de ce que je comprends %}, sa femme l'accompagne pour la dernière semaine. Toutes les nuits en refuge, problèmes de dos oblige, mais il marche à un sacré bon rythme. Sa semelle gauche tient à un fil - littéralement.
 
-Photos devant la mairie de Banyuls, on se quitte là. Baignade à la plage, l'eau est chaude comme elle n'a jamais été dans le Finistère. Office du tourisme, camping, pizza sur la plage. Au camping, je retrouve un des GRdistes de Las Illas ; j'ai par pur hasard choisi l'emplacement à côté du sien. Derniers préparatifs pour le train de retour, l'emménagement en colloc trois jours plus tard... Dur dormir quand c'est la dernière nuit, puis cette chaleur, constante, incomparable.
+Photos devant la mairie de Banyuls, on se quitte là. Baignade à la plage, l'eau est chaude comme elle n'a jamais été dans le Finistère. Office du tourisme, camping, pizza sur la plage. Au camping, je retrouve un des GRdistes de Las Illas ; j'ai par pur hasard choisi l'emplacement à côté du sien. Derniers préparatifs pour le train de retour, l'emménagement en colloc trois jours plus tard... Dur de dormir quand c'est la dernière nuit, puis cette chaleur, constante, incomparable.
 
 <figure>
     <img src="/assets/hrp/hrp-day30.jpg">
