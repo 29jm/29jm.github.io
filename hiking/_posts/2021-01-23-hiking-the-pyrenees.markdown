@@ -61,7 +61,7 @@ Vraiment pas satisfait de mon système de bouffe. Selon mes estimations, j'ai ma
 
 ### Day 5: Barroude to Parzán
 
-Passage en Espagne au Port de Barroude ce matin ! Des vieux m'indiquaient des isards sur mon chemin mais nulle trace. Bain près de la grande route - la chaleur me tue. Courses ratées à Parzán: 3600 kcal pour trois jours → j'allais mourrir de faim. Demain je pars à Bielsa chercher un distributeur de billets, plus de bouffe, de quoi me sustenir et payer le repas d'auberge à Viados ou Soula. La montée depuis Parzán a été rude, entre la chaleur, le manque d'eau et l'incertitude sur la proximité d'un spot campable, que je finis par trouver près d'une cascade{% anecdote 6|bouchons d'oreil recommandés %}.
+Passage en Espagne au Port de Barroude ce matin ! Des vieux m'indiquaient des isards sur mon chemin mais nulle trace. Bain près de la grande route - la chaleur me tue. Courses ratées à Parzán: 3600 kcal pour trois jours → j'allais mourrir de faim. Demain je pars à Bielsa chercher un distributeur de billets, plus de bouffe, de quoi me sustenir et payer le repas d'auberge à Viados ou Soula. La montée depuis Parzán a été rude, entre la chaleur, le manque d'eau et l'incertitude sur la proximité d'un spot campable, que je finis par trouver près d'une cascade{% anecdote 6|bouchons d'oreil recommandés %}. À Parzán, j'ai acheté des limes, qui viennent à bout de mon problème d'orteil.
 
 Parler espagnol me fait perdre 50 points de QI.
 
