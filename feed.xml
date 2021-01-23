@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-22T20:00:05+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts</subtitle><entry><title type="html">HRP - Notes de voyage</title><link href="http://localhost:4000/hiking/hiking-the-pyrenees/" rel="alternate" type="text/html" title="HRP - Notes de voyage" /><published>2021-01-21T00:00:00+01:00</published><updated>2021-01-21T00:00:00+01:00</updated><id>http://localhost:4000/hiking/hiking-the-pyrenees</id><content type="html" xml:base="http://localhost:4000/hiking/hiking-the-pyrenees/">&lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-path.png&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-01-23T11:51:42+01:00</updated><id>/feed.xml</id><title type="html">SnowflakeOS’s blog</title><subtitle>Locally grown blog posts</subtitle><entry><title type="html">HRP - Notes de voyage</title><link href="/hiking/hiking-the-pyrenees/" rel="alternate" type="text/html" title="HRP - Notes de voyage" /><published>2021-01-21T00:00:00+01:00</published><updated>2021-01-21T00:00:00+01:00</updated><id>/hiking/hiking-the-pyrenees</id><content type="html" xml:base="/hiking/hiking-the-pyrenees/">&lt;figure&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-path.jpg&quot; /&gt;
 &lt;/figure&gt;
-&lt;p&gt;En août 2020, j’ai entrepris de marcher le long de la Haute Route Pyrénéenne, ou HRP, depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée. J’ai documenté le voyage au jour le jour, dont le résumé est fait ici.&lt;/p&gt;
+&lt;p&gt;En août 2020, j’ai entrepris de marcher le long de la Haute Route Pyrénéenne (HRP), depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée. J’ai documenté le voyage au jour le jour, dont le résumé est fait ici.&lt;/p&gt;
 
-&lt;p&gt;Avant le covid, le plan était de randonner le Kungsleden en Suède ; plan tombé à l’eau au profit d’une alternative locale, plus technique et finalement plus ambitieuse. C’était ma première randonnée en solo, et de loin la plus longue, et j’en garde des souvenirs géniaux - ce moi d’août était facilement le meilleur de 2020 pour moi. Pas un seul réveil difficile, pas une seule journée ordinaire. Jour après jour, j’ai noté un résumé de mes journées, retranscris ici presque tels quels.&lt;/p&gt;
+&lt;p&gt;Avant le covid, le plan était de randonner le Kungsleden en Suède ; plan tombé à l’eau au profit d’une alternative locale, plus technique et finalement plus ambitieuse. C’était ma première randonnée en solo, et de loin la plus longue, et j’en garde des souvenirs géniaux - ce moi d’août était facilement le meilleur de 2020 pour moi. Pas un seul réveil difficile, pas une seule journée ordinaire. Jour après jour, j’ai pris note de mes journées, ce qui a donné le post ici présent.&lt;/p&gt;
 
 &lt;p&gt;La liste de mon équipement est disponible sur &lt;a href=&quot;https://lighterpack.com/r/a304r5&quot;&gt;lighterpack&lt;/a&gt;. En terme de préparation, j’avais mon expérience passée, des traces GPX, et le &lt;a href=&quot;https://www.cicerone.co.uk/the-pyrenean-haute-route-third&quot;&gt;guide de Tom Martens&lt;/a&gt;&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;the man can write, believe it&lt;/span&gt;&lt;/sup&gt; au format ebook.&lt;/p&gt;
 
@@ -16,7 +16,7 @@
 &lt;p&gt;Ils tentent le Petit Vignemale demain matin, je m’engage à les suivre, sans promesse sur le reste de la journée: l’étape d’aujourd’hui leur a semblé facile, reposante, alors qu’elle m’a tué. J’avais pour plan de bivouaquer n’importe où avant Gavarnie, faire mes courses le lendemain matin, et potentiellement suivre la HRP. Je crois maintenant que c’est ce que je vais faire. Marcher seul et sans contraintes m’attire plus pour l’instant. Quitte à retrouver ce groupe plus tard. Ces gens sont tellement chill, j’aurais aimé pouvoir discuter correctement avec eux. Ils sont tous plus agés que moi, ont un job, se connaissent depuis quelques semaines ; ils ont leurs codes. Un orage éclate à quelques kilomètres. La pluie s’intensifie.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day1.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day1.jpg&quot; /&gt;
     &lt;figcaption&gt;Le refuge des Oulettes, au pied du Vignemale&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -25,7 +25,7 @@
 &lt;p&gt;Gros orage hier soir qui a secoué la tente déjà mal pitchée. It held. Ce matin, les grégaires du GR n’étaient plus deter à faire le Petit Vignemale, à cause du vent, entre autres. Je les quitte, gravis la Hourquette d’Ossoue puis le Petit Vignemale. 3 km de haut ! À la descente je retrouve les gens à Baysellance, je n’y reste pas. Ils me rattrapent vite. Premier river crossing pieds trempés. Au barrage d’Ossoue, pause de quelques heures pour moi. Le groupe repart direction Gavarnie, moi je vise le refuge d’avant. La fin de journée est superbe: personne ou presque sur le GR. Au moment de poser ma tente au refuge de la Grange de Holle, M débarque: ils n’ont pas trouvé de place au camping de Gavarnie. Je suis décidé à prendre la HRP le lendemain.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day2.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day2.jpg&quot; /&gt;
     &lt;figcaption&gt;Descente dans la vallée d'Ossoue&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -36,7 +36,7 @@
 &lt;p&gt;Lessive avant le lac des Gloriettes, destination de picnic prisée. J’opte pour contourner le lac par le Sud, évitant le bitume pris par la HRP, direction cabane des Groutes. J’apprends alors ce qu’IGN appelle “autre chemin”, et que celui-ci remonte à 2000m… Glorieuse solitude avec magnifique vue. Descente raide à Héas où je pose ma tente au camping attenant à l’auberge de la Munia, les Cairns. Ambiance &lt;em&gt;Comme un Avion&lt;/em&gt;, et surtout, une douche ! Boutons aux épaules, je change de haut. Tant pis pour mes bras, je mettrais de la crème solaire&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;pas de manches sur celui-ci :/&lt;/span&gt;&lt;/sup&gt;. Demain objectif Lacs de Barroude, et le lendemain, Parzán.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day3.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day3.jpg&quot; /&gt;
     &lt;figcaption&gt;Pitch perfect au camping d'Héas&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -47,19 +47,19 @@
 &lt;p&gt;Vraiment pas satisfait de mon système de bouffe. Selon mes estimations, j’ai mangé 1614 kcal aujourd’hui… Avec fromage ça aurait été 2000 kcal, toujours pas ouf.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day4.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day4.jpg&quot; /&gt;
     &lt;figcaption&gt;Départ des lacs de Barroude&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-5-barroude-to-parzán&quot;&gt;Day 5: Barroude to Parzán&lt;/h3&gt;
 
-&lt;p&gt;Des vieux m’indiquaient des isards ce matin mais nulle trace. Bain près de la grande route - la chaleur me tue. Courses ratées à Parzán: 3600 kcal pour trois jours → j’allais mourrir de faim. Demain je pars à Bielsa chercher un distributeur de billets, plus de bouffe, de quoi me sustenir et payer le repas d’auberge à Viados ou Soula.&lt;/p&gt;
+&lt;p&gt;Passage en Espagne au Port de Barroude ce matin ! Des vieux m’indiquaient des isards sur mon chemin mais nulle trace. Bain près de la grande route - la chaleur me tue. Courses ratées à Parzán: 3600 kcal pour trois jours → j’allais mourrir de faim. Demain je pars à Bielsa chercher un distributeur de billets, plus de bouffe, de quoi me sustenir et payer le repas d’auberge à Viados ou Soula. La montée depuis Parzán a été rude, entre la chaleur, le manque d’eau et l’incertitude sur la proximité d’un spot campable, que je finis par trouver près d’une cascade&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;bouchons d’oreil recommandés&lt;/span&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;Parler espagnol me fait perdre 50 points de QI.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day5.jpg&quot; /&gt;
-    &lt;figcaption&gt;En s'éloignant de Parzán&lt;/figcaption&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day5.jpg&quot; /&gt;
+    &lt;figcaption&gt;En s'éloignant de Parzán, dans la montée&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-6-parzán-to-añes-cruces&quot;&gt;Day 6: Parzán to Añes Cruces&lt;/h3&gt;
@@ -67,7 +67,7 @@
 &lt;p&gt;Impossible de rejoindre Bielsa: le stop ne marche pas. Provisions++ à Parzán (oréos !) et je remonte cette satané pente. Un vieux me demande un indice: ai-je vu sa femme&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt; non ! j’ai pas eu le fin mot de l’histoire&lt;/span&gt;&lt;/sup&gt; ? Le camping près du refuge de Viados est fermé&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;et pas moyen de camper au refuge: il est en dessous de 2000m&lt;/span&gt;&lt;/sup&gt;… Peu importe, j’avais placé cette journée sous le signe de la sueur et de la fatigue. Je push jusqu’à la cabane d’Añes Cruces, dépassant quatre espagnols que je retrouverai là bas. Devant la cabane, des Allemands m’indiquent la présence d’un français à l’intérieur. Un HRPiste UL ! On discute de gear, de plans, du terrain&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;”s’il fallait démonter sa tente chaque fois que y’a de l’orage, on aurait pas fini” - une philosophie que j’apprécie vraiment&lt;/span&gt;&lt;/sup&gt;. Il tente de la faire en 3 semaines mais me dis prendre du retard. 6h30 tous les jours → midi sieste. Beaucoup d’expérience et de détermination, c’est impressionnant. Après une nuit passée près d’une souris dans le mur, à mal dormir sur le sol de la cabane, il me dit s’appeler T, T d’un certain forum de randonnée :)&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day6.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day6.jpg&quot; /&gt;
     &lt;figcaption&gt;Le soleil se lève sur Añes Cruces, vu de très loin&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -78,7 +78,7 @@
 &lt;p&gt;Je rejoins le camping, a priori complet, où à l’accueil, K vient de prendre la dernière place, qu’il me propose de partager. Il l’avait déniché en appelant l’office du tourisme ! Incroyable type, incroyable chance pour moi. Douche, puis bonne discussion avec K. Après cette randonnée, il veut sortir de la société, vivre en nomade ; a été réalisateur, solide cinéphile. Quelqu’un de très très cool. Malchance, il renverse de la superglue sur ses lunettes ce qui le force à faire du stop jusqu’à Bagnères - “À quoi bon marcher ici si on n’y voit rien”. On échange nos numéros pour s’y retrouver.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day7c.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day7.jpg&quot; /&gt;
     &lt;figcaption&gt;Brume côté français, vue du port d'Aigües Tortes&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -87,7 +87,7 @@
 &lt;p&gt;Je ne repars du camping qu’à 11h, il pleuvait avant. Re-douche. Je croise D, passe le col d’Esquierry puis monte au lac d’Oô, montée interminable et surpeuplée. Lac qui me paraît surcoté, amoindri par sa popularité et le barrage qui s’y construit. On m’indique “eau pas potable” au refuge, et plus haut je trempe ma chaussure en en refaisant. Vers 20h j’approche d’Espingo, et un gars me rattrape. Il s’appelle J, est Australien, vit en France, est chercheur en machine learning et visite les lacs d’Espingo plus ou moins sur un coup de tête. Wow ! Chillax, on trouve un campsite au bord du second lac, derniers arrivés parmis une douzaine de campeurs. La brume couvre tout au dessus de nous, c’est magnifique. Il acheté sa tente pour l’occasion, est en jeans et baskets, mange dans une assiette&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;respect, il allait plus vite que moi&lt;/span&gt;&lt;/sup&gt;, ça change du monde que je croise habituellement. Je filtre, mange puis produit du Lindt: malade, je l’avais senti venir à Oô. J est allé méditer plus loin. Le matin, condensation à bloc.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day8.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day8.jpg&quot; /&gt;
     &lt;figcaption&gt;Devant un des lacs d'Espingo, sous la brume&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -96,7 +96,7 @@
 &lt;p&gt;Grand froid le matin. Couplé à la condensation, je ne sens plus mes mains après avoir rangé ma tente. Au revoir à J et je pars. Peu d’eau avant je ne sais quel col où je sèche ma tente. Après celui-ci, autoroute vers Bagnères. À Superbagnères, station de ski, je traverse un troupeau de vaches. Une femme a la même idée en sens inverse et se fait frapper des cornes d’une mère&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;première fois que je vois ça; rien de grave&lt;/span&gt;&lt;/sup&gt;. J’indique le GR à un père et son fils, perdus. Je me sens comme porteur de l’idéal randonnesque. À Bagnères, glace, ice tea, courses, et je croise K. On boit un godet. Il a réparé ses lunettes et prend un zéro demain. Ne me suivra pas sur la HRP: mal au genou, et donc peu rassuré par la mention “very steep descent”, E grade du guide. Une fois de plus, on se quitte. Au camping, the usual. Beaucoup de route demain avant même de commencer l’étape. Hope for the best.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day9.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day9.jpg&quot; /&gt;
     &lt;figcaption&gt;Superbagnères&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -111,7 +111,7 @@
 &lt;p&gt;Qu’est-ce que c’est beau. Seul, pas une vache, dans la vallée d’Escaleta. Demain matin sera glacial, et le soleil ne se lèvera pas sur ma tente avant 10h au moins, caché par je ne sais quelle barrière rocheuse adjacente au Tuc de Mulleres. Such is life. Pour l’instant, j’adore être ici. Je m’en veux un peu d’avoir laissé K. Je me promets de le rejoindre au moins une fois, lui payer un godet.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day10.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day10.jpg&quot; /&gt;
     &lt;figcaption&gt;Mon spot de bivouac, au bord de l'eau&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -120,16 +120,16 @@
 &lt;p&gt;Montée au col longue. Ce que je prends d’abord pour le col est en fait de l’autre côté du Tuc, que je monte - 3010m. Un alpiniste du coin partage son expérience, il connaît tous les sommets à la ronde. Le guide disait du col “extremely steep descent”: very true. La suite est un chaos de pierres infini et une demie forêt jusqu’à Espitau de Vielha où je fais une courte sieste. Je décide de suivre le GR11 jusqu’au refuge de la Restanca, gagnant 3 heures, mais manquant Lac de Mar que le guide assurait des plus beaux. Tant pis. Je commence cette étape suivante à 16h. Soleil. Forêt escarpée. Marche facile à l’ombre à partir de 18h+. Arrivé 21h20 j’atteins la Restanca où je suis content de ne pas rester: que des français en grands groupes types dayhikers. Je pousse jusqu’au lac indiqué campable par le guide. Mon arrivée dérange un groupe de quatre ou cinq isards. Leur position me révèle un bon spot de camping, solide nuit.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day11.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day11.jpg&quot; /&gt;
     &lt;figcaption&gt;Le col de Mulleres, au creux de l'anse. &quot;Extremely steep&quot;.&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-12-restanca-to-salardú&quot;&gt;Day 12: Restanca to Salardú&lt;/h3&gt;
 
-&lt;p&gt;Beaucoup de touristes autour du refuge de la Restanca, les chemins sont loins d’être calmes. Picnic dans un coin sympa, m’étant trompé de chemin, suivant bêtement ma trace GPX. Deux dames (allemandes ?) m’interpellent, reconnaissant un fellow HRPiste. Elle vont également se ravitailler. On discute, je les dépasse. Ma chaussure droite a un problème: un bout de semelle se décolle. Trois bouts de duct tape tiennent jusqu’à Salardú, où, surprise, il n’y a pas de superglue. Je loge au refuge Juli Soler. La patronne a fait la HRP, parle un bon français. Seul dans une chambre pour quatre. Repas extra complet. Je dors mal though: chaleur, et problème de se rendre à Vielha le lendemain, mission superglue.&lt;/p&gt;
+&lt;p&gt;Beaucoup de touristes autour du refuge de la Restanca, les chemins sont loins d’être calmes. Picnic dans un coin sympa, m’étant trompé de chemin, suivant bêtement ma trace GPX. Deux dames (allemandes ?) m’interpellent, reconnaissant un fellow HRPiste. Elle vont également se ravitailler. On discute, je les dépasse. Ma chaussure droite a un problème: un bout de semelle se décolle. Trois bouts de duct tape tiennent jusqu’à Salardú, où, surprise, il n’y a pas de superglue. Je loge au refuge Juli Soler. La patronne a fait la HRP, parle un bon français. Seul dans une chambre pour quatre, covid oblige. Repas extra complet. Je dors mal though: chaleur, et problème de se rendre à Vielha le lendemain, mission superglue.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day12.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day12.jpg&quot; /&gt;
     &lt;figcaption&gt;Premier lac de la journée&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -138,7 +138,7 @@
 &lt;p&gt;Je manque le bus → stop to Vielha. J’attends 9h que le supermarché ouvre → no superglue, je cherche le Casino indiqué, galère et trouve. À 10h, je prends le bus pour Salardú. 10h35, ma chaussure est réparée, on the road again. J’oublie près d’un banc mon buff, il me manque déjà. Passés les premiers Estanys de Baciver surpeuplés, je mange aux Rosaris près des chevaux, regardant ma future montagne, le Tuc de Marimanha. Approche quasi frontale d’une pente raide, ça marche. En haut, je m’aperçois que le tonnerre continue de gronder à l’Ouest, j’accélère. Le col d’Airoto requiert un peu d’escalade inversée, et j’y fait ma première chute: RAS. La section “giant boulders” ne déçoit pas. J’ai trop poussé la descente, je remonte une pente à 80% sur 100m jusqu’au prochain col: je skip le refuge dont j’entends venir des éclats de voix depuis une heure. Je trouve à camper dans la descente du col, avant l’endroit indiqué dans le guide, un tarn plus bas. J’ai peu d’eau mais je suis claqué.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day13.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day13.jpg&quot; /&gt;
     &lt;figcaption&gt;Au col d'Airoto, devant atteindre le col en haut à gauche&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -149,7 +149,7 @@
 &lt;p&gt;Je trouve facilement cette nouvelle route, qui longe un ruisseau, et j’atteins Alós à midi. Joli et vieux village ressemblant à Méranges. En repartant, je discute avec un genre de teneur de mini-expo historique et lui donne ma carte devenue inutile du Val d’Aran, au cas où il croise quelqu’un allant dans l’autre sens. Il me prévient d’un orage pour le soir. En mangeant près de la Noguera, je l’entends déjà, et peu après je sors le kway. Vers 15h peut-être c’est le déluge et la grêle. Je marche dans le ruisseau ayant remplacé les chemins. Mon short est trempé également. Mode automatique. J’ai froids aux mains. J’atteins le petit lac à 2000m+ et plante ma tente. Je mets ce qu’il me reste de sec et m’enquiltifie, ce qui conduit à une sieste sous le restant d’orage. Je mange, trop tôt. Ressors faire de l’eau et laver mon short au passage, en caleçon. Je dors mal. Pas d’orage pourtant.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day14b.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day14b.jpg&quot; /&gt;
     &lt;figcaption&gt;La carte d'un vrai&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -160,27 +160,29 @@
 &lt;p&gt;L’estany major est grandiose, une mer intérieure avec houle: vent et pluie pendant 20 minutes. Je passe trois lacs et atteins Enric Pujol, où je me pose pour manger. S’y trouve un HRPiste sur le départ, sympa. En faisant une pause plus tard, un couple me dépasse. Fascinés par le bon état de mes chaussures. Lui a remplacé les siennes, elle va très prochainement devoir le faire. Ils sont partis de Cauterets le même jour que moi&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;comme beaucoup de français, ils suivent un autre guide que le mien: je ne les reverrai pas&lt;/span&gt;&lt;/sup&gt; ! J’atteins le camping de Bordes de Graus à Tavascan, un peu bruyant mais sympa.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day15.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day15.jpg&quot; /&gt;
     &lt;figcaption&gt;Les trois lacs et le refuge Enric Pujol&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-16-tavascan-to-certascan&quot;&gt;Day 16: Tavascan to Certascan&lt;/h3&gt;
 
-&lt;p&gt;Peu de choix à l’épicerie de Tavascan - joli village. Je prends des conserves pour la première fois, on verra. Reparti en stop, et rapidemment à Noarre. Trop rapidemment peut-être, maintenant que mon sac est très lourd: les tendons de ma cheville gauche/intérieur crissent. Trop de touristes jusqu’à l’étang précédant le col de Certascan. Je souffre, j’ai vraiment peur que ça dure, ça mettrait fin à ma marche. Je renonce au pic à cause de ça, alors que Tom me l’avait décrit comme facile &amp;amp; worth it. Descente du col, je croise un type, Jamie-looking, avec un gros sac mais ne faisant pas la HRP: il se balade avec un ami qu’il dit berger, portant une semaine de bouffe. Il photographie une pleine lune. Je me prends un sandwich au refuge de Certascan. K avait raison, ces sandwichs sont vides. Un peu par erreur, j’ai campé au lac d’avant celui de Jamie &amp;amp; co - tout le coin est paradisiaque. Pour prendre leur noms et leurs ballistos&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;ces deux là avaient les meilleurs délires&lt;/span&gt;&lt;/sup&gt;, j’irai leur dire bonjour demain matin. Fasse Cauchy que ma jambe aille mieux alors.&lt;/p&gt;
+&lt;p&gt;Peu de choix à l’épicerie de Tavascan - joli village. Je prends des conserves pour la première fois, on verra. Reparti en stop, et rapidemment à Noarre. Trop rapidemment peut-être, maintenant que mon sac est très lourd: les tendons de ma cheville gauche/intérieur crissent. Pas mal de monde jusqu’à l’étang précédant le col de Certascan. Je souffre, j’ai vraiment peur que ça dure, ça mettrait fin à ma marche. Je renonce au pic à cause de ça, alors que Tom me l’avait décrit comme facile &amp;amp; worth it.&lt;/p&gt;
+
+&lt;p&gt;Descente du col, je croise un type, Jamie-looking, avec un gros sac mais ne faisant pas la HRP: il se balade avec un ami&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;j’ai envie de l’appeler Fred, malgré l’absence de ressemblance&lt;/span&gt;&lt;/sup&gt; qu’il dit berger, portant une semaine de bouffe. On discute philosophie de la marche. Vaut-il mieux aller loin et vite, ou pas loin en prenant tout son temps ? Dans tous les cas, j’ai fais un converti à l’ultralight - même sans aller loin, autant pas se casser le dos. Ils campent au troisième lac de Romedo. En arrivant au refuge de Certascan, il photographie une pleine lune&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;“des souvenirs pour la vie”&lt;/span&gt;&lt;/sup&gt;. Je m’y prends un sandwich. K avait raison, pas grand chose dedans. Un peu par erreur, j’ai campé au lac d’avant celui de Jamie &amp;amp; co - tout le coin est paradisiaque. Pour prendre leur noms et leurs ballistos&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;ces deux là avaient les meilleurs délires&lt;/span&gt;&lt;/sup&gt;, j’irai leur dire bonjour demain matin. Fasse Cauchy que ma jambe aille mieux alors.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day16.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day16.jpg&quot; /&gt;
     &lt;figcaption&gt;Noarre, village inaccessible par la route&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-17-certascan-to-pla-de-boet&quot;&gt;Day 17: Certascan to Pla de Boet&lt;/h3&gt;
 
-&lt;p&gt;Petite pluie et vent, très gros vent le matin. Je skip le salut à Fred &amp;amp; Jamie. D’abord coincé derrière un grand groupe de randonneurs à la semaine dans la descente des lacs de Romedo, je vais ensuite me perdre dans une vallée sans nom où se trouve le Riu de Guiló, au Nord Nord Est quand je devais aller plein Sud… Perdu une heure, une heure et demie dans un relatif mauvais temps. Ma jambe marche ! J’ai des relances, mais dans mes deux jambes alternativement. J’ai dû abuser de la droite en compensant, puis de la gauche… Une fois dans la bonne vallée, gigantesque descente sans croiser âme qui vive, magnifique, sauvage. J’entame mes boîtes. Au fond de la vallée, au pont de Boavi, quelques touristes, familles etc… Disparus en haut de la remontée majeure.&lt;/p&gt;
+&lt;p&gt;Petite pluie et vent, très gros vent le matin. Je skip le salut à Fred &amp;amp; Jamie, pas le courage d’être dehors par ce temps sans avancer. D’abord coincé derrière un grand groupe de randonneurs à la semaine dans la descente des lacs de Romedo, je vais ensuite me perdre dans une vallée sans nom où se trouve le Riu de Guiló, au Nord Nord Est quand je devais aller plein Sud… Perdu une heure, une heure et demie dans un relatif mauvais temps. Ma jambe marche ! J’ai des relances, mais dans mes deux jambes alternativement. J’ai dû abuser de la droite en compensant, puis de la gauche… Une fois dans la bonne vallée, gigantesque descente sans croiser âme qui vive, magnifique, sauvage. J’entame mes boîtes. Au fond de la vallée, au pont de Boavi, quelques touristes, familles etc… Disparus en haut de la remontée majeure.&lt;/p&gt;
 
 &lt;p&gt;Là commence un orage. Je pousse un peu plus loin que nécessaire mais cette fois ma tente est plantée avant le gros de la tempête. Terrible pitch à 5 sardines. Grêle, vent qui lance ma tente entière dans toutes les directions. La sardine arrière droite paraît prête à lâcher mais tient bon contre tout bon sens. Je finis par sortir le quilt le vent calmé. Après 1h30 de pause, je décampe. Un isard s’enfuit près des lacs de Baborte. Il est tard mais je me sens de continuer. Grande descente avec pas mal de forêt jusque Pla de Boet. 1850m, en dessous de l’altitude légale de camping, pas pensé. Un couple d’espagnols y campe déjà, 21h. Ils devaient grimper le pic d’Estats aujourd’hui mais ont remis au lendemain à cause de la météo - good call. Ils m’aident à monter ma tente.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day17.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day17.jpg&quot; /&gt;
     &lt;figcaption&gt;La montagne après l'orage&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -191,7 +193,7 @@
 &lt;p&gt;En repartant, 16h20, je me sens à 100% voire plus. Objectif Ordino, courses. Pas certain que le bus passe où je suis sur la G3&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;connaissant maintenant les marqueurs d’arrêts de bus, il serait passé ^^&lt;/span&gt;&lt;/sup&gt;, je rejoins El Serrat à grande vitesse. J’attrape de justesse le bus à 20 centimes et me retrouve à Ordino, courses satisfaisantes. Fort attrait pour les hamburgers à l’affiche des restos. Charmante ville qui paraît très moderne, en tout cas très bien modernisée. Reparti en bus to El Serrat, j’atteins le refuge de la Sorteny sans soucis. S’y trouvent des lits libres (gratuits et en métal) ! Je mange comme un ogre près d’un ruisseau et dors, tardivement, pas par faute d’essayer.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day18.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day18.jpg&quot; /&gt;
     &lt;figcaption&gt;La ville d'Ordino&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -202,7 +204,7 @@
 &lt;p&gt;Les voir m’a redonné la pêche. Après une pause, je repars pour Juclar. Dure marche de 2h30, j’attrape des coups de soleil et une cloque à l’orteil gauche, indolore. Dormir est payant à Juclar, je pensais y trouver des lits libres… Je suis short de 10€ mais la patronne m’offre nuit et souper quand même. Soupe, boeuf, riz, “there’s more if you want” - mon amour pour cette dame est infini.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day19.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day19.jpg&quot; /&gt;
     &lt;figcaption&gt;En descendant du col del Meners&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -211,16 +213,16 @@
 &lt;p&gt;Jolis lacs passé le col d’Albe. Peu de gens par ici, deux trois petits groupes. Ceux là semblent du coin, plantent leurs tentes et pêchent pour certains. Ils ont de la montée à faire depuis L’Hospitalet pourtant. Du GR, du GR, du GR… Cette ville a un style très particulier. Un pipeline qui la traverse, du bitume noir parmi des veilles maisons à moitié retapées. Camping peucher though. Les plans sont faits, G&amp;amp;S me rejoignent ici demain soir. Mon zéro day est arrivé !&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day20.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day20.jpg&quot; /&gt;
     &lt;figcaption&gt;Descente vers L'Hospitalet&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-21-lhospitalet-près-landorre&quot;&gt;Day 21: L’Hospitalet-Près-l’Andorre&lt;/h3&gt;
 
-&lt;p&gt;Direction boulangerie pour le petit dej, espérant croiser les belges malgré l’heure tardive - 10h. Je me trouve un banc face à la mairie et au retour les croise sur la terrace du bar-épicerie. Elles étaient je crois là à l’aller mais je les avais pas reconnues. Elles repartent en Belgique en bus dans 20 minutes ! Finirons une prochaine fois. Elles s’attendaient à croiser au gîte un groupe de trois français, je dis que je leur passerai le bonjour à l’occasion&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;finalement jamais croisés; on ne suivait pas le même guide&lt;/span&gt;&lt;/sup&gt; et les quitte. Lessive, siestes, douche, le bus arrive, 19h. Here they are! Avec des gros sacs, bouffe en conserve. Camping. S a crevé son tapis de sol sans cause probable, réparé avec le kit du xtherm de G.&lt;/p&gt;
+&lt;p&gt;Direction boulangerie pour le petit dej, espérant croiser les belges, N &amp;amp; K’, malgré l’heure tardive - 10h. Je me trouve un banc face à la mairie et au retour les croise sur la terrace du bar-épicerie. Elles étaient je crois là à l’aller mais je les avais pas reconnues. Elles repartent en Belgique en bus dans 20 minutes ! Finirons une prochaine fois. Elles s’attendaient à croiser au gîte un groupe de trois français, je dis que je leur passerai le bonjour à l’occasion&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;finalement jamais croisés; on ne suivait pas le même guide&lt;/span&gt;&lt;/sup&gt; et les quitte. Lessive, siestes, douche, le bus arrive, 19h. Here they are! Avec des gros sacs, bouffe en conserve. Camping. S a crevé son tapis de sol sans cause probable, réparé avec le kit du xtherm de G.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day21.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day21.jpg&quot; /&gt;
     &lt;figcaption&gt;L'Hospitalet-Près-L'Andorre&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -229,7 +231,7 @@
 &lt;p&gt;Chemin tranquille, Cauterets-sque jusqu’au refuge des Bésines où on s’arrête manger. Après-midi de belle montagne, pleine de lacs, quelques passages rocheux, et une forêt étrangement sparse d’épicéas avant les Fourrats. L’étang est juste devant le Carlit, magnifique. Tom déconnait pas. G discute avec des marmottes ; on sèche nos affaires. Plein de gens campent un peu plus bas que nous.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day22.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day22.jpg&quot; /&gt;
     &lt;figcaption&gt;Entre les Bésines et le Carlit&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -240,47 +242,47 @@
 &lt;p&gt;Tout est mieux à l’étape qui suit et je retrouve une forme de civilité. Courses limitées à Bolquère, et mon parrain nous prend sur la route vers Eyne: escale chez de la famille à moi, A&amp;amp;G’’. Repas de soupe, saucisson, salade, oeuf, superbe. Lérot.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day23.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day23.jpg&quot; /&gt;
     &lt;figcaption&gt;Le Carlit, face Ouest&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-24-saillagouse-to-noufonts&quot;&gt;Day 24: Saillagouse to Noufonts&lt;/h3&gt;
 
-&lt;p&gt;Petit déjeuner parfait, pain beurre, confiture, miel, … Courses au marché puis à Spar, pour quatre jours. Rôti, glace à midi, c’est glorieux. Puis il est temps de partir, ~15h G’’ nous dépose à Eyne. Jolie remontée de la vallée d’Eyne. On suit Tom qui nous indique les crêtes campables, et décidons de poursuivre sur les crêtes. Coucher de soleil. On descend du col de Noufonts pour camper, bon terrain mais beaucoup de vent, dure nuit.&lt;/p&gt;
+&lt;p&gt;Petit déjeuner parfait, pain beurre, confiture, miel, … Courses au marché puis à Spar, pour quatre jours. Rôti, glace à midi, c’est glorieux. Puis il est temps de partir, ~15h, G’’ nous dépose à Eyne. Jolie remontée de la vallée d’Eyne. On suit Tom qui nous indique les crêtes campables, et décidons de poursuivre sur les crêtes. “Yer fond of me lucky charms!”. Coucher de soleil. On descend du col de Noufonts pour camper, bon terrain mais beaucoup de vent, dure nuit.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day24.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day24.jpg&quot; /&gt;
     &lt;figcaption&gt;Le soir sur les crêtes, après la vallée d'Eyne&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-25-noufonts-to-pla-guillem&quot;&gt;Day 25: Noufonts to Pla Guillem&lt;/h3&gt;
 
-&lt;p&gt;De retour sur la crềte, on continue vers le pic des Batiments. Tous un peu fatigués aujourd’hui, planté de tente tardif hier soir. Du chemin à faire pourtant, nos plans nous amènent chez de la famille à S d’ici quelques jours. Tom annonçait là “for experienced hikers, the route will be pure fun”, et l’homme ne survend rien: les chemins passent à ras des crètes et sont principalement un dédale de roche en vrac. Un bon monde en haut, et pour la suite de la journée. Pause déjeuner au refuge d’Ull de Ter, il fait sacrément chaud. Passé le port de Mourens qui nous ramène en France, on a droit à de la montagne arrondie, c’est une première.&lt;/p&gt;
+&lt;p&gt;De retour sur la crête, on continue vers le pic des Batiments. Tous un peu fatigués aujourd’hui, planté de tente tardif hier soir. Du chemin à faire pourtant, nos plans nous amènent chez de la famille à S d’ici quelques jours. Tom annonçait là “for experienced hikers, the route will be pure fun”, et l’homme ne survend rien: les chemins passent à ras des crètes et sont principalement un dédale de roche en vrac. Un bon monde en haut, et pour la suite de la journée. Pause déjeuner au refuge d’Ull de Ter, il fait sacrément chaud. Passé le port de Mourens qui nous ramène en France, on a droit à de la montagne arrondie, c’est une première.&lt;/p&gt;
 
 &lt;p&gt;On s’arrête manger à Rotja, conteneur en métal servant d’abri. Pas les premiers sur place, une dame y est installée ; elle randonne une boucle dans le coin. Il fait froid, on repart, marchant vite. Rattrapés par la nuit. On cherche la cabane de Pla Guillem à la lampe torche - ça nous évite la tente, le vent et les chiens de berger. Trouvée. C’est grand, vide, bien.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day25.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day25.jpg&quot; /&gt;
     &lt;figcaption&gt;Les crêtes vers le Pic des Bastiments&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-26-pla-guillem-to-refuge-des-cortalets&quot;&gt;Day 26: Pla Guillem to Refuge des Cortalets&lt;/h3&gt;
 
-&lt;p&gt;Départ compliqué le matin: faute de voir un chemin, navigation à vue qui nous fait couper un temps à travers brousse. S se fait mal à la cheville, on ralenti, ça se maintient. On se dit qu’on passera la nuit en refuge, aux Cortalets. On passe les Mariailles, pause à l’ombre avant le Canigou. Chaleur d’un autre genre, on se croirait en Corse. L’escalade de la cheminée vers le sommet est incroyable, de la roche brute, explosée à la dynamite il y a plus de cent ans. Vue sur une mer de nuages. Aux Cortalets, pas de place, malgré nos tentatives de réservations. Repli sur leurs bières, brownies &amp;amp; chocolats.&lt;/p&gt;
+&lt;p&gt;Départ compliqué le matin: faute de voir un chemin, navigation à vue qui nous fait couper un temps à travers brousse. S se fait mal à la cheville, on ralenti. On se dit qu’on passera la nuit en refuge, aux Cortalets. On passe les Mariailles, pause à l’ombre avant le Canigou. Chaleur d’un autre genre, on se croirait en Corse. L’escalade de la cheminée vers le sommet est incroyable, de la roche brute, explosée à la dynamite il y a plus de cent ans. Vue sur une mer de nuages. Aux Cortalets, pas de place, malgré nos tentatives de réservations. Repli sur leurs bières, brownies &amp;amp; chocolats.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day26.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day26.jpg&quot; /&gt;
     &lt;figcaption&gt;La cheminée du Canigou&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-27-cortalets-to-céret&quot;&gt;Day 27: Cortalets to Céret&lt;/h3&gt;
 
-&lt;p&gt;Grosse journée. Le plan, atteindre Arles-sur-Tech, où la famille de S nous amènera en escale à Céret, où G&amp;amp;S resteront. Bloqués par des vaches, pause à la maison forestière de l’Estanyol, le chemin est forestier, bien à l’ombre, il fait beau. Plus que de la descente jusqu’à Arles, 282 m d’altitude. On en fait une partie en courant. Première fois que je vois un chêne liège. Baignade en rivière, eau fraîche.&lt;/p&gt;
+&lt;p&gt;Grosse journée. Le plan, atteindre Arles-sur-Tech, où la famille de S nous amènera en escale à Céret, où G&amp;amp;S resteront. Bloqués par des vaches, pause à la maison forestière de l’Estanyol. Le chemin est forestier, bien à l’ombre, il fait beau. Plus que de la descente jusqu’à Arles, 282 m d’altitude. On en fait une partie en courant. Première fois que je vois un chêne liège. Baignade en rivière, eau fraîche.&lt;/p&gt;
 
-&lt;p&gt;Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on est accueillis par H&amp;amp;S’, qui nous amènent à Céret en twingo. Ces anges absolus nous payent le resto ; vengeance sur les Cortalets, également appréciée chaude. H, prof d’anglais, a fait le PCT. J’espère faire comme elle un de ces jours, je suis sûr maintenant que j’adorerais ça&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;pas prof d’anglais though&lt;/span&gt;&lt;/sup&gt;. Leur maison est d’un style monumental, en mode &lt;em&gt;Sunset Boulevard&lt;/em&gt;. Ils ont un hamac d’appoint, how cool is that?&lt;/p&gt;
+&lt;p&gt;Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on est accueillis par H&amp;amp;S’, qui nous amènent à Céret en twingo. Ces anges absolus nous payent le resto ; vengeance sur les Cortalets, également appréciée chaude. H, prof d’anglais, a fait le PCT. J’espère faire de même un de ces jours, je suis sûr maintenant que j’adorerais ça. Leur maison est d’un style monumental, en mode &lt;em&gt;Sunset Boulevard&lt;/em&gt;. Ils ont un hamac d’appoint, how cool is that?&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day27.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day27.jpg&quot; /&gt;
     &lt;figcaption&gt;Le meilleur des deux mondes à Céret&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -288,10 +290,10 @@
 
 &lt;p&gt;Petit dej, courses, repartir seul fait bizarre. J’en oublie de remercier H&amp;amp;S’, de retour à Arles. Je fais quelques arrangements de retour, tant que j’ai du réseau, puis grimpe. Même style de chemins qu’en arrivant, parfois comme des tobogans de roche. Une pêche d’enfer en première partie de journée. Oeufs durs à midi &amp;lt;3. Je croise mes premiers sangliers, puis deux beaux chevaux, dans une forêt de hêtres étrangement calme. J’ai mal à l’orteil gauche en marchant, ce que j’attribue à la baignade précédente, une glissade quelconque - pas de certitude.&lt;/p&gt;
 
-&lt;p&gt;J’atteins Montalba d’Amélie, une communauté perdue dans la montagne, dont je ne verrai que la source. J’y discute avec un couple de GRdistes, qui me demandent si le col plus loin se campe - “open spot on a ridge” dit Tom, je n’en sais pas plus&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;c’était finalement un superbe spot de bivouac&lt;/span&gt;&lt;/sup&gt;. “Je vise Las Illas ce soir”, “… Vous courrez ?”. Non, j’espère pas, mais c’est un challenge ^^ Je grimpe le Roc de France par une voie tout à fait innovante&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;absurde&lt;/span&gt;&lt;/sup&gt; après m’être trompé de chemin. Première vue de la Méditerranée. De là, descente jusque Las Illas avec un bref et presque final passage en Espagne. Tom recommendait un joli spot de gazon, j’y trouve deux GRdistes discutant de la fin du voyage. Triste pensée.&lt;/p&gt;
+&lt;p&gt;J’atteins Montalba d’Amélie, une communauté perdue dans la montagne, dont je ne verrai que la fontaine. J’y discute avec un couple de GRdistes, qui me demandent si le col plus loin se campe - “open spot on a ridge” dit Tom, je n’en sais pas plus&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;c’était finalement un superbe spot de bivouac&lt;/span&gt;&lt;/sup&gt;. “Je vise Las Illas ce soir”, “… Vous courrez ?”. Non, j’espère pas, mais c’est un challenge ^^ Je grimpe le Roc de France par une voie tout à fait innovante&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;absurde&lt;/span&gt;&lt;/sup&gt; après m’être trompé de chemin. Première vue de la Méditerranée. De là, descente jusque Las Illas avec un bref et presque final passage en Espagne. Tom recommendait un joli spot de gazon, j’y trouve deux GRdistes discutant de la fin du voyage. Triste pensée.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day28.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day28.jpg&quot; /&gt;
     &lt;figcaption&gt;Du plat pays vu de Roc de France, la Méditerranée au loin&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -299,27 +301,27 @@
 
 &lt;p&gt;Un vieux me donne une foultitude d’indices pour naviguer la route type suburbs en zigzags sortant de Las Illas, je ne réussi à en retenir aucun mais arrive tout de même au bon endroit: une route de terre, “surveillée par satellite” - alright. La route est longue, longue, sans distraction. Elle mène finalement au Perthus, par une forêt de chênes lièges. Il fait une chaleur assomante.&lt;/p&gt;
 
-&lt;p&gt;Il est midi à Le Perthus, je m’arrête dans ce que je prends pour un bistrot faisant des burgers à emporter ; c’est un vrai restaurant. Que mieux. Un seau de limonade, une bouteille de mayo, que demande le peuple. Je repars après une petite pause sur un banc à examiner mon orteil: on m’a entendu crier dans la montagne à plus d’une occasion, en butant sur un caillou. Je fais gaffe, et ça va. Grosse montée jusqu’au col de l’Ouillat, où je fais une heure de sieste. Je continue jusqu’au soir, tranquillement. J’ai hâte d’atteindre le pic de Sailfort, aperçu au Roc de France.&lt;/p&gt;
+&lt;p&gt;Il est midi à Le Perthus, je m’arrête dans ce que je prends pour un bistrot faisant des burgers à emporter ; c’est en fait un vrai restaurant. Que mieux. Un seau de limonade, une bouteille de mayo, que demande le peuple. Je repars après une petite pause sur un banc à examiner mon orteil: on m’a entendu crier dans la montagne à plus d’une occasion, en butant sur un caillou. Je fais gaffe, et ça va. Grosse montée jusqu’au col de l’Ouillat, où je fais une heure de sieste. Je continue jusqu’au soir, tranquillement. J’ai hâte d’atteindre le pic de Sailfort, aperçu au Roc de France.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day29.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day29.jpg&quot; /&gt;
     &lt;figcaption&gt;Last wild pitch&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;day-30-col-de-louillat-to-banyuls&quot;&gt;Day 30: Col de l’Ouillat to Banyuls&lt;/h3&gt;
 
-&lt;p&gt;Pas de déception à Sailfort, c’est vraiment un dernier grand rempart avant la mer. Je me trompe de chemin pour en descendre, me retrouve bêtement coincé sur une face et obligé de faire demi-tour. Pas important, et ça me fait voir le “Refuge Tomy”, un abri improbable dans un bout de roche. Mais l’eau m’inquiète un peu, j’en bois des litres et des litres. Un peu plus loin, un robinet est juste planté là. Déjeuner, sieste.&lt;/p&gt;
+&lt;p&gt;Pas de déception à Sailfort, c’est vraiment un dernier grand rempart avant la mer. Je me trompe de chemin pour en descendre, me retrouve bêtement coincé sur une face et obligé de faire demi-tour. Pas important, et ça me fait croiser le “Refuge Tomy”, un abri improbable dans un bout de roche. Mais l’eau m’inquiète un peu, j’en bois des litres et des litres. Un peu plus loin, un robinet est juste planté là. Déjeuner, sieste.&lt;/p&gt;
 
-&lt;p&gt;En recollant un morceau de semelle, un couple de randonneurs retraités me dépassent. Je les rattrape, on fait la route ensembles vers Banyuls. Lui finit une Trans’pyr-énéenne complète en sens inverse&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;autre façon de dire HRP, de ce que je comprends&lt;/span&gt;&lt;/sup&gt;, sa femme l’accompagne pour la dernière semaine. Toutes les nuits en refuge, problèmes de dos oblige, mais il marche à un sacré bon rythme. Sa semelle gauche tient à un fil - littéralement&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;plusieurs fils, peut-être&lt;/span&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;En recollant un morceau de semelle, un couple de randonneurs retraités me dépassent. Je les rattrape, on fait le dernier bout de route ensemble vers Banyuls. Lui finit la Trans’pyr complète en sens inverse&lt;sup class=&quot;tooltip&quot;&gt;[n]&lt;span&gt;autre façon de dire HRP, de ce que je comprends&lt;/span&gt;&lt;/sup&gt;, sa femme l’accompagne pour la dernière semaine. Toutes les nuits en refuge, problèmes de dos oblige, mais il marche à un sacré bon rythme. Sa semelle gauche tient à un fil - littéralement.&lt;/p&gt;
 
-&lt;p&gt;Photos devant la mairie de Banyuls, on se quitte là. Baignade à la plage, l’eau est chaude comme elle n’a jamais été dans mon Finistère natal. Office du tourisme, camping, pizza sur la plage. Au camping, je retrouve un des GRdistes de Las Illas, j’ai pas pur hasard choisi l’emplacement à côté du sien. Derniers préparatifs pour le train de retour, l’emménagement en colloc trois jours plus tard… Comment dormir, puis cette chaleur, toute la nuit, incomparable.&lt;/p&gt;
+&lt;p&gt;Photos devant la mairie de Banyuls, on se quitte là. Baignade à la plage, l’eau est chaude comme elle n’a jamais été dans le Finistère. Office du tourisme, camping, pizza sur la plage. Au camping, je retrouve un des GRdistes de Las Illas ; j’ai par pur hasard choisi l’emplacement à côté du sien. Derniers préparatifs pour le train de retour, l’emménagement en colloc trois jours plus tard… Comment dormir quand c’est la dernière nuit, puis cette chaleur, constante, incomparable.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/hrp-day30.jpg&quot; /&gt;
+    &lt;img src=&quot;/assets/hrp/hrp-day30.jpg&quot; /&gt;
     &lt;figcaption&gt;Traditionnelle photo devant la fresque, face à la plage&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;h2 id=&quot;postface&quot;&gt;Postface&lt;/h2&gt;</content><author><name>Johan Manuel</name></author><category term="hiking" /><category term="pyrenees" /><category term="hrp" /><category term="thru-hike" /><summary type="html">En août 2020, j’ai entrepris de marcher le long de la Haute Route Pyrénéenne, ou HRP, depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée. J’ai documenté le voyage au jour le jour, dont le résumé est fait ici.</summary></entry><entry><title type="html">Porting Doom</title><link href="http://localhost:4000/porting-doom/" rel="alternate" type="text/html" title="Porting Doom" /><published>2020-12-15T00:00:00+01:00</published><updated>2020-12-15T00:00:00+01:00</updated><id>http://localhost:4000/porting-doom</id><content type="html" xml:base="http://localhost:4000/porting-doom/">&lt;p&gt;&lt;img src=&quot;/assets/doom.jpg&quot; alt=&quot;Doom running on SnowflakeOS&quot; class=&quot;thumbnail&quot; title=&quot;The Doomslayer has awoken&quot; /&gt;
+&lt;h2 id=&quot;postface&quot;&gt;Postface&lt;/h2&gt;</content><author><name>Johan Manuel</name></author><category term="hiking" /><category term="pyrenees" /><category term="hrp" /><category term="thru-hike" /><summary type="html">En août 2020, j’ai entrepris de marcher le long de la Haute Route Pyrénéenne (HRP), depuis Cauterets en direction de Banyuls-sur-Mer, la Méditerranée. J’ai documenté le voyage au jour le jour, dont le résumé est fait ici.</summary></entry><entry><title type="html">Porting Doom</title><link href="/porting-doom/" rel="alternate" type="text/html" title="Porting Doom" /><published>2020-12-15T00:00:00+01:00</published><updated>2020-12-15T00:00:00+01:00</updated><id>/porting-doom</id><content type="html" xml:base="/porting-doom/">&lt;p&gt;&lt;img src=&quot;/assets/doom.jpg&quot; alt=&quot;Doom running on SnowflakeOS&quot; class=&quot;thumbnail&quot; title=&quot;The Doomslayer has awoken&quot; /&gt;
 Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.&lt;/p&gt;
 
 &lt;h2 id=&quot;doooom&quot;&gt;Doooom&lt;/h2&gt;
@@ -395,7 +397,7 @@ Making this change was &lt;em&gt;hard&lt;/em&gt;. At some point, nothing worked 
   &lt;li&gt;Fixing some of these &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TODO&lt;/code&gt;s…&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Hopefully one of those will be done by next post, see you then :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.</summary></entry><entry><title type="html">Filesystems for dummies</title><link href="http://localhost:4000/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>http://localhost:4000/filesystems-for-dummies</id><content type="html" xml:base="http://localhost:4000/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
+&lt;p&gt;Hopefully one of those will be done by next post, see you then :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Some things in life are inevitable. The passing of seasons, the fall of empires, and the porting of Doom to random platforms. In this post, we’ll investigate this last phenomenon, and how it came to happen in SnowflakeOS.</summary></entry><entry><title type="html">Filesystems for dummies</title><link href="/filesystems-for-dummies/" rel="alternate" type="text/html" title="Filesystems for dummies" /><published>2020-10-17T00:00:00+02:00</published><updated>2020-10-17T00:00:00+02:00</updated><id>/filesystems-for-dummies</id><content type="html" xml:base="/filesystems-for-dummies/">&lt;p&gt;&lt;img src=&quot;/assets/sos-corpo2.jpg&quot; alt=&quot;Showing off the flex new background&quot; class=&quot;thumbnail&quot; title=&quot;The dummy in question is the author, fwiw&quot; /&gt;
 Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.&lt;/p&gt;
 
 &lt;p&gt;But first, take a look at that whole new logo, designed by the magnificent &lt;a href=&quot;https://github.com/sylvain-kern&quot;&gt;sylvain-kern&lt;/a&gt; &amp;lt;3 The sign of a new era of prosperity for SnowflakeOS, to be sure.&lt;/p&gt;
@@ -579,7 +581,7 @@ A typical handler looks something like that:&lt;/p&gt;
 
 &lt;h4 id=&quot;on-that-note&quot;&gt;On that note…&lt;/h4&gt;
 
-&lt;p&gt;I’ll see you next time, hopefully talking about ELF loading and disk drivers and as many bugs as possible :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.</summary></entry><entry><title type="html">A terminal, at last</title><link href="http://localhost:4000/a-terminal-at-last/" rel="alternate" type="text/html" title="A terminal, at last" /><published>2020-05-24T00:00:00+02:00</published><updated>2020-05-24T00:00:00+02:00</updated><id>http://localhost:4000/a-terminal-at-last</id><content type="html" xml:base="http://localhost:4000/a-terminal-at-last/">&lt;p&gt;&lt;img src=&quot;/assets/sos-paint.jpg&quot; alt=&quot;picture&quot; class=&quot;thumbnail&quot; title=&quot;The author wasn't fucking around _this_ week.&quot; /&gt;
+&lt;p&gt;I’ll see you next time, hopefully talking about ELF loading and disk drivers and as many bugs as possible :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Welcome to a new post from this very irregular blog! After busy summer holidays spent hiking in the Pyrenees, college has begun again and with it, the peace required for osdev work to resume. Last time I worked on SnowflakeOS, I’d gone all in on UI work, left unfinished and unpolished. Having entirely forgotten about that work, I booted up the project and thought: “why no files? let there be files”, and now, files sort of are. Let’s see how they work, and how they don’t.</summary></entry><entry><title type="html">A terminal, at last</title><link href="/a-terminal-at-last/" rel="alternate" type="text/html" title="A terminal, at last" /><published>2020-05-24T00:00:00+02:00</published><updated>2020-05-24T00:00:00+02:00</updated><id>/a-terminal-at-last</id><content type="html" xml:base="/a-terminal-at-last/">&lt;p&gt;&lt;img src=&quot;/assets/sos-paint.jpg&quot; alt=&quot;picture&quot; class=&quot;thumbnail&quot; title=&quot;The author wasn't fucking around _this_ week.&quot; /&gt;
 Let’s face it, it’s hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.&lt;/p&gt;
 
 &lt;p&gt;But wait, you scream, last time you didn’t have moving windows, a mouse pointer, or the ability to get input from userspace, how come now we’re implementing a terminal?&lt;br /&gt;
@@ -841,7 +843,7 @@ If you’re like me and didn’t know about it, &lt;code class=&quot;language-pl
 
 &lt;hr /&gt;
 
-&lt;p&gt;On a final note, I wanted to thank /r/osdev’s users for sharing their progress, in particular skiftOS’s developer, whose beautiful UI and OS reminded me to try a little harder, because the results are clearly worth it.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Let’s face it, it’s hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.</summary></entry><entry><title type="html">A need for speed</title><link href="http://localhost:4000/a-need-for-speed/" rel="alternate" type="text/html" title="A need for speed" /><published>2020-05-08T00:00:00+02:00</published><updated>2020-05-08T00:00:00+02:00</updated><id>http://localhost:4000/a-need-for-speed</id><content type="html" xml:base="http://localhost:4000/a-need-for-speed/">&lt;p&gt;&lt;img src=&quot;/assets/snowy_bg.jpg&quot; alt=&quot;thumbnail&quot; class=&quot;thumbnail&quot; title=&quot;I choose the worst wallpapers&quot; /&gt;
+&lt;p&gt;On a final note, I wanted to thank /r/osdev’s users for sharing their progress, in particular skiftOS’s developer, whose beautiful UI and OS reminded me to try a little harder, because the results are clearly worth it.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Let’s face it, it’s hard to get excited about a kernel from just barebone demos of barely functional systems. In this article, I propose a radical solution: actually implementing useful userspace programs, namely a terminal, and ye old copycat of paint.</summary></entry><entry><title type="html">A need for speed</title><link href="/a-need-for-speed/" rel="alternate" type="text/html" title="A need for speed" /><published>2020-05-08T00:00:00+02:00</published><updated>2020-05-08T00:00:00+02:00</updated><id>/a-need-for-speed</id><content type="html" xml:base="/a-need-for-speed/">&lt;p&gt;&lt;img src=&quot;/assets/snowy_bg.jpg&quot; alt=&quot;thumbnail&quot; class=&quot;thumbnail&quot; title=&quot;I choose the worst wallpapers&quot; /&gt;
 At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -1077,7 +1079,7 @@ At the end of the last post we had a pretty solid memory allocator. Where does t
 
 &lt;h3 id=&quot;mission-accomplished&quot;&gt;Mission accomplished!&lt;/h3&gt;
 
-&lt;p&gt;We will for sure get smooth mouse movements and smooth window dragging in the next article now &lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;plot twist: we already do&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;, until next time!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!</summary></entry><entry><title type="html">Taming memory allocators</title><link href="http://localhost:4000/advanced-memory-allocation/" rel="alternate" type="text/html" title="Taming memory allocators" /><published>2020-03-07T00:00:00+01:00</published><updated>2020-03-07T00:00:00+01:00</updated><id>http://localhost:4000/advanced-memory-allocation</id><content type="html" xml:base="http://localhost:4000/advanced-memory-allocation/">&lt;p&gt;&lt;img src=&quot;/assets/sos-spam.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?&quot; /&gt;
+&lt;p&gt;We will for sure get smooth mouse movements and smooth window dragging in the next article now &lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;plot twist: we already do&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;, until next time!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the end of the last post we had a pretty solid memory allocator. Where does that take us though? Well in some cases, making hundreds of small allocations can lead to thousandfold improvements. Today, we reach for performance!</summary></entry><entry><title type="html">Taming memory allocators</title><link href="/advanced-memory-allocation/" rel="alternate" type="text/html" title="Taming memory allocators" /><published>2020-03-07T00:00:00+01:00</published><updated>2020-03-07T00:00:00+01:00</updated><id>/advanced-memory-allocation</id><content type="html" xml:base="/advanced-memory-allocation/">&lt;p&gt;&lt;img src=&quot;/assets/sos-spam.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;This used to be a 17 MiB gif, it got shot down. Notice that window staying on top of all others?&quot; /&gt;
 Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!&lt;/p&gt;
 
 &lt;h2 id=&quot;the-basics&quot;&gt;The basics&lt;/h2&gt;
@@ -1318,7 +1320,7 @@ Today I’ll be writing about memory allocation, a fairly fundamental topic, per
 &lt;h2 id=&quot;till-next-time&quot;&gt;Till next time&lt;/h2&gt;
 
 &lt;p&gt;That’s it for this post, which is already far too long, too late and all over the place.&lt;br /&gt;
-Thank you for reading till the end!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!</summary></entry><entry><title type="html">Room for graphical improvement</title><link href="http://localhost:4000/room-for-improvements/" rel="alternate" type="text/html" title="Room for graphical improvement" /><published>2019-12-30T00:00:00+01:00</published><updated>2019-12-30T00:00:00+01:00</updated><id>http://localhost:4000/room-for-improvements</id><content type="html" xml:base="http://localhost:4000/room-for-improvements/">&lt;p&gt;&lt;img src=&quot;/assets/sos-with-bg.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;It's always christmas with SnowflakeOS&quot; /&gt;
+Thank you for reading till the end!&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">Today I’ll be writing about memory allocation, a fairly fundamental topic, perhaps one that most encounter faily early in their OS development journey. Yet I’ve only now started to really get into it, now that I feel like it’s needed. And it turned out to be fun after all!</summary></entry><entry><title type="html">Room for graphical improvement</title><link href="/room-for-improvements/" rel="alternate" type="text/html" title="Room for graphical improvement" /><published>2019-12-30T00:00:00+01:00</published><updated>2019-12-30T00:00:00+01:00</updated><id>/room-for-improvements</id><content type="html" xml:base="/room-for-improvements/">&lt;p&gt;&lt;img src=&quot;/assets/sos-with-bg.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;It's always christmas with SnowflakeOS&quot; /&gt;
 In the last post, I presented the first working version of SnowflakeOS’s window manager. While it worked, it had&lt;sup&gt;[&lt;a href=&quot;&quot; title=&quot;still has&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; a few important shortcomings.&lt;/p&gt;
 
 &lt;h2 id=&quot;wm-design-simple-is-too-simple&quot;&gt;WM design: simple is too simple&lt;/h2&gt;
@@ -1389,7 +1391,7 @@ It turned out to be a lot more mundane: with optimisations on, my scheduler swit
 
 &lt;h3 id=&quot;background-improvements&quot;&gt;Background improvements&lt;/h3&gt;
 
-&lt;p&gt;Notice how the wallpaper doesn’t look like a graphical glitch anymore? I picked a background, converted it to raw RGB values, stuck it in a C header with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xxd -i&lt;/code&gt; and loaded it in the buffer of my background window. At 14 MiB of header file, it’s outright heavy, but thankfully once compiled it compresses down to around 2 MiB. A PNG parser is somewhere on my todo list :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In the last post, I presented the first working version of SnowflakeOS’s window manager. While it worked, it had[1] a few important shortcomings.</summary></entry><entry><title type="html">Graphics: from pixels to windows</title><link href="http://localhost:4000/window-manager/" rel="alternate" type="text/html" title="Graphics: from pixels to windows" /><published>2019-12-15T00:00:00+01:00</published><updated>2019-12-15T00:00:00+01:00</updated><id>http://localhost:4000/window-manager</id><content type="html" xml:base="http://localhost:4000/window-manager/">&lt;p&gt;&lt;img src=&quot;/assets/kerning.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;The background is generated by setting the ith pixel to 'i | i*512 | i % 512'&quot; /&gt;
+&lt;p&gt;Notice how the wallpaper doesn’t look like a graphical glitch anymore? I picked a background, converted it to raw RGB values, stuck it in a C header with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xxd -i&lt;/code&gt; and loaded it in the buffer of my background window. At 14 MiB of header file, it’s outright heavy, but thankfully once compiled it compresses down to around 2 MiB. A PNG parser is somewhere on my todo list :)&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">In the last post, I presented the first working version of SnowflakeOS’s window manager. While it worked, it had[1] a few important shortcomings.</summary></entry><entry><title type="html">Graphics: from pixels to windows</title><link href="/window-manager/" rel="alternate" type="text/html" title="Graphics: from pixels to windows" /><published>2019-12-15T00:00:00+01:00</published><updated>2019-12-15T00:00:00+01:00</updated><id>/window-manager</id><content type="html" xml:base="/window-manager/">&lt;p&gt;&lt;img src=&quot;/assets/kerning.jpg&quot; alt=&quot;Current state of the GUI&quot; class=&quot;thumbnail&quot; title=&quot;The background is generated by setting the ith pixel to 'i | i*512 | i % 512'&quot; /&gt;
 With SnowflakeOS starting to have more of the pieces a proper hobby OS should have, it was time to make this state of affair visible from the outside. Graphics!
 Ironically, by switching away from text mode, we lose the immediate ability to print text, but as you’ll see we’re going to get it all back. At some point anyway; what’s presented here is  the beginning of this process.&lt;/p&gt;
 
@@ -1627,7 +1629,7 @@ Good thing SnowflakeOS apps are always lightning fast ;)&lt;/p&gt;
 &lt;h2 id=&quot;long-time-no-c&quot;&gt;Long time no C&lt;/h2&gt;
 
 &lt;p&gt;It’s been a while since the last entry in this blog, but I’m hoping to pick up the pace. I’ve been very busy programming-wise with school projects, but less so now.&lt;br /&gt;
-One can’t reasonably spend their time writing C#, can they?&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">With SnowflakeOS starting to have more of the pieces a proper hobby OS should have, it was time to make this state of affair visible from the outside. Graphics! Ironically, by switching away from text mode, we lose the immediate ability to print text, but as you’ll see we’re going to get it all back. At some point anyway; what’s presented here is the beginning of this process.</summary></entry><entry><title type="html">Mouse support and other PS/2 shenanigans</title><link href="http://localhost:4000/of-mice-and-keyboards/" rel="alternate" type="text/html" title="Mouse support and other PS/2 shenanigans" /><published>2019-10-14T00:00:00+02:00</published><updated>2019-10-14T00:00:00+02:00</updated><id>http://localhost:4000/of-mice-and-keyboards</id><content type="html" xml:base="http://localhost:4000/of-mice-and-keyboards/">&lt;p&gt;&lt;img src=&quot;/assets/sos-kbd.png&quot; alt=&quot;Keyboard and mouse both working&quot; class=&quot;thumbnail&quot; title=&quot;Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day.&quot; /&gt;
+One can’t reasonably spend their time writing C#, can they?&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">With SnowflakeOS starting to have more of the pieces a proper hobby OS should have, it was time to make this state of affair visible from the outside. Graphics! Ironically, by switching away from text mode, we lose the immediate ability to print text, but as you’ll see we’re going to get it all back. At some point anyway; what’s presented here is the beginning of this process.</summary></entry><entry><title type="html">Mouse support and other PS/2 shenanigans</title><link href="/of-mice-and-keyboards/" rel="alternate" type="text/html" title="Mouse support and other PS/2 shenanigans" /><published>2019-10-14T00:00:00+02:00</published><updated>2019-10-14T00:00:00+02:00</updated><id>/of-mice-and-keyboards</id><content type="html" xml:base="/of-mice-and-keyboards/">&lt;p&gt;&lt;img src=&quot;/assets/sos-kbd.png&quot; alt=&quot;Keyboard and mouse both working&quot; class=&quot;thumbnail&quot; title=&quot;Notice the stray 'a'. Thanks, QEMU, I'll debug that some other day.&quot; /&gt;
 At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts.&lt;br /&gt;
 So I went over to OSDev’s article about &lt;a href=&quot;https://wiki.osdev.org/Keyboard&quot;&gt;PS/2 keyboards&lt;/a&gt;, which sent me to the article about the &lt;a href=&quot;https://wiki.osdev.org/%228042%22_PS/2_Controller&quot;&gt;PS/2 controller&lt;/a&gt;, and I knew I wanted to do things properly, and at the same time, gain mouse support.&lt;/p&gt;
 
@@ -1759,7 +1761,7 @@ Then there are the other keys, which send multibyte scan codes. They can be iden
 If you’re really paying attention, you may notice a possible buffer overflow with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctx-&amp;gt;scancode[ctx-&amp;gt;current++]&lt;/code&gt;, but thankfully &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kbd_is_valid_scancode&lt;/code&gt; is guaranteed to return &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; before that… Hmm, this is a bit too clunky, perhaps I’ll put a proper check back in just in case I ever modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kbd_is_valid_scancode&lt;/code&gt;’s interface in the future.&lt;/p&gt;
 
 &lt;p&gt;Anyway, SnowflakeOS can now handle a full QWERTY layout. This is a bit dumb as I myself have a French, AZERTY layout; let’s just say I’m being international :)&lt;br /&gt;
-Ideally I’d move most of the keycode translation stuff to userspace where a keymap could be loaded, and there’d be no more problems.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts. So I went over to OSDev’s article about PS/2 keyboards, which sent me to the article about the PS/2 controller, and I knew I wanted to do things properly, and at the same time, gain mouse support.</summary></entry><entry><title type="html">On context switching and C programs in userland</title><link href="http://localhost:4000/switches-and-knobs/" rel="alternate" type="text/html" title="On context switching and C programs in userland" /><published>2019-10-06T00:00:00+02:00</published><updated>2019-10-06T00:00:00+02:00</updated><id>http://localhost:4000/switches-and-knobs</id><content type="html" xml:base="http://localhost:4000/switches-and-knobs/">&lt;p&gt;&lt;img src=&quot;/assets/garbage.jpg&quot; alt=&quot;Executing garbage&quot; class=&quot;thumbnail&quot; title=&quot;It's abstract art, okay?&quot; /&gt;
+Ideally I’d move most of the keycode translation stuff to userspace where a keymap could be loaded, and there’d be no more problems.&lt;/p&gt;</content><author><name>Johan Manuel</name></author><category term="development" /><category term="osdev" /><category term="hobby-os" /><category term="c" /><summary type="html">At the beginning of last week, I was looking over my keyboard code, still wondering what kind of interface could be exposed to userspace and be useful, and also wondering why my scan codes seemed to have no physical relation to any known keyboard layouts. So I went over to OSDev’s article about PS/2 keyboards, which sent me to the article about the PS/2 controller, and I knew I wanted to do things properly, and at the same time, gain mouse support.</summary></entry><entry><title type="html">On context switching and C programs in userland</title><link href="/switches-and-knobs/" rel="alternate" type="text/html" title="On context switching and C programs in userland" /><published>2019-10-06T00:00:00+02:00</published><updated>2019-10-06T00:00:00+02:00</updated><id>/switches-and-knobs</id><content type="html" xml:base="/switches-and-knobs/">&lt;p&gt;&lt;img src=&quot;/assets/garbage.jpg&quot; alt=&quot;Executing garbage&quot; class=&quot;thumbnail&quot; title=&quot;It's abstract art, okay?&quot; /&gt;
 In the last post, I discussed how I implemented collaborative execution in SnowflakeOS through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iret&lt;/code&gt; instruction. Well, at that time the implementation wasn’t finished, even though I thought it was: I wasn’t restoring general purpose registers. This led to some pretty nice bugs, as pictured above.&lt;/p&gt;
 
 &lt;h2 id=&quot;context-switching&quot;&gt;Context switching&lt;/h2&gt;
