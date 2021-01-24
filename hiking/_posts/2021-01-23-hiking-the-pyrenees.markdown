@@ -30,7 +30,7 @@ Ils tentent le Petit Vignemale demain matin, je m'engage à les suivre, sans pro
 
 ### Day 2: Oulettes de Gaubes to Gavarnie
 
-Gros orage hier soir qui a secoué la tente déjà mal pitchée. It held. La tente de V&P a eu moins de chance, un anneau de cassé{% anecdote 4 |je les reverrai le lendemain, puis plus %}. Ce matin, les grégaires du GR n'étaient plus deter à faire le Petit Vignemale, à cause du vent, entre autres. Je les quitte, gravis la Hourquette d'Ossoue puis le Petit Vignemale. 3 km de haut ! À la descente je retrouve les gens à Baysellance, je n'y reste pas. Ils me rattrapent vite. Premier river crossing pieds trempés. Au barrage d'Ossoue, pause de quelques heures pour moi. Le groupe repart direction Gavarnie, moi je vise le refuge d'avant. La fin de journée est superbe: personne ou presque sur le GR. Au moment de poser ma tente au refuge de la Grange de Holle, M débarque, puis les autres: ils n'ont pas trouvé de place au camping de Gavarnie. Je suis décidé à prendre la HRP le lendemain.
+Gros orage hier soir qui a secoué la tente déjà mal pitchée. It held. La tente de V&P a eu moins de chance, un anneau de cassé{% anecdote 4|je les reverrai le lendemain, puis plus %}. Ce matin, les grégaires du GR n'étaient plus deter à faire le Petit Vignemale, à cause du vent, entre autres. Je les quitte, gravis la Hourquette d'Ossoue puis le Petit Vignemale. 3 km de haut ! À la descente je retrouve les gens à Baysellance, je n'y reste pas. Ils me rattrapent vite. Premier river crossing pieds trempés. Au barrage d'Ossoue, pause de quelques heures pour moi. Le groupe repart direction Gavarnie, moi je vise le refuge d'avant. La fin de journée est superbe: personne ou presque sur le GR. Au moment de poser ma tente au refuge de la Grange de Holle, M débarque, puis les autres: ils n'ont pas trouvé de place au camping de Gavarnie. Je suis décidé à prendre la HRP le lendemain.
 
 <figure>
     <img src="/assets/hrp/hrp-day2.jpg">
@@ -50,7 +50,7 @@ Lessive avant le lac des Gloriettes, destination de picnic prisée. J'opte pour 
 
 ### Day 4: Héas to Lacs de Barroude
 
-Seulement la moitié d'une étape selon Cicerone, effectivement j'arrive tôt. C'est une très bonne chose, les lacs de Barroude sont mon idée du paradis sur Terre. Le mur de Barroude surplombe deux lacs issus d'un glacier. La vallée est verdoyante et accidentée. Des centaines de moutons. Le plus grand des deux lacs possède quelques îlots et deux presqu'îles. À mon arrivée, j'aperçois un randonneur chillant sur la première presqu'île, sorte de volcan miniature. Je m'installe sur la suivante. Baignade, juste une minute, l'eau est fraîche. Je me suis écorché l'orteil gauche :/ Fissuré ? J'ai ici un gros cal douloureux depuis un moment. En venant ici, la Hourquette d'Héas était à couper le souffle. Un trou de deux mètres dans la roche sépare deux vallées, avec un souffle extraordinaire. Comme si tout le vent d'une vallée passait là pour rejoindre d'autre. Le dénivelé ne m'a pas posé de soucis aujourd'hui. Habitude ? Demain, Parzán, journée très facile si mon orteil coopère.
+Seulement la moitié d'une étape selon Cicerone, effectivement j'arrive tôt. C'est une très bonne chose, les lacs de Barroude sont mon idée du paradis sur Terre. Le mur de Barroude surplombe deux lacs issus d'un glacier. La vallée est verdoyante et accidentée. Des centaines de moutons. Le plus grand des deux lacs possède quelques îlots et deux presqu'îles. À mon arrivée, j'aperçois un randonneur chillant sur la première presqu'île, sorte de volcan miniature. Je m'installe sur la suivante. Baignade, juste une minute, l'eau est fraîche. Je me suis écorché l'orteil gauche :/ Fissuré ? J'ai ici un gros cal douloureux depuis un moment. En venant ici, la Hourquette d'Héas était à couper le souffle. Un trou de deux mètres dans la roche sépare deux vallées, avec un souffle extraordinaire. Comme si tout le vent d'une vallée passait là pour rejoindre l'autre. Le dénivelé ne m'a pas posé de soucis aujourd'hui. Habitude ? Demain, Parzán, journée très facile si mon orteil coopère.
 
 Vraiment pas satisfait de mon système de bouffe. Selon mes estimations, j'ai mangé 1614 kcal aujourd'hui... Avec fromage ça aurait été 2000 kcal, toujours pas ouf.
 
@@ -220,7 +220,7 @@ Les voir m'a redonné la pêche. Après une pause, je repars pour Juclar. Dure m
 
 ### Day 20: Juclar to L'Hospitalet-Près-l'Andorre
 
-Jolis lacs passé le col d'Albe. Peu de gens par ici, deux trois petits groupes. Ceux là semblent du coin, plantent leurs tentes et pêchent pour certains. Ils ont de la montée à faire depuis L'Hospitalet pourtant. Du GR, du GR, du GR... Cette ville a un style très particulier. Un pipeline qui la traverse, du bitume noir parmi des veilles maisons à moitié retapées. Camping peucher though. Les plans sont faits, G&S me rejoignent ici demain soir. Mon zéro day est arrivé !
+Jolis lacs passé le col d'Albe. Peu de gens par ici, deux trois petits groupes. Ceux là semblent du coin, plantent leurs tentes et pêchent pour certains. Ils ont de la montée à faire depuis L'Hospitalet pourtant. Du GR, du GR, du GR... Cette ville a un style très particulier. Un pipeline qui la traverse, du bitume noir entre les veilles maisons à moitié retapées. Camping peucher though. Les plans sont faits, G&S me rejoignent ici demain soir. Mon zéro day est arrivé !
 
 <figure>
     <img src="/assets/hrp/hrp-day20.jpg">
@@ -258,7 +258,7 @@ Tout est mieux à l'étape qui suit et je retrouve une forme de civilité. Cours
 
 ### Day 24: Saillagouse to Noufonts
 
-Petit déjeuner parfait, pain beurre, confiture, miel, ... Courses au marché puis à Spar, pour quatre jours. Rôti, glace à midi, c'est glorieux. Puis il est temps de partir, ~15h, G' nous dépose à la reprise du chemin. Jolie remontée de la vallée d'Eyne. On suit Tom qui nous indique les crêtes campables, et décidons de poursuivre sur les crêtes. "Yer fond of me lucky charms!". Coucher de soleil. On descend du col de Noufonts pour camper, bon terrain mais beaucoup de vent, dure nuit.
+Petit déjeuner parfait, pain beurre, confiture, miel, ... Courses au marché puis à Spar, pour quatre jours. Rôti, glace à midi, c'est glorieux. Puis il est temps de partir, ~15h, G' nous dépose à la reprise du chemin. Jolie remontée de la vallée d'Eyne. On suit Tom qui nous décrit les crêtes comme campables, et décidons de poursuivre là dessus. "Yer fond of me lucky charms!". Coucher de soleil. On descend du col de Noufonts pour camper, bon terrain mais beaucoup de vent, dure nuit.
 
 <figure>
     <img src="/assets/hrp/hrp-day24.jpg">
@@ -287,7 +287,7 @@ Départ compliqué le matin: faute de voir un chemin, navigation à vue qui nous
 
 ### Day 27: Cortalets to Céret
 
-Grosse journée. Le plan, atteindre Arles-sur-Tech, où la famille de S nous amènera en escale à Céret, où G&S resteront. Bloqués par des vaches, pause à la maison forestière de l'Estanyol. Le chemin est effectivement forestier, bien à l'ombre, il fait beau. Plus que de la descente jusqu'à Arles, 282 m d'altitude. On en fait même une partie en courant, G&S sont deter comme jamais. Première fois que je vois un chêne liège. Baignade en rivière, eau fraîche.
+Grosse journée. Le plan, atteindre Arles-sur-Tech, où de la famille à S nous amènera en escale à Céret, G&S y resteront. Bloqués par des vaches, pause à la maison forestière de l'Estanyol. Le chemin est effectivement forestier, bien à l'ombre, il fait beau. Plus que de la descente jusqu'à Arles, 282 m d'altitude. On en fait même une partie en courant, G&S sont deter comme jamais. Première fois que je vois un chêne liège. Baignade en rivière, eau fraîche.
 
 Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on est accueillis par H&S', qui nous amènent à Céret en twingo. Ces anges absolus nous payent le resto ; vengeance sur les Cortalets, également appréciée chaude. H, prof d'anglais, a fait le PCT. J'espère faire de même un de ces jours, je suis sûr maintenant que j'adorerais ça. Leur maison est d'un style monumental, en mode _Sunset Boulevard_, et ils ont un hamac d'appoint - how cool is that?
 
@@ -300,7 +300,7 @@ Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on
 
 Petit dej, courses, repartir seul fait bizarre. J'en oublie de remercier H&S', de retour à Arles. Je fais quelques arrangements de retour, tant que j'ai du réseau, puis grimpe. Même style de chemins qu'en arrivant, parfois comme des tobogans de roche. Une pêche d'enfer en première partie de journée. Oeufs durs à midi <3. Je croise mes premiers sangliers, puis deux beaux chevaux, dans une forêt de hêtres étrangement calme. J'ai mal à l'orteil gauche en marchant, ce que j'attribue à la baignade précédente, une glissade quelconque - pas de certitude.
 
-J'atteins Montalba d'Amélie, une communauté perdue dans la montagne, dont je ne verrai que la fontaine. J'y discute avec un couple de GRdistes qui m'avaient dépassé pendant ma pause déjeuner, ils me demandent si le col plus loin se campe - "open spot on a ridge" dit Tom, je n'en sais pas plus{% anecdote 22|c'était finalement un superbe spot de bivouac %}. "Je vise Las Illas ce soir", "... Vous courrez ?". Non, j'espère pas, mais c'est un challenge ^^ Je grimpe le Roc de France par une voie tout à fait innovante{% anecdote 23|absurde %} après m'être trompé de chemin. Première vue de la Méditerranée, de ma vie je crois. De là, descente jusque Las Illas avec un bref et presque final passage en Espagne. Tom recommendait un joli spot de gazon, j'y trouve deux GRdistes discutant de la fin du voyage. Triste pensée.
+J'atteins Montalba d'Amélie, une communauté perdue dans la montagne, dont je ne verrai que la fontaine. J'y discute avec un couple de GRdistes qui m'avaient dépassé pendant ma pause déjeuner, ils me demandent si le col plus loin se campe - "open spot on a ridge" dit Tom, je n'en sais pas plus{% anecdote 22|c'était finalement un superbe spot de bivouac %}. "Je vise Las Illas ce soir", "... Vous courrez ?". Non, j'espère m'en passer, mais c'est un challenge ^^ Je grimpe le Roc de France par une voie tout à fait innovante{% anecdote 23|absurde %} après m'être trompé de chemin. Première vue de la Méditerranée, de ma vie je crois. De là, descente jusque Las Illas avec un bref et presque final passage en Espagne. Tom recommendait un joli spot de gazon, j'y trouve deux GRdistes discutant de la fin du voyage. Triste pensée.
 
 <figure>
     <img src="/assets/hrp/hrp-day28.jpg">
