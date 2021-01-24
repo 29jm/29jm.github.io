@@ -3,7 +3,7 @@ layout: post
 title: "HRP - Notes de voyage"
 author: Johan Manuel
 tags: hiking pyrenees hrp thru-hike
-thumbnail: /assets/hrp/doom.jpg
+thumbnail: /assets/hrp/hrp-path.jpg
 ---
 
 <figure>
@@ -143,7 +143,7 @@ Beaucoup de touristes autour du refuge de la Restanca, les chemins sont loins d'
     <figcaption>Premier lac de la journée</figcaption>
 </figure>
 
-### Day 13: Salardú to Airoto+
+### Day 13: Salardú to Airoto
 
 Je manque le bus → stop to Vielha. J'attends 9h que le supermarché ouvre → no superglue, je cherche le Casino indiqué, galère et trouve. À 10h, je prends le bus pour Salardú. 10h35, ma chaussure est réparée, on the road again. J'oublie près d'un banc mon buff, il me manque déjà. Passés les premiers Estanys de Baciver surpeuplés, je mange aux Rosaris près des chevaux, regardant ma future montagne, le Tuc de Marimanha. Approche quasi frontale d'une pente raide, ça marche. En haut, je m'aperçois que le tonnerre continue de gronder à l'Ouest, j'accélère. Le col d'Airoto requiert un peu d'escalade inversée, et j'y fait ma première chute: RAS. La section "giant boulders" ne déçoit pas. J'ai trop poussé la descente, je remonte une pente à 80% sur 100m jusqu'au prochain col: je skip le refuge dont j'entends venir des éclats de voix depuis une heure. Je trouve à camper dans la descente du col, avant l'endroit indiqué dans le guide, un tarn plus bas. J'ai peu d'eau mais je suis claqué.
 
@@ -163,9 +163,9 @@ Je trouve facilement cette nouvelle route, qui longe un ruisseau, et j'atteins A
     <figcaption>La carte d'un vrai</figcaption>
 </figure>
 
-### Day 15: Alós+ to Tavascan
+### Day 15: Alós to Tavascan
 
-Je rejoins un vieux HRPiste en montant le col. J'ai mis du temps à me lever: réveillé 8h45. Mes rêves, comme toutes les nuits j'ai l'impression, sont menaçants. Un L4D2 trop difficile, une rando HRP avec G&S&G'' où mes semelles se sont entièrement décollées... On parle un peu gear{% anecdote 14|il a un sac katabatic ! %}, je le dépasse.
+Je rejoins un vieux HRPiste en montant le col. J'ai mis du temps à me lever: réveillé 8h45. Mes rêves, comme toutes les nuits j'ai l'impression, sont menaçants. Un L4D2 trop difficile, une rando HRP avec G&S&G où mes semelles se sont entièrement décollées... On parle un peu gear{% anecdote 14|il a un sac katabatic ! %}, je le dépasse.
 
 L'estany major est grandiose, une mer intérieure avec houle: vent et pluie pendant 20 minutes. Je passe trois lacs et atteins Enric Pujol, où je me pose pour manger. S'y trouve un HRPiste sur le départ, sympa. En faisant une pause plus tard, un couple me dépasse. Fascinés par le bon état de mes chaussures. Lui a remplacé les siennes, elle va très prochainement devoir le faire. Ils sont partis de Cauterets le même jour que moi{% anecdote 15|comme beaucoup de français, ils suivent un autre guide que le mien: je ne les reverrai pas %} ! J'atteins le camping de Bordes de Graus à Tavascan, un peu bruyant mais sympa.
 
@@ -249,7 +249,7 @@ Chemin tranquille, Cauterets-sque jusqu'au refuge des Bésines où on s'arrête 
 
 Carlit ! Suite à un pari sur ma frilosité jambière, je porte le short rose de S, et pour bien faire, son kway 80s-style. G, et particulièrement S, galèrent dans la montée. Elle est longue, et constante. Au sommet en 45 minutes, j'y trouve un vieux apparemment ici depuis un bon moment. Photos, on discute. Il est de Saint-Brieuc, dans l'association [Le Chemin Sauvage][lcs] qui cherche à créer un chemin en V sur toute la France, évitant les grandes villes. Saint-Brieuc, Carlit, Ardennes, le V. Après 15 minutes, le sommet se charge de monde. Photos de groupe dans les nuages, en tenue, et on redescent l'autre versant. Monde fou, et tout commence à m'agacer. Les gens, leurs chiens, leurs familles, la lenteur de G&S dont je ne réalise pas qu'ils sont crevés. L'atteinte des Bouillouses est misérable, sauf pour S me parlant de sa semaine mario.
 
-Tout est mieux à l'étape qui suit et je retrouve une forme de civilité. Courses limitées à Bolquère, et mon parrain nous prend sur la route vers Eyne: escale chez de la famille à moi, A&G'. Repas de soupe, saucisson, salade, oeuf, superbe. Lérot.
+Tout est mieux à l'étape qui suit et je retrouve une forme de civilité. Courses limitées à Bolquère, et mon parrain nous prend sur la route vers Eyne: escale chez de la famille à moi, A&G' - ça fait longtemps que je veux retourner les voir, cette rando est l'occasion de faire d'une pierre deux coups. Repas de soupe, saucisson, salade, oeufs, superbe. Lérot.
 
 <figure>
     <img src="/assets/hrp/hrp-day23.jpg">
@@ -287,9 +287,9 @@ Départ compliqué le matin: faute de voir un chemin, navigation à vue qui nous
 
 ### Day 27: Cortalets to Céret
 
-Grosse journée. Le plan, atteindre Arles-sur-Tech, où la famille de S nous amènera en escale à Céret, où G&S resteront. Bloqués par des vaches, pause à la maison forestière de l'Estanyol. Le chemin est forestier, bien à l'ombre, il fait beau. Plus que de la descente jusqu'à Arles, 282 m d'altitude. On en fait une partie en courant. Première fois que je vois un chêne liège. Baignade en rivière, eau fraîche.
+Grosse journée. Le plan, atteindre Arles-sur-Tech, où la famille de S nous amènera en escale à Céret, où G&S resteront. Bloqués par des vaches, pause à la maison forestière de l'Estanyol. Le chemin est effectivement forestier, bien à l'ombre, il fait beau. Plus que de la descente jusqu'à Arles, 282 m d'altitude. On en fait même une partie en courant, G&S sont deter comme jamais. Première fois que je vois un chêne liège. Baignade en rivière, eau fraîche.
 
-Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on est accueillis par H&S', qui nous amènent à Céret en twingo. Ces anges absolus nous payent le resto ; vengeance sur les Cortalets, également appréciée chaude. H, prof d'anglais, a fait le PCT. J'espère faire de même un de ces jours, je suis sûr maintenant que j'adorerais ça. Leur maison est d'un style monumental, en mode _Sunset Boulevard_. Ils ont un hamac d'appoint, how cool is that?
+Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on est accueillis par H&S', qui nous amènent à Céret en twingo. Ces anges absolus nous payent le resto ; vengeance sur les Cortalets, également appréciée chaude. H, prof d'anglais, a fait le PCT. J'espère faire de même un de ces jours, je suis sûr maintenant que j'adorerais ça. Leur maison est d'un style monumental, en mode _Sunset Boulevard_, et ils ont un hamac d'appoint - how cool is that?
 
 <figure>
     <img src="/assets/hrp/hrp-day27.jpg">
@@ -300,14 +300,14 @@ Arrivés à Arles par un labyrinthe de canaux puis finalement son cimetierre, on
 
 Petit dej, courses, repartir seul fait bizarre. J'en oublie de remercier H&S', de retour à Arles. Je fais quelques arrangements de retour, tant que j'ai du réseau, puis grimpe. Même style de chemins qu'en arrivant, parfois comme des tobogans de roche. Une pêche d'enfer en première partie de journée. Oeufs durs à midi <3. Je croise mes premiers sangliers, puis deux beaux chevaux, dans une forêt de hêtres étrangement calme. J'ai mal à l'orteil gauche en marchant, ce que j'attribue à la baignade précédente, une glissade quelconque - pas de certitude.
 
-J'atteins Montalba d'Amélie, une communauté perdue dans la montagne, dont je ne verrai que la fontaine. J'y discute avec un couple de GRdistes, qui me demandent si le col plus loin se campe - "open spot on a ridge" dit Tom, je n'en sais pas plus{% anecdote 22|c'était finalement un superbe spot de bivouac %}. "Je vise Las Illas ce soir", "... Vous courrez ?". Non, j'espère pas, mais c'est un challenge ^^ Je grimpe le Roc de France par une voie tout à fait innovante{% anecdote 23|absurde %} après m'être trompé de chemin. Première vue de la Méditerranée. De là, descente jusque Las Illas avec un bref et presque final passage en Espagne. Tom recommendait un joli spot de gazon, j'y trouve deux GRdistes discutant de la fin du voyage. Triste pensée.
+J'atteins Montalba d'Amélie, une communauté perdue dans la montagne, dont je ne verrai que la fontaine. J'y discute avec un couple de GRdistes qui m'avaient dépassé pendant ma pause déjeuner, ils me demandent si le col plus loin se campe - "open spot on a ridge" dit Tom, je n'en sais pas plus{% anecdote 22|c'était finalement un superbe spot de bivouac %}. "Je vise Las Illas ce soir", "... Vous courrez ?". Non, j'espère pas, mais c'est un challenge ^^ Je grimpe le Roc de France par une voie tout à fait innovante{% anecdote 23|absurde %} après m'être trompé de chemin. Première vue de la Méditerranée, de ma vie je crois. De là, descente jusque Las Illas avec un bref et presque final passage en Espagne. Tom recommendait un joli spot de gazon, j'y trouve deux GRdistes discutant de la fin du voyage. Triste pensée.
 
 <figure>
     <img src="/assets/hrp/hrp-day28.jpg">
     <figcaption>Du plat pays vu de Roc de France, la Méditerranée au loin</figcaption>
 </figure>
 
-### Day 29: Las Illas to Col de l'Ouillat+
+### Day 29: Las Illas to La Tagnarède
 
 Un vieux me donne une foultitude d'indices pour naviguer la route type suburbs en zigzags sortant de Las Illas, je ne réussi à en retenir aucun mais arrive tout de même au bon endroit: une route de terre, "surveillée par satellite" - alright. La route est longue, longue, sans distraction. Elle mène finalement au Perthus, par une forêt de chênes lièges. Il fait une chaleur assomante.
 
@@ -318,13 +318,13 @@ Il est midi à Le Perthus, je m'arrête dans ce que je prends pour un bistrot fa
     <figcaption>Last wild pitch</figcaption>
 </figure>
 
-### Day 30: Col de l'Ouillat to Banyuls
+### Day 30: Tagnarède to Banyuls
 
 Pas de déception à Sailfort, c'est vraiment un dernier grand rempart avant la mer. Je me trompe de chemin pour en descendre, me retrouve bêtement coincé sur une face et obligé de faire demi-tour. Pas important, et ça me fait croiser le "Refuge Tomy", un abri improbable dans un bout de roche. Mais l'eau m'inquiète un peu, j'en bois des litres et des litres. Un peu plus loin, un robinet est juste planté là. Déjeuner, sieste.
 
 En recollant un morceau de semelle, un couple de randonneurs retraités me dépassent. Je les rattrape, on fait le dernier bout de route ensemble vers Banyuls. Lui finit la Trans'pyr complète en sens inverse{% anecdote 24|autre façon de dire HRP, de ce que je comprends %}, sa femme l'accompagne pour la dernière semaine. Toutes les nuits en refuge, problèmes de dos oblige, mais il marche à un sacré bon rythme. Sa semelle gauche tient à un fil - littéralement.
 
-Photos devant la mairie de Banyuls, on se quitte là. Baignade à la plage, l'eau est chaude comme elle n'a jamais été dans le Finistère. Office du tourisme, camping, pizza sur la plage. Au camping, je retrouve un des GRdistes de Las Illas ; j'ai par pur hasard choisi l'emplacement à côté du sien. Derniers préparatifs pour le train de retour, l'emménagement en colloc trois jours plus tard... Dur de dormir quand c'est la dernière nuit, puis cette chaleur, constante, incomparable.
+Photos devant la mairie de Banyuls, on se quitte là. Baignade à la plage, l'eau est chaude comme elle n'a jamais été dans le Finistère. Office du tourisme, camping, pizza sur la plage. Au camping, je retrouve un des GRdistes de Las Illas ; j'ai par pur hasard choisi l'emplacement à côté du sien. Derniers préparatifs pour le train de retour, l'emménagement en coloc trois jours plus tard... Dur de dormir quand c'est la dernière nuit, puis cette chaleur, constante, incomparable.
 
 <figure>
     <img src="/assets/hrp/hrp-day30.jpg">
