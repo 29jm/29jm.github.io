@@ -200,8 +200,8 @@ Thus, I implemented the WM in the kernel, and programs communicate with it throu
 It offers a <code class="language-plaintext highlighter-rouge">snow_open_window</code> function which allocates a buffer of the window’s size. Drawing functions then write to that buffer, and the program asks for that window to be drawn to screen by calling <code class="language-plaintext highlighter-rouge">snow_render_window</code>. There are no GUI functions right now - only mockups - but they’ll sit between those two calls. Closing the window is then done though <code class="language-plaintext highlighter-rouge">snow_close_window</code>.</p>
 
 <p>Here’s an example of what can be done right now:</p>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;snow.h&gt;
-#include &lt;string.h&gt;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;snow.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">window_t</span><span class="o">*</span> <span class="n">win</span> <span class="o">=</span> <span class="n">snow_open_window</span><span class="p">(</span><span class="s">"A static window"</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="n">WM_NORMAL</span><span class="p">);</span>
