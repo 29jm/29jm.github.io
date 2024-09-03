@@ -28,3 +28,5 @@ I'd love to get feedback, on anything! You'll find my email through my GitHub pr
 ### About the author
 
 I'm software engineer from France, living and working in Brno, Czechia. I'm passionate about all things programming, math, long distance hiking and cinema.
+
+You can find my CV here: [CV_Johan_Manuel.pdf](misc/CV_Johan_Manuel.pdf)
